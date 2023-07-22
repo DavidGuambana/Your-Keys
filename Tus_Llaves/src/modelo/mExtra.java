@@ -89,4 +89,10 @@ public class mExtra extends Extra {
         rs = con.consulta(sql);
         return rs;
      }
+     
+      public ResultSet join2() {
+        sql = "SELECT e.codigo, e.nombre, e.precio, e.existencias, c.nombre FROM Extra e JOIN Categoria c ON(e.id_categoria = c.id)";
+        rs = con.consulta(sql);
+        return rs;
+    }
 }

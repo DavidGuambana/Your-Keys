@@ -23,6 +23,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import modelo.mAlquiler;
 import modelo.mAuto;
 import modelo.mCliente;
 import modelo.mConductor;
@@ -31,6 +32,7 @@ import modelo.mExtra;
 import modelo.mImagen;
 import modelo.mPersona;
 import vista.cabecera;
+import vista.vAlquiler;
 import vista.vAuto;
 import vista.vCliente;
 import vista.vConductor;
@@ -46,6 +48,7 @@ public final class cPrincipal {
     vEmpleado vempleado;
     vAuto vauto;
     vExtras vextras;
+    vAlquiler valquiler;
     mPersona Mpersona = new mPersona();
     mEmpleado modeloE = new mEmpleado();
     private DrawerController dave;
@@ -67,6 +70,7 @@ public final class cPrincipal {
         vista.getMiConductor().addActionListener(l -> menuConductor());
         vista.getMiAutomovil().addActionListener(l -> MenuAutos());
         vista.getMiExtras().addActionListener(l -> menuExtras());
+        vista.getMiAlquiler().addActionListener(l-> menuAlquiler());
         vista.getMiEmpleado().addActionListener(l -> menuEmpelado());
         vista.getMenu_desplegable().addActionListener(l -> Desplegar());
         
@@ -169,9 +173,19 @@ public final class cPrincipal {
             vextras = new vExtras();
             vista.getJdPrincipal().add(vextras);
         }
-
         cExtra controlador = new cExtra(modextra, vextras);
+    }
+    
+     public void menuAlquiler() {
 
+        mAlquiler moalquiler = new mAlquiler();
+        try {
+            vista.getJdPrincipal().add(valquiler);
+        } catch (Exception e) {
+            valquiler = new vAlquiler();
+            vista.getJdPrincipal().add(valquiler);
+        }
+        cAlquiler controlador = new cAlquiler(valquiler,moalquiler);
     }
 
     public void Desplegar() {

@@ -18,15 +18,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelo.mAlquiler;
 import modelo.mAuto;
@@ -66,19 +63,16 @@ public final class cAlquiler {
     double tAlqulerAuto,tContrato,  tDetalles, subtotal, IVA,total;
     ArrayList<Integer> extras_seleccionado = new ArrayList<>();
     
-    DefaultTableModel dtm;
+    DefaultTableModel dtm, dtm2;
     
     JButton btnBien = new JButton();
     JButton btnMal = new JButton();
     
     String[] colDetalles= {"Código extra", "Nombre","Precio", "Cantidad", "Subtotal", "Acción"};
-    String[] colExtras= {"Código extra","Nombre","Precio","Stock", "ID categoría", "Acción"};
-    
+    String[] colExtras= {"Código extra","Nombre","Precio","Stock", "Categoría", "Acción"};
     String[] colClientes= {"ID cliente", "Cédula", "Nombre", "Apellido","Foto", "Acción"};
     String[] colAutos={"Matricula", "Categoría", "Modelo", "Marca", "Precio","Foto","Acción"};
     String[] colConductores={"ID conductor","Licencia", "Nombre","Apellido","Precio/Hora","Foto","Acción"};
-    
-    JTextField txtIdExtra = new JTextField();
     
     public void iniciar(){
         vista.setVisible(true);
@@ -115,28 +109,90 @@ public final class cAlquiler {
             abrirDialogo("Listado de extras");
                 });
         
-        btnBien.setBackground(Color.WHITE);
-        btnMal.setBackground(Color.WHITE);
-        InsertarIcono(btnBien, "/vista/img/bien.png");
-        InsertarIcono(btnMal, "/vista/img/mal.png");
-        vista.getJtRegistros().setDefaultRenderer(Object.class, new RenderTable());
+        ControlarTabla(vista.getJtRegistros(), vista.getJtDetalles());
         
+        btnBien.setBackground(Color.black);
+        btnMal.setBackground(Color.GRAY);
+        btnBien.setText("+ AGREGAR");
+        btnMal.setText("× REMOVER");
+        btnBien.setForeground(Color.white);
+        btnMal.setForeground(Color.white);
+        
+//        InsertarIcono(btnBien, "/vista/img/bien.png");
+//        InsertarIcono(btnMal, "/vista/img/mal.png");
+
+        vista.getJtRegistros().setDefaultRenderer(Object.class, new RenderTable());
+        dtm2 = new DefaultTableModel(null, colDetalles);
+        vista.getJtDetalles().setRowHeight(30);
         vista.getTxtBuscar().addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 FiltrarTabla.filtrar(vista.getJtRegistros(), vista.getTxtBuscar(), vista.getCbColumnas());
             }
-        });
-        
-        ControlarTabla(vista.getJtRegistros(),vista.getTxtConductor());
-        ControlarTabla(vista.getJtRegistros(),vista.getTxtMatricula());
-        ControlarTabla(vista.getJtRegistros(),vista.getTxtCliente());
-        ControlarTabla(vista.getJtRegistros(),txtIdExtra);
+        }); 
     }
     
+    public void ControlarTabla(JTable t, JTable t2) {
+        t.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                if (me.getClickCount() == 2) {
+                    String id = t.getValueAt(t.getSelectedRow(), 0).toString();
+                    int xcolum = t.getColumnModel().getColumnIndexAtX(me.getX());
+                    int xrow = me.getY() / t.getRowHeight();
+                    if (xcolum <= t.getColumnCount() && xcolum >= 0 && xrow <= t.getRowCount() && xrow >= 0) {
+                        Object obj = t.getValueAt(xrow, xcolum);
+                        if (obj instanceof JButton) {
+                            if (vista.getJdDialog().getTitle().equals("Listado de autos")) {
+                                vista.getTxtMatricula().setText(id);
+                            }
+                            if (vista.getJdDialog().getTitle().equals("Listado de clientes")) {
+                                vista.getTxtCliente().setText(id);
+                            }
+                            if (vista.getJdDialog().getTitle().equals("Listado de conductores")) {
+                                vista.getTxtConductor().setText(id);
+                            }
+                            if (!vista.getJdDialog().getTitle().equals("Listado de extras")) {
+                                vista.getJdDialog().setVisible(false);
+                            } else {
+                                String nombre = t.getValueAt(t.getSelectedRow(), 1).toString();
+                                double precio = Double.parseDouble(t.getValueAt(t.getSelectedRow(), 2).toString());
+                                int existencias = Integer.parseInt(t.getValueAt(t.getSelectedRow(), 3).toString());
+                                agregarExtra(Integer.parseInt(id), nombre, precio, existencias);
+
+                            }
+
+                        }
+                    }
+                }
+            }
+        });
+        t2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                if (me.getClickCount() == 1) {
+                   String id_extra = t2.getValueAt(t2.getSelectedRow(), 0).toString();
+                        double precio = Double.parseDouble(t2.getValueAt(t2.getSelectedRow(), 2).toString());
+                        try {
+                            int cantidad = Integer.parseInt(t2.getValueAt(t2.getSelectedRow(), 3).toString());
+                            int xcolum = t2.getColumnModel().getColumnIndexAtX(me.getX());
+                            int xrow = me.getY() / t2.getRowHeight();
+                            if (xcolum <= t2.getColumnCount() && xcolum >= 0 && xrow <= t2.getRowCount() && xrow >= 0) {
+                                Object obj = t2.getValueAt(xrow, xcolum);
+                                if (obj instanceof JButton) {
+                                    removerProducto(Integer.parseInt(id_extra), precio, cantidad);
+                                }
+                            }
+                        } catch (Exception e) {
+                        }
+                }
+            }
+        });
+    }
+
     public void crear() {
         //creamos alquiler
-        if (setAlquiler() ) {
+        if (setAlquiler()) {
             modelo.crear();
             //creamos detalle/s
             for (int i = 0; i < vista.getJtDetalles().getRowCount(); i++) {
@@ -233,12 +289,16 @@ public final class cAlquiler {
     }
    
     public void verExtras(int idExtra) {
-        dtm = new DefaultTableModel(null, colExtras);
-        extras = me.listar(idExtra);
-        extras.stream().forEach(e -> dtm.addRow(new Object[]{e.getCodigo(), e.getNombre(), e.getPrecio(), e.getExistencias(), e.getId_categoria(), btnBien}));
-
-        vista.getJtRegistros().setModel(dtm);
-        vista.getJtRegistros().setRowHeight(40);
+       try {
+            dtm = new DefaultTableModel(null, colExtras);
+            rs = me.join2();
+            while (rs.next()) {
+                dtm.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getInt(4),rs.getString(5),btnBien});
+            }
+            vista.getJtRegistros().setModel(dtm);
+            vista.getJtRegistros().setRowHeight(30);
+        } catch (SQLException ex) {
+        }
     }
     
     public void verClientes() {
@@ -253,7 +313,6 @@ public final class cAlquiler {
             vista.getJtRegistros().setModel(dtm);
             vista.getJtRegistros().setRowHeight(50);
         } catch (SQLException ex) {
-            Logger.getLogger(cAlquiler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -269,7 +328,6 @@ public final class cAlquiler {
             vista.getJtRegistros().setModel(dtm);
             vista.getJtRegistros().setRowHeight(50);
         } catch (SQLException ex) {
-            Logger.getLogger(cAlquiler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -286,7 +344,6 @@ public final class cAlquiler {
             vista.getJtRegistros().setRowHeight(50);
 
         } catch (SQLException ex) {
-            Logger.getLogger(cAlquiler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -314,7 +371,7 @@ public final class cAlquiler {
                 datos = new String[]{"Matricula", "Categoría", "Modelo", "Marca", "Precio"};
                 break;
             case "Listado de extras":
-                datos = new String[]{"Código extra", "Nombre", "Precio", "Stock", "ID categoría"};
+                datos = new String[]{"Código extra", "Nombre", "Precio", "Stock", "Categoría"};
                 break;
         }
         vista.getCbColumnas().setModel(new DefaultComboBoxModel<>(datos));
@@ -338,84 +395,64 @@ public final class cAlquiler {
         }
     }
     
-    public void InsertarIcono(JButton b, String r){ //insertar icono en boton:
+    public void InsertarIcono(JButton b, String r) { //insertar icono en boton:
         b.setIcon(new javax.swing.ImageIcon(getClass().getResource(r)));
     }
-    
-    public void ControlarTabla(JTable t, JTextField txt){
-        t.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent me) {
-                if (me.getClickCount() == 2) {
-                    String id = t.getValueAt(t.getSelectedRow(), 0).toString();
-                    int xcolum = t.getColumnModel().getColumnIndexAtX(me.getX());
-                    int xrow = me.getY() / t.getRowHeight();
-                    if (xcolum <= t.getColumnCount() && xcolum >= 0 && xrow <= t.getRowCount() && xrow >= 0) {
-                        Object obj = t.getValueAt(xrow, xcolum);
-                        if (obj instanceof JButton) {
-                            txt.setText(id);
-                            vista.getJdDialog().setVisible(false);
-                        }
-                    }
+
+    public void agregarExtra(int id_extra, String nombre, Double precio, int existencias) {
+        if (existencias > 0) {
+            boolean repetido = false;
+            for (int i = 0; i < extras_seleccionado.size(); i++) {
+                if (extras_seleccionado.get(i).equals(id_extra)) {
+                    repetido = true;
+                    break;
                 }
             }
-        });
+            if (repetido) {
+                JOptionPane.showMessageDialog(null, "¡Este extra ya fué seleccionado!, Seleccione otro!", null, JOptionPane.WARNING_MESSAGE);
+            } else {
+                try {
+                    int cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", 1));
+                    if (cantidad > 0 && cantidad <= existencias) {
+                        vista.getJtDetalles().setDefaultRenderer(Object.class, new RenderTable());
+                        Object detalle[] = {id_extra, nombre, precio, cantidad, precio * cantidad, btnMal};
+                        dtm2.addRow(detalle);
+                        vista.getJtDetalles().setModel(dtm2);
+                        total += (precio * cantidad);
+                        vista.getTxtTotal().setText("$" + total);
+                        extras_seleccionado.add(id_extra);
+                        vista.getJdDialog().setVisible(false);
+                    } else {
+                        if (cantidad > existencias) {
+                            JOptionPane.showMessageDialog(null, "¡Solo existen '" + existencias + "' de este extra!", null, JOptionPane.WARNING_MESSAGE);
+                        }
+                        if (cantidad <= 0) {
+                            JOptionPane.showMessageDialog(null, "¡El mínimo de venta es de 1!", null, JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
+                } catch (NumberFormatException e) {
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "¡Extra agotado!, Seleccione otro!", null, JOptionPane.WARNING_MESSAGE);
+        }
     }
-    
-//    public void agregarExtra(String id_extra, String nombre_extra, Double precio_extra, int existencias) {
-//        if (existencias > 0) {
-//            boolean repetido = false;
-//            for (int i = 0; i < extras_seleccionado.size(); i++) {
-//                if (extras_seleccionado.get(i).equals(id_extra)) {
-//                    repetido = true;
-//                    break;
-//                }
-//            }
-//            if (repetido) {
-//                JOptionPane.showMessageDialog(null, "¡Este extra ya fué seleccionado!, Seleccione otro!", null, JOptionPane.WARNING_MESSAGE);
-//            } else {
-//                try {
-//                    int cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", 1));
-//                    if (cantidad > 0 && cantidad <= existencias) {
-//                        vista.getJ.setDefaultRenderer(Object.class, new BotonTabla());
-//                        Object detalle[] = {id_pro, nombre_pro, precio_pro, cantidad, precio_pro * cantidad, btnEliminar};
-//                        dtm2.addRow(detalle);
-//                        vista.getT_detalles().setModel(dtm2);
-//                        total += (precio_pro * cantidad);
-//                        vista.getTxtTotal().setText("$" + total);
-//                        productos_agregados.add(id_pro);
-//                        vista.getSeleccionar_pro().setVisible(false);
-//                    } else {
-//                        if (cantidad > existencias) {
-//                            JOptionPane.showMessageDialog(null, "¡Solo existen '" + existencias + "' de este producto!", null, JOptionPane.WARNING_MESSAGE);
-//                        }
-//                        if (cantidad <= 0) {
-//                            JOptionPane.showMessageDialog(null, "¡El mínimo de venta es de 1!", null, JOptionPane.WARNING_MESSAGE);
-//                        }
-//                    }
-//                } catch (NumberFormatException e) {
-//                }
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "¡Producto agotado!, Seleccione otro!", null, JOptionPane.WARNING_MESSAGE);
-//        }
-//    }
 
-//    public void removerProducto(String id_pro, Double precio_pro, int cantidad) {
-//        int valor = JOptionPane.showConfirmDialog(null, "¿Desea remover este producto?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-//        if (valor == JOptionPane.YES_OPTION) { 
-//            total -= (precio_pro * cantidad);
-//            vista.getTxtTotal().setText("$" + total);
-//            dtm2.removeRow(vista.getT_detalles().getSelectedRow());
-//            vista.getT_detalles().setModel(dtm2);
-//            for (int i = 0; i < productos_agregados.size(); i++) {
-//                if (productos_agregados.get(i).equals(id_pro)) {
-//                    productos_agregados.remove(id_pro);
-//                    i = productos_agregados.size();
-//                }
-//            }
-//        }
-//    }
+    public void removerProducto(int id_extra, Double precio, int cantidad) {
+        int valor = JOptionPane.showConfirmDialog(null, "¿Desea remover este extra?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (valor == JOptionPane.YES_OPTION) { 
+            total -= (precio * cantidad);
+            vista.getTxtTotal().setText("$" + total);
+            dtm2.removeRow(vista.getJtDetalles().getSelectedRow());
+            vista.getJtDetalles().setModel(dtm2);
+            for (int i = 0; i < extras_seleccionado.size(); i++) {
+                if (extras_seleccionado.get(i)==id_extra) {
+                    extras_seleccionado.remove(i);
+                    i = extras_seleccionado.size();
+                }
+            }
+        }
+    }
     
 }
 
