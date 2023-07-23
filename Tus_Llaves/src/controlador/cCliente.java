@@ -30,6 +30,7 @@ import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import modelo.mCliente;
+import modelo.mEmpleado;
 import modelo.mImagen;
 import modelo.mPersona;
 import modelo.tablas.Cliente;
@@ -38,6 +39,7 @@ import vista.vCliente;
 public class cCliente {
     private final mCliente modelo;
     mPersona modelop=new mPersona(); 
+    mEmpleado modeloemp=new mEmpleado();
     private final vCliente vista;
     public static ResultSet rs = null;
     List<Cliente> clientes = new ArrayList<>();
@@ -117,25 +119,66 @@ vista.getJtClientes().setRowHeight(30);
           }
           if (vista.getJbOK().getText().equals("REGISTRAR")) {
               if (lleno()) {
-                  if (fechavalida()==null||existep()==1||!cedcorrect()||!emailcorrect()||!EDADCORRECTA()) {
-                      
-                  } else {
-                      mi.crear();
-                      setearDatoscre();
-                      modelop.crear();
-                      modelo.crear();
-                      visualizar(0);
-                      JOptionPane.showMessageDialog(null, "Registrado correctamente");
-                  }
+                  if (fechavalida() == null || !cedcorrect() || !emailcorrect() || !EDADCORRECTA()) {
 
+                  } else {
+                      if (existecli() == 1) {
+                          JOptionPane.showMessageDialog(null, "Ya se encuentra registrado");
+                      } else {
+                          if (existeperso() == 1) {
+                              JOptionPane.showMessageDialog(null, "ENTRA AL IF PARA SOLO INGRESAR CLIENTES");
+                              setearDatoscre();
+                              modelop.actualizar();
+                              modelo.crear();
+                              visualizar(0);
+                              JOptionPane.showMessageDialog(null, "Registrado correctamente");
+                          } else {
+                              JOptionPane.showMessageDialog(null, "ENTRA AL IF INGRESAR CLIENTES Y PERSONAS");
+                              mi.crear();
+                              setearDatoscre();
+                              modelop.crear();
+                              modelo.crear();
+                              visualizar(0);
+                              JOptionPane.showMessageDialog(null, "Registrado correctamente");
+
+                          }
+
+                      }
+                      
+                   
+
+                      
+                      
+//                     if (existeperso()==1&&existecli()==0){
+//                      JOptionPane.showMessageDialog(null, "ENTRA AL IF PARA SOLO INGRESAR CLIENTES");    
+//                      setearDatoscre();
+//                      modelop.actualizar();
+//                      modelo.crear();
+//                      visualizar(0);
+//                      JOptionPane.showMessageDialog(null, "Ingresado correctamente");                   
+//                  }
+//                  if (existecli()==0) {  
+//                      JOptionPane.showMessageDialog(null, "ENTRA AL IF INGRESAR CLIENTES Y PERSONAS"); 
+//                      mi.crear();
+//                      setearDatoscre();
+//                      modelop.crear();
+//                      modelo.crear();
+//                      visualizar(0);
+//                      JOptionPane.showMessageDialog(null, "Registrado correctamente");                     
+//                  }else{
+//                      JOptionPane.showMessageDialog(null, "Ya se encuentra registrado"); 
+//                  }  
+                      
+                      
+                  }
               }
           }
         if (vista.getJbOK().getText().equals("ELIMINAR")) {
             if (llenoeli()){ 
                 modelo.setId(Integer.parseInt(vista.getTxtIdCliente().getText()));
                 modelo.eliminar();
-                modelop.setCedula(vista.getTxtCedula().getText());
-                modelop.eliminar(id);
+//                modelop.setCedula(vista.getTxtCedula().getText());
+//                modelop.eliminar(id);
                 visualizar(0);
                 vaciarperfil();
                 JOptionPane.showMessageDialog(null, "Eliminado correctamente");
@@ -363,15 +406,31 @@ vista.getJtClientes().setRowHeight(30);
         return fecha;
 
     }
-      public int existep() {
+      public int existecli() {
        int ex=modelo.existecliente(vista.getTxtCedula().getText());
           if (ex==1) {
-               JOptionPane.showMessageDialog(null, "Ya se encuentra registrado");    
+//               JOptionPane.showMessageDialog(null, "Ya se encuentra registrado");    
           }
         return ex;
          
         
     }
+       public int existeperso() {
+       int ex=modelop.existeper(vista.getTxtCedula().getText());
+          if (ex==1) {
+          }
+        return ex;
+         
+        
+    }
+       public int empleado() {
+       int ex=modeloemp.existemple(vista.getTxtCedula().getText());
+          if (ex==1) {
+          }
+        return ex;
+         
+        
+    }    
     public boolean cedcorrect() {
         boolean valid = Validar.cedula(vista.getTxtCedula().getText());
         if (valid) {

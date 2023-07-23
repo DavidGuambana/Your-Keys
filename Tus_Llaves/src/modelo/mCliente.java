@@ -90,8 +90,7 @@ public class mCliente extends Cliente {
 
     public int existecliente(String cedula) {
         int cont = 0;
-        sql = "SELECT COUNT(CEDULA) FROM persona WHERE cedula = '" + cedula + "'";
-        
+        sql = "SELECT COUNT(CEDULA_PER) FROM CLIENTE WHERE CEDULA_PER = '" + cedula + "'";
         rs = con.consulta(sql);
         try {
             rs.next();

@@ -4,6 +4,8 @@ import modelo.tablas.Empleado;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class mEmpleado extends Empleado{
     public static Conexion con = new Conexion();
@@ -98,5 +100,17 @@ public class mEmpleado extends Empleado{
         rs = con.consulta(sql);
         //            rs.next();
         return rs;
+    }
+       public int existemple(String cedula) {
+        int cont = 0;
+        sql = "SELECT COUNT(*) FROM PERSONA JOIN empleado ON (persona.cedula=empleado.cedula_per) WHERE persona.cedula'" + cedula + "'";
+        rs = con.consulta(sql);
+        try {
+            rs.next();
+            cont = rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(mCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cont;
     }
 }

@@ -3,6 +3,11 @@ import modelo.tablas.Persona;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static modelo.mCliente.con;
+import static modelo.mCliente.rs;
+import static modelo.mCliente.sql;
 
 public class mPersona extends Persona {
     public static Conexion con = new Conexion();
@@ -52,5 +57,17 @@ public class mPersona extends Persona {
         } catch (SQLException ex) {
             return null;
         }
+    }
+       public int existeper(String cedula) {
+        int cont = 0;
+        sql = "SELECT COUNT(CEDULA) FROM persona WHERE cedula = '" + cedula + "'";
+        rs = con.consulta(sql);
+        try {
+            rs.next();
+            cont = rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(mCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cont;
     }
 }

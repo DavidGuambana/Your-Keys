@@ -683,7 +683,6 @@ public class vPrincipal extends javax.swing.JFrame {
         jdPrincipal.setMinimumSize(new java.awt.Dimension(840, 480));
         jdPrincipal.setName(""); // NOI18N
         jdPrincipal.setOpaque(false);
-        jdPrincipal.setPreferredSize(new java.awt.Dimension(840, 480));
 
         javax.swing.GroupLayout jdPrincipalLayout = new javax.swing.GroupLayout(jdPrincipal);
         jdPrincipal.setLayout(jdPrincipalLayout);
