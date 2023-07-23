@@ -37,12 +37,12 @@ public class mDetalle extends Detalle{
     }
 
     public boolean crear() {
-        sql = "INSERT INTO detalle(codigo_extra, nombre, cantidad, subtotal)"
-                + " VALUES ('" + getCodigo_extra()
-                + "'," + getNombre()
+        sql = "INSERT INTO detalle(codigo_extra, nombre, cantidad, subtotal,id_alquiler)"
+                + " VALUES (" + getCodigo_extra()
+                + ",'" + getNombre()
                 + "'," + getCantidad()
-                + ",'" + getSubtotal() + "')";
-        System.out.println(sql);
+                + "," + getSubtotal()
+                + "," + getId_alquiler()+ ")";
         return con.accion(sql);
     }
 
@@ -51,13 +51,6 @@ public class mDetalle extends Detalle{
                 + getNombre() + "', cantidad="
                 + getCantidad() + "', subtotal="
                 + getSubtotal() + " WHERE id='" + getId() + "'";
-        System.out.println(sql);
-        return con.accion(sql);
-    }
-
-    public boolean eliminar(String id) {
-        sql = "DELETE FROM detalle WHERE id=" + id + "";
-        System.out.println(sql);
         return con.accion(sql);
     }
 

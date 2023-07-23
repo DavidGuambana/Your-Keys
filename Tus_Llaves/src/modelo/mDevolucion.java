@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.tablas.Alquiler;
 import modelo.tablas.Devolucion;
 
 public class mDevolucion extends Devolucion {
@@ -38,25 +37,24 @@ public class mDevolucion extends Devolucion {
     public boolean crear() {
         sql = "INSERT INTO Devolucion (fecha, id_alquiler)"
                 + " VALUES (TO_DATE('" + getFecha() + "','YYYY-MM-DD')"
-                + "'," + getId_alquiler()+ "')";
+                + "," + getId_alquiler()+ ")";
         return con.accion(sql);
     }
 
    
-    public List<Alquiler> buscar(String txt, String campo) {
-        List<Alquiler> Alquiler = new ArrayList<>();
+    public List<Devolucion> buscar(String txt, String campo) {
+        List<Devolucion> devoluciones = new ArrayList<>();
         try {
-            sql = "SELECT id, fecha, dias, total, matricula_auto, id_cliente FROM alquiler WHERE " + campo + " like '%" + txt + "'";
+            sql = "SELECT * FROM devolucion WHERE " + campo + " like '%" + txt + "'";
             rs = con.consulta(sql);
             if (rs != null) {
                 while (rs.next()) {
-                    Alquiler alquiler = new Alquiler(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getDouble(4),
-                            rs.getString(5), rs.getInt(6));
-                    Alquiler.add(alquiler);
+                    Devolucion devolucion = new Devolucion(rs.getInt(1),rs.getDate(2),rs.getInt(3));
+                    devoluciones.add(devolucion);
                 }
             }
             con.close();
-            return Alquiler;
+            return devoluciones;
         } catch (SQLException ex) {
             return null;
         }
