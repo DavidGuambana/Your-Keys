@@ -48,16 +48,16 @@ public class mAuto extends Auto {
         return con.accion(sql);
   }
 
-    public boolean actualizar() {
+      public boolean actualizar() {
         sql = "UPDATE auto SET id_categoria="
                 + getId_categoria() + ", id_modelo="
                 + getId_modelo() + ", color='"
                 + getColor() + "', precio_diario="
-                + getPrecio_diario() + ", id_estado"
-                + getId_estado() + ", capacidad"
-                + getCapacidad() + ", potencia"
-                + getPotencia() + ", id_imagen"
-                + getId_imagen() + "' WHERE matricula='" + getMatricula() + "'";
+                + getPrecio_diario() + ", id_estado="
+                + getId_estado() + ", capacidad="
+                + getCapacidad() + ", potencia="
+                + getPotencia() + ", id_imagen="
+                + getId_imagen() + " WHERE matricula='" + getMatricula() + "'";
         System.out.println(sql);
         return con.accion(sql);
     }
