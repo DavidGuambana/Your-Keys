@@ -353,17 +353,21 @@ public  class cAuto {
         return regreso;
     }
     
-    public void ObtenerModelos(){
-        int regreso = 0;
-        for (Marca marcas : marcas) {
-            if (marcas.getNombre().equals(vista.getCbMarca().getSelectedItem().toString())) {
-                regreso = marcas.getId();
+    public void ObtenerModelos() {
+        try {
+            int regreso = 0;
+            for (Marca marcas : marcas) {
+                if (marcas.getNombre().equals(vista.getCbMarca().getSelectedItem().toString())) {
+                    regreso = marcas.getId();
+                }
             }
+            modelos = combobox3.listar(regreso);
+            vista.getCbModelo().removeAllItems();
+            vista.getCbModelo().addItem("Seleccione...");
+            modelos.stream().forEach(p -> vista.getCbModelo().addItem(p.getNombre()));
+        } catch (Exception e) {
         }
-        modelos = combobox3.listar(regreso);
-        vista.getCbModelo().removeAllItems();
-        vista.getCbModelo().addItem("Seleccione...");
-        modelos.stream().forEach(p -> vista.getCbModelo().addItem(p.getNombre()));
+
     }
     
     public int buscarModelo(){

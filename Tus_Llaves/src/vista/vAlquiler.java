@@ -500,21 +500,17 @@ public class vAlquiler extends javax.swing.JInternalFrame {
                                     .addComponent(cbDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)))
                 .addComponent(jSeparator18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbRegContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jbOneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbRegContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(18, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jbOneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel21)
-                                .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(24, Short.MAX_VALUE))))
+                            .addComponent(jLabel21)
+                            .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel10.setBackground(new java.awt.Color(204, 204, 204));
@@ -581,32 +577,32 @@ public class vAlquiler extends javax.swing.JInternalFrame {
         jPanel5.setMaximumSize(new java.awt.Dimension(310, 250));
 
         txtT1.setEditable(false);
-        txtT1.setBackground(new java.awt.Color(255, 255, 255));
-        txtT1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 13)); // NOI18N
+        txtT1.setBackground(new java.awt.Color(204, 204, 204));
+        txtT1.setFont(new java.awt.Font("Yu Gothic UI", 1, 13)); // NOI18N
         txtT1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtT1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         txtT2.setEditable(false);
-        txtT2.setBackground(new java.awt.Color(255, 255, 255));
-        txtT2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 13)); // NOI18N
+        txtT2.setBackground(new java.awt.Color(204, 204, 204));
+        txtT2.setFont(new java.awt.Font("Yu Gothic UI", 1, 13)); // NOI18N
         txtT2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtT2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         txtT3.setEditable(false);
-        txtT3.setBackground(new java.awt.Color(255, 255, 255));
-        txtT3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 13)); // NOI18N
+        txtT3.setBackground(new java.awt.Color(204, 204, 204));
+        txtT3.setFont(new java.awt.Font("Yu Gothic UI", 1, 13)); // NOI18N
         txtT3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtT3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         txtSubtotal.setEditable(false);
-        txtSubtotal.setBackground(new java.awt.Color(255, 255, 255));
-        txtSubtotal.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 13)); // NOI18N
+        txtSubtotal.setBackground(new java.awt.Color(204, 204, 204));
+        txtSubtotal.setFont(new java.awt.Font("Yu Gothic UI", 1, 13)); // NOI18N
         txtSubtotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtSubtotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         txtIVA.setEditable(false);
-        txtIVA.setBackground(new java.awt.Color(255, 255, 255));
-        txtIVA.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 13)); // NOI18N
+        txtIVA.setBackground(new java.awt.Color(204, 204, 204));
+        txtIVA.setFont(new java.awt.Font("Yu Gothic UI", 1, 13)); // NOI18N
         txtIVA.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIVA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
@@ -972,7 +968,7 @@ public class vAlquiler extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
