@@ -191,6 +191,7 @@ public final class cAlquiler {
         //creamos alquiler
         if (setAlquiler()) {
             modelo.crear();
+            actualizarEstado(modelo.getMatricula_auto());
             //creamos detalle/s
             setDetalles();
             if (hay_detalle) {
@@ -277,24 +278,15 @@ public final class cAlquiler {
         mt.setIva(IVA);
         mt.setTotal(total);
     }
-    
+
     public void calculaTotal() {
-        try {
-            dias = Integer.parseInt(vista.getCbDias().getSelectedItem().toString().replaceAll("[^0-9]", ""));
-            tAlqulerAuto= precio_auto*dias;
-        } catch (NumberFormatException e) {
-            tAlqulerAuto = 0;
-        }
-        
-        try {
-            horas = Integer.parseInt(vista.getCbHoras().getSelectedItem().toString().replaceAll("[^0-9]", ""));
-            tContrato = precio_conductor*horas;
-        } catch (NumberFormatException e) {
-            tContrato = 0;
-        }
+        dias = Integer.parseInt(vista.getCbDias().getSelectedItem().toString().replaceAll("[^0-9]", ""));
+        tAlqulerAuto = precio_auto * dias;
+        horas = Integer.parseInt(vista.getCbHoras().getSelectedItem().toString().replaceAll("[^0-9]", ""));
+        tContrato = precio_conductor * horas;
         //calculamos...
         subtotal = tAlqulerAuto + tDetalles + tContrato;
-        IVA = subtotal*0.12;
+        IVA = subtotal * 0.12;
         total = subtotal + IVA;
         //seteamos los totales
         vista.getTxtT1().setText("$ "+tAlqulerAuto);
@@ -313,6 +305,12 @@ public final class cAlquiler {
         me.setCodigo(cod_extra);
         me.setExistencias(stock);
         me.updateExtraStock();
+    }
+    
+    public void actualizarEstado(String matricula) {
+        mauto.setMatricula(matricula);
+        mauto.setId_estado(2);//estado "Alquilado"
+        mauto.updateEstado();
     }
    
     public void verExtras(int idExtra) {

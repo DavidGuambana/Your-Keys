@@ -103,7 +103,7 @@ public class mAuto extends Auto {
     }
     public ResultSet join2() {
         sql = "SELECT a.matricula, c.nombre, mo.nombre, ma.nombre, a.precio_diario, i.valor FROM Auto a JOIN Categoria c ON (a.id_categoria = c.id)\n"
-                + "JOIN MODELO mo ON (a.id_modelo = mo.id) JOIN Marca ma ON (mo.id_marca = ma.id) JOIN Imagen i ON (a.id_imagen = i.id)";
+                + "JOIN MODELO mo ON (a.id_modelo = mo.id) JOIN Marca ma ON (mo.id_marca = ma.id) JOIN Imagen i ON (a.id_imagen = i.id) WHERE a.id_estado = 1";
         rs = con.consulta(sql);
         return rs;
     }
@@ -118,5 +118,11 @@ public class mAuto extends Auto {
         } catch (SQLException ex) {
         }
         return cont;
+    }
+    
+    public boolean updateEstado() {
+        sql = "UPDATE auto SET id_estado="
+                + getId_estado()+ " WHERE matricula='"+getMatricula()+"'";
+        return con.accion(sql);
     }
 }
