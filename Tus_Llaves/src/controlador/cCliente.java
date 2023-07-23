@@ -90,17 +90,21 @@ vista.getJtClientes().setRowHeight(30);
         desckboton();
         vista.getTxtCedula().setEditable(false);
         vista.getJbOK().setText("ACTUALIZAR");
+        vista.getLbModo().setText("Actualizar clientes");
     }
      public void crearmodo() {
        vaciarperfil();
-       desckboton();
-        vista.getTxtCedula().setEditable(true);
-        vista.getJbOK().setText("REGISTRAR"); 
+         desckboton();
+         vista.getTxtCedula().setEditable(true);
+         vista.getJbOK().setText("REGISTRAR");
+         vista.getLbModo().setText("Registrar clientes");
         
     }
      public void eliminarver() {
         blockboton();
         vista.getJbOK().setText("ELIMINAR");
+        vista.getLbModo().setText("Eliminar clientes");
+        
     }
      
       public void accionboton() {
@@ -126,14 +130,12 @@ vista.getJtClientes().setRowHeight(30);
                           JOptionPane.showMessageDialog(null, "Ya se encuentra registrado");
                       } else {
                           if (existeperso() == 1) {
-                              JOptionPane.showMessageDialog(null, "ENTRA AL IF PARA SOLO INGRESAR CLIENTES");
                               setearDatoscre();
                               modelop.actualizar();
                               modelo.crear();
                               visualizar(0);
                               JOptionPane.showMessageDialog(null, "Registrado correctamente");
                           } else {
-                              JOptionPane.showMessageDialog(null, "ENTRA AL IF INGRESAR CLIENTES Y PERSONAS");
                               mi.crear();
                               setearDatoscre();
                               modelop.crear();
