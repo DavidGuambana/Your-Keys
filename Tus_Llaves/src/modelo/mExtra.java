@@ -79,7 +79,7 @@ public class mExtra extends Extra {
      
      public boolean updateExtraStock() {
         sql = "UPDATE extra SET existencias="
-                + getExistencias()+ " WHERE id=" + getCodigo();
+                + getExistencias()+ " WHERE codigo=" + getCodigo();
         return con.accion(sql);
     }
    

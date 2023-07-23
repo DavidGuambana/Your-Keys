@@ -17,14 +17,15 @@ public class mTotal extends Total{
         List<Total> Total = new ArrayList<>();
         try {
             if ("".equals(id)) {
-                sql = "SELECT id, subtotal, total, id_alquiler FROM total";
+                sql = "SELECT * FROM total";
             } else {
-                sql = "SELECT id, subtotal, total, id_alquiler FROM total WHERE id='"+id+"'";
+                sql = "SELECT * FROM total WHERE id="+id;
             }
             rs = con.consulta(sql);
             if (rs != null) {
                 while (rs.next()) {
-                    Total total = new Total(rs.getInt(1),rs.getDouble(2), rs.getDouble(3), rs.getInt(4));
+                    Total total = new Total(rs.getInt(1),rs.getDouble(2),rs.getDouble(3),
+                            rs.getDouble(4),rs.getDouble(5), rs.getDouble(6),rs.getDouble(7),rs.getInt(8));
                   Total.add(total);
                 }
             }
@@ -36,20 +37,21 @@ public class mTotal extends Total{
     }
     
     public boolean crear() {
-        sql = "INSERT INTO total(subtotal, total)"
-                + " VALUES ('" + getSubtotal()
-                + "'," + getTotal()+")";
+        sql = "INSERT INTO total(total_alquiler, total_detalle, total_contrato, subtotal, iva, total, id_alquiler)"
+                + " VALUES ("+getTotal_alquiler()+","+getTotal_detalle()+","+getTotal_contrato()
+                +","+getSubtotal()+","+getIva()+","+getTotal()+","+getId_alquiler()+")";
         return con.accion(sql);
     }
     
     public List<Total> buscar(String txt, String campo) {
         List<Total> Total = new ArrayList<>();
         try {
-            sql = "SELECT id, subtotal, total, id_alquiler FROM total WHERE " + campo + " like '%" + txt + "'";
+            sql = "SELECT * FROM total WHERE " + campo + " like '%" + txt + "'";
             rs = con.consulta(sql);
             if (rs != null) {
                 while (rs.next()) {
-                    Total total = new Total(rs.getInt(1),rs.getDouble(2), rs.getDouble(3), rs.getInt(4));
+                    Total total = new Total(rs.getInt(1),rs.getDouble(2),rs.getDouble(3),
+                            rs.getDouble(4),rs.getDouble(5), rs.getDouble(6),rs.getDouble(7),rs.getInt(8));
                     Total.add(total);
                 }
             }

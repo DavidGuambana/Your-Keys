@@ -16,15 +16,15 @@ public class mAlquiler extends Alquiler {
         List<Alquiler> Alquiler = new ArrayList<>();
         try {
             if ("".equals(id)) {
-                sql = "SELECT id, fecha, dias, total, matricula_auto, id_cliente FROM alquiler";
+                sql = "SELECT id, fecha, dias, matricula_auto, id_cliente FROM alquiler";
             } else {
-                sql = "SELECT id, fecha, dias, total, matricula_auto, id_cliente FROM alquiler WHERE id='" + id + "'";
+                sql = "SELECT id, fecha, dias, matricula_auto, id_cliente FROM alquiler WHERE id='" + id + "'";
             }
             rs = con.consulta(sql);
             if (rs != null) {
                 while (rs.next()) {
-                    Alquiler alquiler = new Alquiler(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getDouble(4),
-                            rs.getString(5), rs.getInt(6));
+                    Alquiler alquiler = new Alquiler(rs.getInt(1), rs.getDate(2), rs.getInt(3),
+                            rs.getString(4), rs.getInt(5));
                     Alquiler.add(alquiler);
                 }
             }
@@ -36,24 +36,24 @@ public class mAlquiler extends Alquiler {
     }
 
     public boolean crear() {
-        sql = "INSERT INTO alquiler(fecha, dias, total, matricula_auto)"
+        sql = "INSERT INTO alquiler(fecha, dias, matricula_auto, id_cliente)"
                 + " VALUES (TO_DATE('" + getFecha()
                 + "','YYYY-MM-DD')"
-                + "'," + getDias()
-                + "'," + getTotal()
-                + ",'" + getMatricula_auto() + "')";
+                + "," + getDias()
+                + ",'" + getMatricula_auto()
+               + "'," + getId_cliente()+ ")";
         return con.accion(sql);
     }
 
     public List<Alquiler> buscar(String txt, String campo) {
         List<Alquiler> Alquiler = new ArrayList<>();
         try {
-            sql = "SELECT id, fecha, dias, total, matricula_auto, id_cliente FROM alquiler WHERE " + campo + " like '%" + txt + "'";
+            sql = "SELECT id, fecha, dias, matricula_auto, id_cliente FROM alquiler WHERE " + campo + " like '%" + txt + "'";
             rs = con.consulta(sql);
             if (rs != null) {
                 while (rs.next()) {
-                    Alquiler alquiler = new Alquiler(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getDouble(4),
-                            rs.getString(5), rs.getInt(6));
+                    Alquiler alquiler = new Alquiler(rs.getInt(1), rs.getDate(2), rs.getInt(3),
+                            rs.getString(4), rs.getInt(5));
                     Alquiler.add(alquiler);
                 }
             }

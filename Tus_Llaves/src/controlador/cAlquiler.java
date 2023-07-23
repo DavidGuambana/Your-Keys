@@ -52,15 +52,16 @@ public final class cAlquiler {
     private final mExtra me = new mExtra();
     ResultSet rs;
     private List<Extra> extras = new ArrayList<>();
-    private mAlquiler ma;
-    private mDetalle md;
-    private mContrato mc;
-    private mTotal mt;
+    private mDetalle md = new mDetalle();
+    private mContrato mc = new mContrato();
+    private mTotal mt = new mTotal();
     
     
-    private boolean con_contrato = false;
-    int id, horas, dias;
-    double tAlqulerAuto,tContrato,  tDetalles, subtotal, IVA,total;
+    private boolean hay_contrato = false, hay_detalle;
+    int horas, dias;
+    double tAlqulerAuto,tContrato,  tDetalles, subtotal, IVA,total,
+            precio_auto, precio_conductor;
+    
     ArrayList<Integer> extras_seleccionado = new ArrayList<>();
     
     DefaultTableModel dtm, dtm2;
@@ -74,53 +75,48 @@ public final class cAlquiler {
     String[] colAutos={"Matricula", "Categoría", "Modelo", "Marca", "Precio","Foto","Acción"};
     String[] colConductores={"ID conductor","Licencia", "Nombre","Apellido","Precio/Hora","Foto","Acción"};
     
-    public void iniciar(){
+    public void iniciar() {
         vista.setVisible(true);
-        
-        vista.getJbCancelar().addActionListener(l-> {
-            vista.getTpAlquiler().setSelectedIndex(0);
-            con_contrato = false;
-            vista.getJbRegContrato().setText("Alquilar conductor");
-            vista.getJbRegContrato().setForeground(Color.white);
-            
+        calculaTotal();
+        vista.getTpAlquiler().setEnabledAt(1, false);
+        vista.getJbRegContrato().addActionListener(l -> {
+            vista.getTpAlquiler().setEnabledAt(0, false);
+            vista.getTpAlquiler().setEnabledAt(1, true);
+            vista.getTpAlquiler().setSelectedIndex(1);
         });
+        vista.getJbCancelar().addActionListener(l -> reiniciarContrato());
+
+        vista.getJbContinuar().addActionListener(l -> setContrato());
+        vista.getJbFinalizar().addActionListener(l -> crear());
         
-        vista.getJbContinuar().addActionListener(l->{
-            vista.getTpAlquiler().setSelectedIndex(0);
-            setContrato();
-        });
-        
-        vista.getJbFinalizar().addActionListener(l-> crear());
-        
-        vista.getJbOneAuto().addActionListener(l-> {
+        vista.getCbDias().addActionListener(l->calculaTotal());
+        vista.getCbHoras().addActionListener(l->calculaTotal());
+
+        vista.getJbOneAuto().addActionListener(l -> {
             verAutos();
             abrirDialogo("Listado de autos");
-                });
-        vista.getJbOneCliente().addActionListener(l-> {
+        });
+        vista.getJbOneCliente().addActionListener(l -> {
             verClientes();
             abrirDialogo("Listado de clientes");
-                });
-        vista.getJbOneConductor().addActionListener(l-> {
+        });
+        vista.getJbOneConductor().addActionListener(l -> {
             verConductores();
             abrirDialogo("Listado de conductores");
-                });
-        vista.getJbOneExtra().addActionListener(l-> {
+        });
+        vista.getJbOneExtra().addActionListener(l -> {
             verExtras(0);
             abrirDialogo("Listado de extras");
-                });
-        
+        });
+
         ControlarTabla(vista.getJtRegistros(), vista.getJtDetalles());
-        
+
         btnBien.setBackground(Color.black);
         btnMal.setBackground(Color.GRAY);
         btnBien.setText("+ AGREGAR");
         btnMal.setText("× REMOVER");
         btnBien.setForeground(Color.white);
         btnMal.setForeground(Color.white);
-        
-//        InsertarIcono(btnBien, "/vista/img/bien.png");
-//        InsertarIcono(btnMal, "/vista/img/mal.png");
-
         vista.getJtRegistros().setDefaultRenderer(Object.class, new RenderTable());
         dtm2 = new DefaultTableModel(null, colDetalles);
         vista.getJtDetalles().setRowHeight(30);
@@ -129,7 +125,7 @@ public final class cAlquiler {
             public void keyReleased(KeyEvent e) {
                 FiltrarTabla.filtrar(vista.getJtRegistros(), vista.getTxtBuscar(), vista.getCbColumnas());
             }
-        }); 
+        });
     }
     
     public void ControlarTabla(JTable t, JTable t2) {
@@ -145,12 +141,14 @@ public final class cAlquiler {
                         if (obj instanceof JButton) {
                             if (vista.getJdDialog().getTitle().equals("Listado de autos")) {
                                 vista.getTxtMatricula().setText(id);
+                                precio_auto = Double.parseDouble(t.getValueAt(t.getSelectedRow(), 4).toString());
                             }
                             if (vista.getJdDialog().getTitle().equals("Listado de clientes")) {
                                 vista.getTxtCliente().setText(id);
                             }
                             if (vista.getJdDialog().getTitle().equals("Listado de conductores")) {
                                 vista.getTxtConductor().setText(id);
+                                precio_conductor = Double.parseDouble(t.getValueAt(t.getSelectedRow(), 4).toString());
                             }
                             if (!vista.getJdDialog().getTitle().equals("Listado de extras")) {
                                 vista.getJdDialog().setVisible(false);
@@ -159,9 +157,8 @@ public final class cAlquiler {
                                 double precio = Double.parseDouble(t.getValueAt(t.getSelectedRow(), 2).toString());
                                 int existencias = Integer.parseInt(t.getValueAt(t.getSelectedRow(), 3).toString());
                                 agregarExtra(Integer.parseInt(id), nombre, precio, existencias);
-
                             }
-
+                            calculaTotal();
                         }
                     }
                 }
@@ -180,7 +177,7 @@ public final class cAlquiler {
                             if (xcolum <= t2.getColumnCount() && xcolum >= 0 && xrow <= t2.getRowCount() && xrow >= 0) {
                                 Object obj = t2.getValueAt(xrow, xcolum);
                                 if (obj instanceof JButton) {
-                                    removerProducto(Integer.parseInt(id_extra), precio, cantidad);
+                                    removerExtra(Integer.parseInt(id_extra), precio, cantidad);
                                 }
                             }
                         } catch (Exception e) {
@@ -195,17 +192,21 @@ public final class cAlquiler {
         if (setAlquiler()) {
             modelo.crear();
             //creamos detalle/s
-            for (int i = 0; i < vista.getJtDetalles().getRowCount(); i++) {
-                md.setCodigo_extra(Integer.parseInt(vista.getJtDetalles().getValueAt(i, 0).toString()));
-                md.setNombre(vista.getJtDetalles().getValueAt(i, 1).toString());
-                md.setCantidad(Integer.parseInt(vista.getJtDetalles().getValueAt(i, 3).toString()));
-                md.setSubtotal(Double.parseDouble(vista.getJtDetalles().getValueAt(i, 4).toString()));
-                md.setId_alquiler(modelo.ultimoID());
-                md.crear();
-                actualizarStock(md.getCodigo_extra(), md.getCantidad());
+            setDetalles();
+            if (hay_detalle) {
+                for (int i = 0; i < vista.getJtDetalles().getRowCount(); i++) {
+                    md.setCodigo_extra(Integer.parseInt(vista.getJtDetalles().getValueAt(i, 0).toString()));
+                    md.setNombre(vista.getJtDetalles().getValueAt(i, 1).toString());
+                    md.setCantidad(Integer.parseInt(vista.getJtDetalles().getValueAt(i, 3).toString()));
+                    md.setSubtotal(Double.parseDouble(vista.getJtDetalles().getValueAt(i, 4).toString()));
+                    md.setId_alquiler(modelo.ultimoID());
+                    md.crear();
+                    actualizarStock(md.getCodigo_extra(), md.getCantidad());
+                }
             }
+
             //creamos contrato
-            if (con_contrato) {
+            if (hay_contrato) {
                 setContrato();
                 mc.setId_alquiler(modelo.ultimoID());
                 mc.crear();
@@ -215,65 +216,91 @@ public final class cAlquiler {
             mt.setId_alquiler(modelo.ultimoID());
             mt.crear();
             JOptionPane.showMessageDialog(null, "¡Registrado correctamente!");
-            //metodo para reiniciar todo
+            reiniciarTodo();
         }
     }
     
     public boolean setAlquiler(){
-        if (vista.getTxtMatricula().getText().isEmpty()|| vista.getTxtCliente().getText().isEmpty()|| vista.getCbDias().getSelectedIndex()==0) {
+        if (vista.getTxtMatricula().getText().isEmpty()|| vista.getTxtCliente().getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "¡Aún tienes campos por completar!");
             return false;
         } else{
-            modelo.setFecha(new Date());
+            Date hoy = new Date();
+            Long d = hoy.getTime();
+            java.sql.Date date = new java.sql.Date(d);
+            modelo.setFecha(date);
             modelo.setMatricula_auto(vista.getTxtMatricula().getText());
             modelo.setId_cliente(Integer.parseInt(vista.getTxtCliente().getText()));
             modelo.setDias(dias);
-            modelo.setTotal(total);
             return true;
         }
     }
     
     public boolean setContrato(){
-        if (vista.getTxtConductor().getText().isEmpty() || vista.getCbHoras().getSelectedIndex()==0) {
+        if (vista.getTxtConductor().getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "¡Aún tienes campos por completar!");
             return false;
         } else{
-            mc.setFecha(new Date());
+            Date hoy = new Date();
+            Long d = hoy.getTime();
+            java.sql.Date date = new java.sql.Date(d);
+            mc.setFecha(date);
             mc.setId_conductor(Integer.parseInt(vista.getTxtConductor().getText()));
             mc.setHoras(horas);
             mc.setTotal(tContrato);
-            con_contrato = true;
+            hay_contrato = true;
             vista.getJbRegContrato().setText("¡Conductor alquilado!");
             vista.getJbRegContrato().setForeground(Color.green);
+            vista.getTpAlquiler().setEnabledAt(0, true);
+            vista.getTpAlquiler().setEnabledAt(1, false);
+            vista.getTpAlquiler().setSelectedIndex(0);
             return true;
         }
     }
     
-    public boolean setDetalle() {
-        
+    public boolean setDetalles() {
         int filas = vista.getJtDetalles().getRowCount();
         if (filas > 0) {
+            hay_detalle = true;
             return true;
         } else {
+            hay_detalle = false;
             return false;
         }
     }
     
     public void setTotal(){
+        mt.setTotal_alquiler(tAlqulerAuto);
+        mt.setTotal_detalle(tDetalles);
+        mt.setTotal_contrato(tContrato);
         mt.setSubtotal(subtotal);
+        mt.setIva(IVA);
         mt.setTotal(total);
     }
     
-    public void calculaTotal(){
-        dias = Integer.parseInt(vista.getCbDias().getSelectedItem().toString().replaceAll("[^0-9]", ""));
-        tAlqulerAuto = Double.parseDouble(vista.getTxtT1().getText()) * horas;
+    public void calculaTotal() {
+        try {
+            dias = Integer.parseInt(vista.getCbDias().getSelectedItem().toString().replaceAll("[^0-9]", ""));
+            tAlqulerAuto= precio_auto*dias;
+        } catch (NumberFormatException e) {
+            tAlqulerAuto = 0;
+        }
         
-        horas = Integer.parseInt(vista.getCbHoras().getSelectedItem().toString().replaceAll("[^0-9]", ""));
-        tContrato = Double.parseDouble(vista.getTxtTotalContrato().getText()) * horas;
-        
+        try {
+            horas = Integer.parseInt(vista.getCbHoras().getSelectedItem().toString().replaceAll("[^0-9]", ""));
+            tContrato = precio_conductor*horas;
+        } catch (NumberFormatException e) {
+            tContrato = 0;
+        }
+        //calculamos...
+        subtotal = tAlqulerAuto + tDetalles + tContrato;
+        IVA = subtotal*0.12;
+        total = subtotal + IVA;
+        //seteamos los totales
         vista.getTxtT1().setText("$ "+tAlqulerAuto);
         vista.getTxtT2().setText("$ "+tDetalles);
         vista.getTxtT3().setText("$ "+tContrato);
+        vista.getTxtTotalContrato().setText("$ "+tContrato);
         vista.getTxtSubtotal().setText("$ "+subtotal);
         vista.getTxtIVA().setText("$ "+IVA);
         vista.getTxtTotal().setText("$ " + total);
@@ -418,8 +445,8 @@ public final class cAlquiler {
                         Object detalle[] = {id_extra, nombre, precio, cantidad, precio * cantidad, btnMal};
                         dtm2.addRow(detalle);
                         vista.getJtDetalles().setModel(dtm2);
-                        total += (precio * cantidad);
-                        vista.getTxtTotal().setText("$" + total);
+                        tDetalles += (precio * cantidad);
+                        calculaTotal();
                         extras_seleccionado.add(id_extra);
                         vista.getJdDialog().setVisible(false);
                     } else {
@@ -438,11 +465,11 @@ public final class cAlquiler {
         }
     }
 
-    public void removerProducto(int id_extra, Double precio, int cantidad) {
+    public void removerExtra(int id_extra, Double precio, int cantidad) {
         int valor = JOptionPane.showConfirmDialog(null, "¿Desea remover este extra?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (valor == JOptionPane.YES_OPTION) { 
-            total -= (precio * cantidad);
-            vista.getTxtTotal().setText("$" + total);
+            tDetalles -= (precio * cantidad);
+            calculaTotal();
             dtm2.removeRow(vista.getJtDetalles().getSelectedRow());
             vista.getJtDetalles().setModel(dtm2);
             for (int i = 0; i < extras_seleccionado.size(); i++) {
@@ -453,7 +480,39 @@ public final class cAlquiler {
             }
         }
     }
-    
+    public void reiniciarTodo(){
+        vista.getTxtCliente().setText("");
+        vista.getTxtMatricula().setText("");
+        vista.getCbDias().setSelectedIndex(0);
+        dtm2 = new DefaultTableModel(null, colDetalles);
+        vista.getJtDetalles().setModel(dtm2);
+        extras_seleccionado.clear();
+        //reinicia variables
+        hay_detalle = false;
+        tAlqulerAuto = 0;
+        tDetalles = 0;
+        subtotal = 0;
+        IVA = 0;
+        total = 0;
+        precio_auto = 0;
+        reiniciarContrato();
+        calculaTotal();
+    }
+
+    public void reiniciarContrato() {
+        vista.getTxtConductor().setText("");
+        vista.getCbHoras().setSelectedIndex(0);
+        precio_conductor = 0;
+        tContrato = 0;
+        calculaTotal();
+        hay_contrato = false;
+        vista.getTpAlquiler().setSelectedIndex(0);
+        vista.getJbRegContrato().setText("Alquilar conductor");
+        vista.getJbRegContrato().setForeground(Color.white);
+        vista.getTpAlquiler().setEnabledAt(0, true);
+        vista.getTpAlquiler().setEnabledAt(1, false);
+        vista.getTpAlquiler().setSelectedIndex(0);
+    }
 }
 
 
