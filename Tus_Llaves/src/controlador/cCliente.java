@@ -146,32 +146,7 @@ vista.getJtClientes().setRowHeight(30);
                           }
 
                       }
-                      
-                   
-
-                      
-                      
-//                     if (existeperso()==1&&existecli()==0){
-//                      JOptionPane.showMessageDialog(null, "ENTRA AL IF PARA SOLO INGRESAR CLIENTES");    
-//                      setearDatoscre();
-//                      modelop.actualizar();
-//                      modelo.crear();
-//                      visualizar(0);
-//                      JOptionPane.showMessageDialog(null, "Ingresado correctamente");                   
-//                  }
-//                  if (existecli()==0) {  
-//                      JOptionPane.showMessageDialog(null, "ENTRA AL IF INGRESAR CLIENTES Y PERSONAS"); 
-//                      mi.crear();
-//                      setearDatoscre();
-//                      modelop.crear();
-//                      modelo.crear();
-//                      visualizar(0);
-//                      JOptionPane.showMessageDialog(null, "Registrado correctamente");                     
-//                  }else{
-//                      JOptionPane.showMessageDialog(null, "Ya se encuentra registrado"); 
-//                  }  
-                      
-                      
+   
                   }
               }
           }
