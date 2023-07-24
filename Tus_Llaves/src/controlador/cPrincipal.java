@@ -36,6 +36,7 @@ import vista.vAlquiler;
 import vista.vAuto;
 import vista.vCliente;
 import vista.vConductor;
+import vista.vDevolucion;
 import vista.vEmpleado;
 import vista.vExtras;
 import vista.vPrincipal;
@@ -49,6 +50,7 @@ public final class cPrincipal {
     vAuto vauto;
     vExtras vextras;
     vAlquiler valquiler;
+    vDevolucion vdevolucion;
     mPersona Mpersona = new mPersona();
     mEmpleado modeloE = new mEmpleado();
     private DrawerController dave;
@@ -72,6 +74,7 @@ public final class cPrincipal {
         vista.getMiExtras().addActionListener(l -> menuExtras());
         vista.getMiAlquiler().addActionListener(l-> menuAlquiler());
         vista.getMiEmpleado().addActionListener(l -> menuEmpelado());
+        vista.getMiDevolución().addActionListener(l-> menuDevolucion());
         vista.getMenu_desplegable().addActionListener(l -> Desplegar());
         
         vista.getExitTxt().addMouseListener(new MouseAdapter() {
@@ -186,6 +189,16 @@ public final class cPrincipal {
             vista.getJdPrincipal().add(valquiler);
         }
         cAlquiler controlador = new cAlquiler(valquiler,moalquiler);
+    }
+     
+     public void menuDevolucion() {
+        try {
+            vista.getJdPrincipal().add(vdevolucion);
+        } catch (Exception e) {
+            vdevolucion = new vDevolucion();
+            vista.getJdPrincipal().add(vdevolucion);
+        }
+        cDevolucion controlador = new cDevolucion(vdevolucion);
     }
 
     public void Desplegar() {

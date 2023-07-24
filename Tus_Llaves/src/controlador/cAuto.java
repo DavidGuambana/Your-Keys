@@ -1,5 +1,6 @@
 package controlador;
 
+import controlador.otros.FiltrarTabla;
 import controlador.otros.RoundedLabel;
 import controlador.otros.Validaciones;
 import java.awt.HeadlessException;
@@ -14,7 +15,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.System.Logger;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import modelo.mAuto;
@@ -22,9 +22,9 @@ import vista.vAuto;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -56,7 +56,7 @@ public  class cAuto {
     List<Modelo> modelos = new ArrayList<>();
     List<Estado> estados = new ArrayList<>();
     DefaultTableModel dtm;
-    String[] columnas = {"Matrícula", "ID_categoría", "ID_modelo","Color","Precio diario","ID_estado","Capacidad","Potencia"};
+    String[] columnas = {"Matrícula", "Categoría", "Modelo","Marca","Color","Precio alquiler","Estado"};
     String ruta = "";
     Validaciones validar = new Validaciones();
     String id = "";
@@ -67,7 +67,7 @@ public  class cAuto {
         this.modeloAuto = modeloAuto;
         this.vista = vista;
         vista.setVisible(true);
-        visualizar("");
+        visualizar();
         mostrarCategoria();
         mostrarMarcas();
         modesta.llenarComboBox(vista.getCbEstado());
@@ -76,12 +76,18 @@ public  class cAuto {
        
     }
     
-    private void visualizar(String id) {
-        dtm = new DefaultTableModel(null, columnas);
-        autos = modeloAuto.listar(id);
-        autos.stream().forEach(p -> dtm.addRow(new Object[]{p.getMatricula(), p.getId_categoria(), p.getId_modelo(),p.getColor(),p.getPrecio_diario(),p.getId_estado(),p.getCapacidad(),p.getPotencia()}));
-        vista.getJtAutos().setModel(dtm);
-        vista.getJtAutos().setRowHeight(30);
+    private void visualizar() {
+        try {
+            dtm = new DefaultTableModel(null, columnas);
+            rs = modeloAuto.join3();
+            while (rs.next()) {
+                dtm.addRow(new Object[]{rs.getString(1),rs.getString(2), rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getString(7)});
+            }
+            vista.getJtAutos().setModel(dtm);
+            vista.getJtAutos().setRowHeight(30);
+        } catch (SQLException ex) {
+            Logger.getLogger(cAuto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void seleccionar(JTable t) {
@@ -106,11 +112,7 @@ public  class cAuto {
         vista.getJbOK().addActionListener(l-> accionboton());
         vista.getCbMarca().addActionListener(l-> ObtenerModelos());
         vista.getBtnExaminar().addActionListener(l->examinarImagen());
-         
 
-
-        
-       
     }
         public void controlKey() {
                
@@ -143,6 +145,13 @@ public  class cAuto {
                
             }
         });
+        
+        vista.getTxtBuscar().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                FiltrarTabla.filtrar(vista.getJtAutos(), vista.getTxtBuscar(), vista.getCbColumnas());
+            }
+        });
     }
   
     public void editarmodo() {
@@ -172,7 +181,7 @@ public  class cAuto {
                 if (valiprecio()) {
                     setearautoMOD();
                     modeloAuto.actualizar();
-                    visualizar("");
+                    visualizar();
                     JOptionPane.showMessageDialog(null, "Actualizado correctamente");
                 } else {
 
@@ -185,7 +194,7 @@ public  class cAuto {
                 } else {
                     setearauto();
                     modeloAuto.crear();
-                    visualizar("");
+                    visualizar();
                     JOptionPane.showMessageDialog(null, "Registrado correctamente");
                 }
             }
@@ -193,7 +202,7 @@ public  class cAuto {
         if (vista.getJbOK().getText().equals("ELIMINAR")) {
             if (lleno()) {
                 modeloAuto.eliminar(vista.getTxtMatricula().getText());
-                visualizar("");
+                visualizar();
                 vaciarperfil();
                 JOptionPane.showMessageDialog(null, "Eliminado correctamente");
             }

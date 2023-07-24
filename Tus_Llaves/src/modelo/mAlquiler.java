@@ -75,4 +75,13 @@ public class mAlquiler extends Alquiler {
         }
         return id;
     }
+    
+    public ResultSet join_alq() {
+        sql = "SELECT a.id, a.matricula_auto, c.cedula_per, a.dias, a.fecha, (a.fecha + a.dias)\n"
+                + "FROM Alquiler a\n"
+                + "JOIN Cliente c ON (a.id_cliente = c.id)\n"
+                + "WHERE a.id NOT IN (SELECT id_alquiler FROM Devolucion)";
+        rs = con.consulta(sql);
+        return rs;
+    }
 }

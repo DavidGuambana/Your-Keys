@@ -1,6 +1,7 @@
 package controlador;
 
 import static controlador.cCliente.rs;
+import controlador.otros.FiltrarTabla;
 import controlador.otros.Validar;
 import java.awt.HeadlessException;
 import java.awt.event.KeyAdapter;
@@ -242,48 +243,33 @@ public class cExtra {
         });
         vista.getTxtExistencias().addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e){
-                Validar.numero(vista.getTxtExistencias(), 3); 
+            public void keyPressed(KeyEvent e) {
+                Validar.numero(vista.getTxtExistencias(), 3);
             }
         });
-         vista.getTxtPrecio().addKeyListener(new KeyAdapter() {
+        vista.getTxtPrecio().addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e){
-                Validar.dinero(vista.getTxtPrecio(), 4); 
+            public void keyPressed(KeyEvent e) {
+                Validar.dinero(vista.getTxtPrecio(), 4);
+            }
+        });
+        vista.getTxtBuscar().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                FiltrarTabla.filtrar(vista.getJtExtras(), vista.getTxtBuscar(), vista.getCbColumnas());
             }
         });
     }
-     public boolean valisala(){
-         boolean f;
-         try {  
-         Double salario = Double.valueOf(vista.getTxtPrecio().getText()); 
-         f=true;
-         } catch (HeadlessException | NumberFormatException e){
-           JOptionPane.showMessageDialog(null, "Precio invalido");
-         f=false;  
-         }
-        return f;      
-     }
-//         
-//             Double salario = Double.parseDouble(vista.getTxtPrecio().getText());
-//         }
-//         } catch (HeadlessException | NumberFormatException e) {
-//          
-//         }
-//         
-//         
-//        return false;
-//         
-//     } 
-//              try {
-//           try {
-//                
-//             
-//              } catch (HeadlessException | NumberFormatException e) {
-//                JOptionPane.showMessageDialog(null, "¡Salario inválido!", "Campo inválido", JOptionPane.WARNING_MESSAGE);
-//            }
-    
-    
 
-
+    public boolean valisala() {
+        boolean f;
+        try {
+            Double salario = Double.valueOf(vista.getTxtPrecio().getText());
+            f = true;
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Precio invalido");
+            f = false;
+        }
+        return f;
+    }
 }

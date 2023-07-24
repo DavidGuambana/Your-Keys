@@ -1,8 +1,8 @@
 package controlador;
 
+import controlador.otros.FiltrarTabla;
 import controlador.otros.RoundedLabel;
 import controlador.otros.Validar;
-import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +43,7 @@ public class cCliente {
     public static ResultSet rs = null;
     List<Cliente> clientes = new ArrayList<>();
     DefaultTableModel dtm;
-    String[] columnas = {"Codigo", "Cedula","Nombre","Apellido","Correo","Telefono"};
+    String[] columnas = {"ID", "Cédula","Nombre","Apellido","Correo","Télefono"};
     String id;
     String mod = null;
     String ruta = "";
@@ -481,6 +480,12 @@ vista.getJtClientes().setRowHeight(30);
             @Override
             public void keyPressed(KeyEvent e){
                 Validar.numero(vista.getTxtTelefono(), 10); 
+            }
+        });
+        vista.getTxtBuscar().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                FiltrarTabla.filtrar(vista.getJtClientes(), vista.getTxtBuscar(), vista.getCbColumnas());
             }
         });
 

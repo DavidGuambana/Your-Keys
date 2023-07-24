@@ -58,7 +58,6 @@ public class mAuto extends Auto {
                 + getCapacidad() + ", potencia="
                 + getPotencia() + ", id_imagen="
                 + getId_imagen() + " WHERE matricula='" + getMatricula() + "'";
-        System.out.println(sql);
         return con.accion(sql);
     }
 
@@ -101,6 +100,7 @@ public class mAuto extends Auto {
             return null;
         }
     }
+    
     public ResultSet join2() {
         sql = "SELECT a.matricula, c.nombre, mo.nombre, ma.nombre, a.precio_diario, i.valor FROM Auto a JOIN Categoria c ON (a.id_categoria = c.id)\n"
                 + "JOIN MODELO mo ON (a.id_modelo = mo.id) JOIN Marca ma ON (mo.id_marca = ma.id) JOIN Imagen i ON (a.id_imagen = i.id) WHERE a.id_estado = 1";
@@ -124,5 +124,12 @@ public class mAuto extends Auto {
         sql = "UPDATE auto SET id_estado="
                 + getId_estado()+ " WHERE matricula='"+getMatricula()+"'";
         return con.accion(sql);
+    }
+
+    public ResultSet join3() {
+        sql = "SELECT a.matricula, c.nombre, mo.nombre, ma.nombre, a.color, a.precio_diario, e.nombre FROM Auto a JOIN Categoria c ON (a.id_categoria = c.id)\n"
+                + "JOIN Modelo mo ON (a.id_modelo = mo.id) JOIN Marca ma ON (mo.id_marca = ma.id) JOIN Estado e ON (a.id_estado = e.id)";
+        rs = con.consulta(sql);
+        return rs;
     }
 }

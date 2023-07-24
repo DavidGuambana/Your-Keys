@@ -166,10 +166,10 @@ public class vCliente extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(840, 480));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 153)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jToolBar.setFloatable(false);
-        jToolBar.setBackground(new java.awt.Color(0, 102, 153));
+        jToolBar.setBackground(new java.awt.Color(0, 0, 0));
         jToolBar.setBorder(null);
 
         jSeparator5.setSeparatorSize(new java.awt.Dimension(25, 0));
@@ -182,6 +182,8 @@ public class vCliente extends javax.swing.JInternalFrame {
         jSeparator2.setSeparatorSize(new java.awt.Dimension(25, 0));
         jToolBar.add(jSeparator2);
 
+        jb_ModoEditar.setBackground(new java.awt.Color(51, 51, 51));
+        jb_ModoEditar.setForeground(new java.awt.Color(255, 255, 255));
         jb_ModoEditar.setText("Editar");
         jb_ModoEditar.setFocusable(false);
         jb_ModoEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -191,6 +193,8 @@ public class vCliente extends javax.swing.JInternalFrame {
         jSeparator3.setSeparatorSize(new java.awt.Dimension(25, 0));
         jToolBar.add(jSeparator3);
 
+        jb_ModoNuevo.setBackground(new java.awt.Color(51, 51, 51));
+        jb_ModoNuevo.setForeground(new java.awt.Color(255, 255, 255));
         jb_ModoNuevo.setText("Nuevo");
         jb_ModoNuevo.setFocusable(false);
         jb_ModoNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -200,20 +204,22 @@ public class vCliente extends javax.swing.JInternalFrame {
         jSeparator4.setSeparatorSize(new java.awt.Dimension(25, 0));
         jToolBar.add(jSeparator4);
 
+        jb_ModoVista.setBackground(new java.awt.Color(51, 51, 51));
+        jb_ModoVista.setForeground(new java.awt.Color(255, 255, 255));
         jb_ModoVista.setText("Vista");
         jb_ModoVista.setFocusable(false);
         jb_ModoVista.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jb_ModoVista.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar.add(jb_ModoVista);
 
-        lbModo.setBackground(new java.awt.Color(255, 255, 255));
+        lbModo.setBackground(new java.awt.Color(51, 51, 51));
         lbModo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbModo.setForeground(new java.awt.Color(0, 102, 153));
+        lbModo.setForeground(new java.awt.Color(255, 255, 255));
         lbModo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbModo.setText("(Modo) cliente");
-        lbModo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 153)));
+        lbModo.setOpaque(true);
 
-        jbOK.setBackground(new java.awt.Color(0, 102, 153));
+        jbOK.setBackground(new java.awt.Color(51, 51, 51));
         jbOK.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jbOK.setForeground(new java.awt.Color(255, 255, 255));
         jbOK.setText("OK");
@@ -228,6 +234,7 @@ public class vCliente extends javax.swing.JInternalFrame {
         jLabel4.setText("Cédula:");
 
         txtCedula.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        txtCedula.setForeground(new java.awt.Color(0, 153, 204));
         txtCedula.setMaximumSize(new java.awt.Dimension(186, 26));
         txtCedula.setMinimumSize(new java.awt.Dimension(186, 26));
         txtCedula.setPreferredSize(new java.awt.Dimension(186, 26));
@@ -432,20 +439,14 @@ public class vCliente extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel11))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel11)
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel12))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel12)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -499,7 +500,9 @@ public class vCliente extends javax.swing.JInternalFrame {
                 return false;
             }
         };
+        jtClientes.setBackground(new java.awt.Color(51, 51, 51));
         jtClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtClientes.setForeground(new java.awt.Color(255, 255, 255));
         jtClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -508,9 +511,11 @@ public class vCliente extends javax.swing.JInternalFrame {
 
             }
         ));
+        jtClientes.setSelectionBackground(new java.awt.Color(225, 225, 225));
+        jtClientes.setSelectionForeground(new java.awt.Color(51, 51, 51));
         jScrollPane1.setViewportView(jtClientes);
 
-        jLabel2.setBackground(new java.awt.Color(0, 102, 153));
+        jLabel2.setBackground(new java.awt.Color(51, 51, 51));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -527,7 +532,7 @@ public class vCliente extends javax.swing.JInternalFrame {
         txtBuscar.setSelectionColor(new java.awt.Color(204, 204, 204));
 
         cbColumnas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbColumnas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Licencia", "Salario", "Cedula" }));
+        cbColumnas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Cédula", "Nombre", "Apellido", "Correo", "Teléfono" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -537,7 +542,7 @@ public class vCliente extends javax.swing.JInternalFrame {
                 .addGap(9, 9, 9)
                 .addComponent(cbColumnas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
