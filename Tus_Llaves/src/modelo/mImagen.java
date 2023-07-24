@@ -6,11 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.tablas.Imagen;
-import oracle.jdbc.internal.OraclePreparedStatement;
 
 public class mImagen extends Imagen {
 
-    private Conexion con = new Conexion();
+    private final Conexion con = new Conexion();
     public static ResultSet rs = null;
     public static String sql;
 

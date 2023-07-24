@@ -1,6 +1,9 @@
 package vista;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JList;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -48,10 +51,34 @@ public class vDevolucion extends javax.swing.JInternalFrame {
         return txtBuscar3;
     }
 
+    public JDialog getJdMulta() {
+        return jdMulta;
+    }
+
+    public JButton getJbFinalizar() {
+        return jbFinalizar;
+    }
+
+    public JButton getJbRegresar() {
+        return jbRegresar;
+    }
+
+    public JList<String> getJl_Infracciones() {
+        return jl_Infracciones;
+    }
+
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToolBar = new javax.swing.JToolBar();
+        jdMulta = new javax.swing.JDialog();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jl_Infracciones = new javax.swing.JList<>();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jbFinalizar = new javax.swing.JButton();
+        jbRegresar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         tpDevoluciones = new javax.swing.JTabbedPane();
@@ -74,7 +101,90 @@ public class vDevolucion extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jtMultas = new javax.swing.JTable();
 
-        jToolBar.setRollover(true);
+        jdMulta.setBackground(new java.awt.Color(0, 0, 0));
+        jdMulta.setMinimumSize(new java.awt.Dimension(282, 319));
+        jdMulta.setResizable(false);
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setPreferredSize(new java.awt.Dimension(282, 320));
+
+        jl_Infracciones.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jl_Infracciones.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "1. Multa por pasarse de la fecha", "2. Multa por devolver el coche en mal estado", "3. Multa por perder el coche" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jl_Infracciones.setFixedCellHeight(30);
+        jl_Infracciones.setSelectionBackground(new java.awt.Color(255, 0, 0));
+        jScrollPane5.setViewportView(jl_Infracciones);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setText("Seleccione una multa...");
+
+        jbFinalizar.setBackground(new java.awt.Color(232, 232, 232));
+        jbFinalizar.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 16)); // NOI18N
+        jbFinalizar.setText("Finalizar");
+        jbFinalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jbRegresar.setBackground(new java.awt.Color(153, 153, 153));
+        jbRegresar.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 16)); // NOI18N
+        jbRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        jbRegresar.setText("Regresar");
+        jbRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane5)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jbRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1)
+                        .addGap(15, 15, 15)))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
+        );
+
+        javax.swing.GroupLayout jdMultaLayout = new javax.swing.GroupLayout(jdMulta.getContentPane());
+        jdMulta.getContentPane().setLayout(jdMultaLayout);
+        jdMultaLayout.setHorizontalGroup(
+            jdMultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+        );
+        jdMultaLayout.setVerticalGroup(
+            jdMultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdMultaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         setClosable(true);
@@ -90,7 +200,7 @@ public class vDevolucion extends javax.swing.JInternalFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(805, 440));
         jPanel1.setMinimumSize(new java.awt.Dimension(805, 440));
 
-        jLabel3.setBackground(new java.awt.Color(0, 102, 255));
+        jLabel3.setBackground(new java.awt.Color(51, 51, 51));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -112,7 +222,7 @@ public class vDevolucion extends javax.swing.JInternalFrame {
         cbColumnas1.setForeground(new java.awt.Color(51, 51, 51));
         cbColumnas1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID de alquiler", "Automóvil", "Cliente", "Total", "Fecha de alquiler", "Fecha de devolución", "Días de restantes", " ", " " }));
 
-        jLabel2.setBackground(new java.awt.Color(255, 102, 0));
+        jLabel2.setBackground(new java.awt.Color(0, 102, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -133,7 +243,8 @@ public class vDevolucion extends javax.swing.JInternalFrame {
 
             }
         ));
-        jtAlquileres.setSelectionBackground(new java.awt.Color(255, 102, 0));
+        jtAlquileres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jtAlquileres.setSelectionBackground(new java.awt.Color(0, 102, 255));
         jtAlquileres.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jtAlquileres.getTableHeader().setResizingAllowed(false);
         jtAlquileres.getTableHeader().setReorderingAllowed(false);
@@ -341,15 +452,22 @@ public class vDevolucion extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbColumnas1;
     private javax.swing.JComboBox<String> cbColumnas2;
     private javax.swing.JComboBox<String> cbColumnas3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JToolBar jToolBar;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JButton jbFinalizar;
+    private javax.swing.JButton jbRegresar;
+    private javax.swing.JDialog jdMulta;
+    private javax.swing.JList<String> jl_Infracciones;
     private javax.swing.JPanel jpDevolucionesFinalizadas;
     private javax.swing.JPanel jpDevolucionesPendientes;
     private javax.swing.JPanel jpMultas;

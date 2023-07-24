@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JTable;
 import modelo.tablas.Devolucion;
 
 public class mDevolucion extends Devolucion {
@@ -20,29 +19,22 @@ public class mDevolucion extends Devolucion {
         return con.accion(sql);
     }
 
-   
-    public List<Devolucion> buscar(String txt, String campo) {
-        List<Devolucion> devoluciones = new ArrayList<>();
-        try {
-            sql = "SELECT * FROM devolucion WHERE " + campo + " like '%" + txt + "'";
-            rs = con.consulta(sql);
-            if (rs != null) {
-                while (rs.next()) {
-                    Devolucion devolucion = new Devolucion(rs.getInt(1),rs.getDate(2),rs.getInt(3));
-                    devoluciones.add(devolucion);
-                }
-            }
-            con.close();
-            return devoluciones;
-        } catch (SQLException ex) {
-            return null;
-        }
-    }
-
     public ResultSet join_dev() {
-        sql = "SELECT d.id, a.matricula_auto, c.cedula_per, a.fecha, d.fecha FROM Devolucion d JOIN Alquiler a ON(d.id_alquiler = a.id)\n"
+        sql = "SELECT d.id, d.id_alquiler, a.matricula_auto, c.cedula_per, a.fecha, d.fecha FROM Devolucion d JOIN Alquiler a ON(d.id_alquiler = a.id)\n"
                 + "JOIN Cliente c ON (a.id_cliente = c.id)";
         rs = con.consulta(sql);
         return rs;
     }
+     public int ultimoID() {
+        int id = 0;
+        try {
+            sql = "SELECT * FROM (SELECT ID FROM DEVOLUCION ORDER BY ID DESC) WHERE ROWNUM <= 1";
+            rs = con.consulta(sql);
+            rs.next();
+            id = rs.getInt(1);
+        } catch (SQLException ex) {
+        }
+        return id;
+    }
+    
 }

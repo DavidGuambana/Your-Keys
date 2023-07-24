@@ -379,7 +379,6 @@ public final class cAlquiler {
         vista.getJdDialog().setLocationRelativeTo(vista);
         vista.getJdDialog().setSize(792, 520);
         vista.getJdDialog().setTitle(titulo);
-        vista.getJdDialog().setLocationRelativeTo(null);
         vista.getJdDialog().setVisible(true);
     }
     
