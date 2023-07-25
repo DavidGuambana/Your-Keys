@@ -238,7 +238,7 @@ public class cExtra {
         vista.getTxtNombre().addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e){
-                Validar.letras_espacios(vista.getTxtNombre(), 30); 
+                Validar.letras_espacios(vista.getTxtNombre(), 50); 
             }
         });
         vista.getTxtExistencias().addKeyListener(new KeyAdapter() {
@@ -250,7 +250,7 @@ public class cExtra {
         vista.getTxtPrecio().addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                Validar.dinero(vista.getTxtPrecio(), 4);
+                Validar.dinero(vista.getTxtPrecio(), 7);
             }
         });
         vista.getTxtBuscar().addKeyListener(new KeyAdapter() {
