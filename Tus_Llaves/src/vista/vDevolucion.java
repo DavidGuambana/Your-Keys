@@ -291,7 +291,7 @@ public class vDevolucion extends javax.swing.JInternalFrame {
 
         cbColumnas2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbColumnas2.setForeground(new java.awt.Color(51, 51, 51));
-        cbColumnas2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID de alquiler", "Automóvil", "Cliente", "Total", "Fecha de alquiler", "Fecha de devolución", "Días de restantes", " ", " " }));
+        cbColumnas2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID de devolución" }));
 
         jLabel4.setBackground(new java.awt.Color(0, 204, 51));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -359,7 +359,7 @@ public class vDevolucion extends javax.swing.JInternalFrame {
 
         cbColumnas3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbColumnas3.setForeground(new java.awt.Color(51, 51, 51));
-        cbColumnas3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID de alquiler", "Automóvil", "Cliente", "Total", "Fecha de alquiler", "Fecha de devolución", "Días de restantes", " ", " " }));
+        cbColumnas3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID de multa", " ", " " }));
 
         jLabel5.setBackground(new java.awt.Color(255, 0, 0));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

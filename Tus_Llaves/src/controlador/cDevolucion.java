@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.mAlquiler;
+import modelo.mAuto;
 import modelo.mDevolucion;
 import modelo.mMulta;
 import vista.vDevolucion;
@@ -65,6 +66,7 @@ public final class cDevolucion implements Runnable{
         vista.getJbRegresar().addActionListener(l-> vista.getJdMulta().setVisible(false));
     }
     int id_alq;
+    String matricula;
     ResultSet rs;
     DefaultTableModel dtm;
     JButton btnFinalizar, btnEnviar;
@@ -72,6 +74,7 @@ public final class cDevolucion implements Runnable{
     private final mMulta m_mul = new mMulta();
     private final mDevolucion m_dev = new mDevolucion();
     private final mAlquiler m_alq= new mAlquiler();
+    private final mAuto m_auto = new mAuto();
     
     String[] colAlquileres= {"ID alquiler", "Matrícula","Cédula", "Días", "Fecha inicio","Fecha fin","Tiempo restante" ,"Notificar","Finalizar"};
     String[] colDevoluciones= {"ID devolución","ID alquiler", "Matrícula","Cédula", "Fecha alquiler","Fecha devolución"};
@@ -158,6 +161,7 @@ public final class cDevolucion implements Runnable{
         m_mul.setId_devolucion(id_dev);
         m_mul.setId_infraccion(Integer.parseInt(id_inf));
         m_mul.crear();
+        actualizarEstado(matricula, Integer.parseInt(id_inf));
         JOptionPane.showMessageDialog(null, "¡Multa registrada correctamente!");
     }
     
@@ -169,6 +173,7 @@ public final class cDevolucion implements Runnable{
                     String id = t.getValueAt(t.getSelectedRow(), 0).toString();
                     String tiempo_restante = t.getValueAt(t.getSelectedRow(), 6).toString();
                     id_alq = Integer.parseInt(id);
+                    matricula = t.getValueAt(t.getSelectedRow(), 1).toString();
                     int xcolum = t.getColumnModel().getColumnIndexAtX(me.getX());
                     int xrow = me.getY() / t.getRowHeight();
                     if (xcolum <= t.getColumnCount() && xcolum >= 0 && xrow <= t.getRowCount() && xrow >= 0) {
@@ -190,6 +195,7 @@ public final class cDevolucion implements Runnable{
                                         "Finalizar devolución", JOptionPane.YES_NO_OPTION,
                                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                                     crearDevolucion(id_alq);
+                                    actualizarEstado(matricula, 0);
                                     verAlquileres();
                                     verDevoluciones();
                                 }
@@ -207,5 +213,18 @@ public final class cDevolucion implements Runnable{
         vista.getJdMulta().setLocationRelativeTo(vista);
         vista.getJdMulta().setSize(380, 320);
         vista.getJdMulta().setVisible(true);
+    }
+    
+     public void actualizarEstado(String matricula,int id_infraccion) {
+         switch (id_infraccion) {
+             case 0: m_auto.setId_estado(1);//estado "Disponible"
+                 break;
+                 case 2: m_auto.setId_estado(3);//estado "En reparación"
+                 break;
+                 case 3: m_auto.setId_estado(4);//estado "Desaparecido"
+                 break;
+         }
+        m_auto.setMatricula(matricula);
+        m_auto.updateEstado();
     }
 }
