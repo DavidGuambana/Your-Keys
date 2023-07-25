@@ -1,23 +1,28 @@
 package controlador;
 
 import controlador.otros.RenderTable2;
+import controlador.otros.EnvioCorreo;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.mAlquiler;
 import modelo.mAuto;
+import modelo.mCliente;
 import modelo.mDevolucion;
 import modelo.mMulta;
 import vista.vDevolucion;
 
 public final class cDevolucion implements Runnable{
+    
     Thread hilo;
     private final vDevolucion vista;
     public cDevolucion(vDevolucion vista) {
@@ -75,6 +80,8 @@ public final class cDevolucion implements Runnable{
     private final mDevolucion m_dev = new mDevolucion();
     private final mAlquiler m_alq= new mAlquiler();
     private final mAuto m_auto = new mAuto();
+    mCliente modcli=new mCliente();
+    
     
     String[] colAlquileres= {"ID alquiler", "Matrícula","Cédula", "Días", "Fecha inicio","Fecha fin","Tiempo restante" ,"Notificar","Finalizar"};
     String[] colDevoluciones= {"ID devolución","ID alquiler", "Matrícula","Cédula", "Fecha alquiler","Fecha devolución"};
@@ -181,9 +188,21 @@ public final class cDevolucion implements Runnable{
                         if (obj instanceof JButton) {
                             if (((JButton) obj).getText().equals("Enviar correo")) {
                                 if (tiempo_restante.equals("Finalizado")) {
-                                    //enviar correo
+                                    try {
+                                         
+                                        rs=modcli.obtener_cliente(t.getValueAt(t.getSelectedRow(), 2).toString());
+                                        rs.next();
+                                        EnvioCorreo env= new EnvioCorreo(); 
+                                        env.envcorrtext(rs.getString(12));//posicion de correo
+                                        //enviar correo
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(cDevolucion.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
                                 } else {
-                                    JOptionPane.showMessageDialog(null, "¡El plazo de este alquiler aún no vence!", null, JOptionPane.WARNING_MESSAGE);
+                                   
+                                        JOptionPane.showMessageDialog(null, "¡El plazo de este alquiler aún no vence!", null, JOptionPane.WARNING_MESSAGE);
+                                 
+                                    
                                 }
                             } else if (((JButton) obj).getText().equals("Finalizar")) {
 

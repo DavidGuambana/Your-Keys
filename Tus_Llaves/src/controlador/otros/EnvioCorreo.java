@@ -21,7 +21,7 @@ public class EnvioCorreo {
 
     }
 
-    public boolean envcorrtext(String correo) {
+    public void envcorrtext(String correo) {
             try {
          //Get system properties
         Properties props = System.getProperties();
@@ -47,14 +47,13 @@ public class EnvioCorreo {
                 + "ha sobrepasado lo acordado por lo cual se ha hecho acreedor a la multa correspondiete, por favor devolver el vehiculo "
                 + " y cancelar los valores pendientes los mas pronto");
         Transport.send(message);
+        JOptionPane.showMessageDialog(null, "Enviado correctamente");
         
     } catch (Throwable e) {
         System.out.println("Fallo sendEmail al enviar Correo: "+e.getMessage());
         e.printStackTrace();
     }
- 
-
-        return false;
+   
 
     }
 
