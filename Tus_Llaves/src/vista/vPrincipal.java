@@ -46,6 +46,10 @@ public class vPrincipal extends javax.swing.JFrame {
         return miAutomovil;
     }
 
+    public Button getBtn_inicio_invitado() {
+        return Btn_inicio_invitado;
+    }
+
     public JMenuItem getMiCliente() {
         return miCliente;
     }
@@ -235,6 +239,7 @@ public class vPrincipal extends javax.swing.JFrame {
         lg_contraseña = new controlador.otros.PasswordField();
         Btn_inicio_sesion = new controlador.otros.Button();
         jLabel4 = new javax.swing.JLabel();
+        Btn_inicio_invitado = new controlador.otros.Button();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         exitBtn = new javax.swing.JPanel();
@@ -365,11 +370,9 @@ public class vPrincipal extends javax.swing.JFrame {
 
         Panel_fondo.setOpaque(false);
 
-        Lg_cedula.setText("0107178527");
         Lg_cedula.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         Lg_cedula.setHint("Cedula");
 
-        lg_contraseña.setText("1234567890");
         lg_contraseña.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         lg_contraseña.setHint("Contraseña");
 
@@ -383,6 +386,10 @@ public class vPrincipal extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Login");
 
+        Btn_inicio_invitado.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_inicio_invitado.setText("INGRESAR COMO INVITADO");
+        Btn_inicio_invitado.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout Panel_fondoLayout = new javax.swing.GroupLayout(Panel_fondo);
         Panel_fondo.setLayout(Panel_fondoLayout);
         Panel_fondoLayout.setHorizontalGroup(
@@ -390,30 +397,32 @@ public class vPrincipal extends javax.swing.JFrame {
             .addGroup(Panel_fondoLayout.createSequentialGroup()
                 .addGroup(Panel_fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Panel_fondoLayout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(Btn_inicio_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(Panel_fondoLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addGroup(Panel_fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Lg_cedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lg_contraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)))
+                            .addComponent(lg_contraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_inicio_sesion, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)))
                     .addGroup(Panel_fondoLayout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                        .addGroup(Panel_fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Btn_inicio_invitado, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         Panel_fondoLayout.setVerticalGroup(
             Panel_fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_fondoLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(30, 30, 30)
                 .addComponent(Lg_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lg_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(Btn_inicio_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addGap(39, 39, 39)
+                .addComponent(Btn_inicio_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(Btn_inicio_invitado, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jLabel5.setBackground(new java.awt.Color(102, 102, 102));
@@ -427,29 +436,30 @@ public class vPrincipal extends javax.swing.JFrame {
         background1Layout.setHorizontalGroup(
             background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(background1Layout.createSequentialGroup()
-                .addContainerGap(146, Short.MAX_VALUE)
+                .addContainerGap(137, Short.MAX_VALUE)
                 .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background1Layout.createSequentialGroup()
-                        .addComponent(Panel_fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(93, 93, 93))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background1Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14))))
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background1Layout.createSequentialGroup()
+                        .addComponent(Panel_fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88))))
         );
         background1Layout.setVerticalGroup(
             background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(background1Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Panel_fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(125, 125, 125));
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
-        exitTxt.setBackground(new java.awt.Color(105, 105, 105));
+        exitTxt.setBackground(new java.awt.Color(51, 51, 51));
         exitTxt.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        exitTxt.setForeground(new java.awt.Color(255, 255, 255));
         exitTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         exitTxt.setText("X");
         exitTxt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -482,7 +492,7 @@ public class vPrincipal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jdLoginLayout = new javax.swing.GroupLayout(jdLogin.getContentPane());
@@ -498,13 +508,12 @@ public class vPrincipal extends javax.swing.JFrame {
         jdLoginLayout.setVerticalGroup(
             jdLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdLoginLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(background1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addComponent(background1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jdLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jdLoginLayout.createSequentialGroup()
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 510, Short.MAX_VALUE)))
+                    .addGap(0, 507, Short.MAX_VALUE)))
         );
 
         jPanel1.setBackground(new java.awt.Color(51, 0, 255));
@@ -815,6 +824,7 @@ public class vPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MI_prefilActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private controlador.otros.Button Btn_inicio_invitado;
     private controlador.otros.Button Btn_inicio_sesion;
     private javax.swing.JLabel JL_foto;
     private javax.swing.JMenuItem JmI_menu;

@@ -68,6 +68,7 @@ public final class cPrincipal {
         vista.getJdLogin().setLocationRelativeTo(null);
         vista.getJdLogin().setVisible(true);
         vista.getJmSalir().addActionListener(l -> verJdLogin(true));
+        vista.getBtn_inicio_invitado().addActionListener(l-> vista.setVisible(true));
         vista.getMiCliente().addActionListener(l -> menuPersona());
         vista.getMiConductor().addActionListener(l -> menuConductor());
         vista.getMiAutomovil().addActionListener(l -> MenuAutos());
@@ -83,6 +84,7 @@ public final class cPrincipal {
                 Cerrar();
             }
         });
+        
         vista.getBtn_inicio_sesion().addActionListener(l -> {
             try {
                 Logeo();
@@ -320,7 +322,7 @@ public final class cPrincipal {
                 .backgroundTransparent(0.3f)
                 .duration(300)
                 .enableScroll(true)
-                .addChild(new DrawerItem("Clientes").icon(new ImageIcon(getClass().getResource("/vista/img/menu/user.png"))).build())
+                .addChild(new DrawerItem("CLIENTES").icon(new ImageIcon(getClass().getResource("/vista/img/menu/user.png"))).build())
                 .addChild(new DrawerItem("Autos").icon(new ImageIcon(getClass().getResource("/vista/img/menu/data.png"))).build())
                 .addChild(new DrawerItem("Extras").icon(new ImageIcon(getClass().getResource("/vista/img/menu/income.png"))).build())
                 .addChild(new DrawerItem("Multas").icon(new ImageIcon(getClass().getResource("/vista/img/menu/expense.png"))).build())
