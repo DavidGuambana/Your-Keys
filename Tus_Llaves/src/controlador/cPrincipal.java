@@ -113,7 +113,6 @@ public final class cPrincipal {
         vista.getJdLogin().setLocationRelativeTo(null);
         vista.getJdLogin().setVisible(true);
         vista.getJmSalir().addActionListener(l -> verJdLogin(true));
-        vista.getBtn_inicio_invitado().addActionListener(l-> vista.setVisible(true));
         vista.getMiCliente().addActionListener(l -> menuPersona());
         vista.getMiConductor().addActionListener(l -> menuConductor());
         vista.getMiAutomovil().addActionListener(l -> MenuAutos());

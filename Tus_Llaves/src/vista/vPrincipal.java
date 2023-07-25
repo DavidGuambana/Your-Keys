@@ -50,11 +50,7 @@ public class vPrincipal extends javax.swing.JFrame {
     public JMenuItem getMiAutomovil() {
         return miAutomovil;
     }
-
-    public Button getBtn_inicio_invitado() {
-        return Btn_inicio_invitado;
-    }
-
+    
     public JMenuItem getMiCliente() {
         return miCliente;
     }
@@ -235,7 +231,6 @@ public class vPrincipal extends javax.swing.JFrame {
         lg_contraseña = new controlador.otros.PasswordField();
         Btn_inicio_sesion = new controlador.otros.Button();
         jLabel4 = new javax.swing.JLabel();
-        Btn_inicio_invitado = new controlador.otros.Button();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         exitBtn = new javax.swing.JPanel();
@@ -381,10 +376,6 @@ public class vPrincipal extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Login");
 
-        Btn_inicio_invitado.setForeground(new java.awt.Color(255, 255, 255));
-        Btn_inicio_invitado.setText("INGRESAR COMO INVITADO");
-        Btn_inicio_invitado.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-
         javax.swing.GroupLayout Panel_fondoLayout = new javax.swing.GroupLayout(Panel_fondo);
         Panel_fondo.setLayout(Panel_fondoLayout);
         Panel_fondoLayout.setHorizontalGroup(
@@ -399,10 +390,8 @@ public class vPrincipal extends javax.swing.JFrame {
                             .addComponent(Btn_inicio_sesion, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)))
                     .addGroup(Panel_fondoLayout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addGroup(Panel_fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Btn_inicio_invitado, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(73, Short.MAX_VALUE))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         Panel_fondoLayout.setVerticalGroup(
             Panel_fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,9 +404,7 @@ public class vPrincipal extends javax.swing.JFrame {
                 .addComponent(lg_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(Btn_inicio_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(Btn_inicio_invitado, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jLabel5.setBackground(new java.awt.Color(102, 102, 102));
@@ -447,7 +434,7 @@ public class vPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Panel_fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
@@ -521,7 +508,9 @@ public class vPrincipal extends javax.swing.JFrame {
 
         titulo_texto.setBackground(new java.awt.Color(204, 0, 0));
         titulo_texto.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        titulo_texto.setForeground(new java.awt.Color(255, 255, 255));
         titulo_texto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        titulo_texto.setOpaque(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -815,7 +804,6 @@ public class vPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MI_prefilActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private controlador.otros.Button Btn_inicio_invitado;
     private controlador.otros.Button Btn_inicio_sesion;
     private javax.swing.JLabel JL_foto;
     private javax.swing.JMenuItem JmI_menu;
