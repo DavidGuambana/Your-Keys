@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javaswingdev.drawer.Drawer;
 import javaswingdev.drawer.DrawerController;
 import javaswingdev.drawer.DrawerItem;
+import javaswingdev.drawer.EventDrawer;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -60,6 +61,50 @@ public final class cPrincipal {
 
     public cPrincipal(vPrincipal vista) throws IOException {
         this.vista = vista;
+        dave = Drawer.newDrawer(this.vista).header(new cabecera())
+                .space(5)
+                .separator(2, new Color(173,173,173))
+                .background(new Color(135,206,250))
+                .backgroundTransparent(0.3f)
+                .duration(300)
+                .enableScroll(true)
+                .addChild(new DrawerItem("CLIENTES").icon(new ImageIcon(getClass().getResource("/vista/img/menu/user.png"))).build())
+                .addChild(new DrawerItem("AUTOS").icon(new ImageIcon(getClass().getResource("/vista/img/menu/data.png"))).build())
+                .addChild(new DrawerItem("EXTRAS").icon(new ImageIcon(getClass().getResource("/vista/img/menu/income.png"))).build())
+                .addChild(new DrawerItem("MULTAS").icon(new ImageIcon(getClass().getResource("/vista/img/menu/expense.png"))).build())
+                .addChild(new DrawerItem("REPORTE DE CLIENTES").icon(new ImageIcon(getClass().getResource("/vista/img/menu/report.png"))).build())
+                .addChild(new DrawerItem("BAROU").icon(new ImageIcon(getClass().getResource("/vista/img/menu/data.png"))).build())
+                .addFooter(new DrawerItem("SALIR ").icon(new ImageIcon(getClass().getResource("/vista/img/menu/exit.png"))).build())
+                .event(new EventDrawer(){
+                @Override
+                public void selected(int i, DrawerItem di) {
+                    System.out.println(i);
+                    switch (i){
+                        case 0:
+                            menuPersona();
+                            break;
+                        case 1:
+                            MenuAutos();
+                            break;
+                        case 2:
+                            menuExtras();
+                            break;
+                        case 3:
+                            
+                            break;
+                        case 4:
+                            
+                            break;
+                        case 5:
+                            
+                            break;
+                        case 6:
+                            verJdLogin(true);
+                            break;
+                }
+                }
+                })
+                .build();
         this.iniciar();
     }
 
@@ -203,10 +248,10 @@ public final class cPrincipal {
         cDevolucion controlador = new cDevolucion(vdevolucion);
     }
 
-    public void Desplegar() {
-        if (dave.isShow()) {
+    public void Desplegar(){
+        if(dave.isShow()){
             dave.hide();
-        } else {
+        }else{
             dave.show();
         }
     }
@@ -221,40 +266,41 @@ public final class cPrincipal {
         vista.getPerfil().setLocationRelativeTo(null);
     }
 
-    public void Logeo() throws SQLException {
+    public void Logeo() throws SQLException{
         char[] password = vista.getLg_contraseña().getPassword();
         String passwordString = new String(password);
-        if (vista.getLg_cedula().getText().equals("") || passwordString.equals("")) {
+        if(vista.getLg_cedula().getText().equals("") || passwordString.equals("")){
             JOptionPane.showMessageDialog(null, "DEBE INGRESAR CEDULA Y CONTRASEÑA");
-        } else {
+        }else{
+            double salario = 0;
             ResultSet datos = modeloE.logeo(vista.getLg_cedula().getText(), passwordString);
-            while (datos.next()) {
-                mi.setValor(datos.getBytes(16));
-                mi.setNombre(datos.getString(15));
-                mi.setId(datos.getInt(14));
-                datos.getDouble(13);
-                Mpersona.setNombre1(datos.getString(2));
-                Mpersona.setNombre2(datos.getString(3));
-                Mpersona.setApellido1(datos.getString(4));
-                Mpersona.setApellido2(datos.getString(5));
-                Mpersona.setTelefono(datos.getString(7));
-                Mpersona.setDireccion(datos.getString(8));
-                Mpersona.setCorreo(datos.getString(9));
-                Mpersona.setSexo(datos.getString(10));
-                cargo = datos.getString(12);
-                Mpersona.setFecha_nac(datos.getDate(6));
+            while(datos.next()){ 
+                System.out.println(datos.getString(1));
+                    mi.setValor(datos.getBytes(16));
+                    mi.setNombre(datos.getString(15));
+                    mi.setId(datos.getInt(14));
+                    salario = datos.getDouble(13);
+                    Mpersona.setNombre1(datos.getString(2));
+                    Mpersona.setNombre2(datos.getString(3));
+                    Mpersona.setApellido1(datos.getString(4));
+                    Mpersona.setApellido2(datos.getString(5));
+                    Mpersona.setTelefono(datos.getString(7));
+                    Mpersona.setDireccion(datos.getString(8));
+                    Mpersona.setCorreo(datos.getString(9));
+                    Mpersona.setSexo(datos.getString(10));
+                    cargo = datos.getString(12);
+                    Mpersona.setFecha_nac(datos.getDate(6));
             }
-            if (Mpersona.getNombre1().equals("")) {
+            if(Mpersona.getNombre1() == null){
                 JOptionPane.showMessageDialog(null, "NO ESTA REGISTRADO");
-            } else {
-                verJdLogin(false);
-                Cargo(cargo);
+            }else{
+                System.out.println(cargo);
+                vista.getJdLogin().setVisible(false);
                 llenar();
+                Cargos(cargo);
                 getIcon();
                 vista.setVisible(true);
-                setPanel();
             }
-
         }
     }
 
@@ -284,23 +330,21 @@ public final class cPrincipal {
         vista.getLb_edad().setText(String.valueOf(ObtenerEdad(Mpersona.getFecha_nac())));
     }
 
-    public void Cargo(String cargo) {
-        if (cargo.equals("Administrador")) {
-            ImageIcon icon = new ImageIcon("/vista.img/administrador_entrar.png");
-            ImageIcon Icon_entrar = new ImageIcon("/vista.img/administrador_salir.png");
-            vista.getJbl_cargo().setIcon(icon);
-            vista.getJbl_cargo().addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    vista.getJbl_cargo().setIcon(icon);
-                }
-            });
-            vista.getJbl_cargo().addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    vista.getJbl_cargo().setIcon(Icon_entrar);
-                }
-            });
+    public void Cargos(String cargo){
+        switch(cargo){
+            case "Administrador":
+                ImageIcon icon = new ImageIcon("vista.img/administrador_salir.png");
+                vista.getTitulo_texto().setText("ADMINISTRADOR");
+                break;
+            case "Comerciante":
+                vista.getTitulo_texto().setText("COMERCIANTE");
+                break;
+            case "Conductor":
+                vista.getTitulo_texto().setText("CONDUCTOR");
+                break;
+            case "":
+                vista.getTitulo_texto().setText("CLIENTE");
+                break;
         }
     }
 
@@ -356,5 +400,4 @@ public final class cPrincipal {
                 })
                 .build();
     }
-    
 }

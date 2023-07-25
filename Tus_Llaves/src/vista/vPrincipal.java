@@ -11,11 +11,16 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class vPrincipal extends javax.swing.JFrame {
 
     public vPrincipal() {
         initComponents();
+    }
+
+    public JTextField getTitulo_texto() {
+        return titulo_texto;
     }
 
     public JButton getJbGuardarTema() {
@@ -122,15 +127,6 @@ public class vPrincipal extends javax.swing.JFrame {
     public void setBtn_inicio_sesion(Button Btn_inicio_sesion) {
         this.Btn_inicio_sesion = Btn_inicio_sesion;
     }
-
-    public JLabel getJbl_cargo() {
-        return jbl_cargo;
-    }
-
-    public void setJbl_cargo(JLabel jbl_cargo) {
-        this.jbl_cargo = jbl_cargo;
-    }
-
 
 
     public TextField getLg_cedula() {
@@ -248,8 +244,7 @@ public class vPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         JL_foto = new RoundedLabel("", 200, 0x333333, 0x333333, 1.0f);
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        jbl_cargo = new javax.swing.JLabel();
+        titulo_texto = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -516,7 +511,7 @@ public class vPrincipal extends javax.swing.JFrame {
                     .addGap(0, 492, Short.MAX_VALUE)))
         );
 
-        jPanel1.setBackground(new java.awt.Color(51, 0, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 0, 0));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         JL_foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -524,25 +519,23 @@ public class vPrincipal extends javax.swing.JFrame {
         JL_foto.setMinimumSize(new java.awt.Dimension(160, 160));
         JL_foto.setPreferredSize(new java.awt.Dimension(160, 160));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CARGO");
-
-        jbl_cargo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jbl_cargo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/administrador_salir.png"))); // NOI18N
+        titulo_texto.setBackground(new java.awt.Color(204, 0, 0));
+        titulo_texto.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        titulo_texto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbl_cargo, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addComponent(JL_foto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(titulo_texto, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,11 +544,9 @@ public class vPrincipal extends javax.swing.JFrame {
                 .addComponent(JL_foto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jbl_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGap(54, 54, 54)
+                .addComponent(titulo_texto, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
 
         jPanel3.setBackground(new java.awt.Color(239, 239, 239));
@@ -836,7 +827,6 @@ public class vPrincipal extends javax.swing.JFrame {
     private controlador.otros.Background background1;
     private javax.swing.JPanel exitBtn;
     private javax.swing.JLabel exitTxt;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -871,7 +861,6 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton jbGuardarTema;
-    private javax.swing.JLabel jbl_cargo;
     private javax.swing.JDialog jdLogin;
     private javax.swing.JDesktopPane jdPrincipal;
     private javax.swing.JDialog jdTemas;
@@ -892,5 +881,6 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem miDevolución;
     private javax.swing.JMenuItem miEmpleado;
     private javax.swing.JMenuItem miExtras;
+    private javax.swing.JTextField titulo_texto;
     // End of variables declaration//GEN-END:variables
 }
