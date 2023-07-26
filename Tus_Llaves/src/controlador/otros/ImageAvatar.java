@@ -1,4 +1,4 @@
-package test;
+package controlador.otros;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
