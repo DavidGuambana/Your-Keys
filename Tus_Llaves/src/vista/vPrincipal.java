@@ -212,6 +212,38 @@ public class vPrincipal extends javax.swing.JFrame {
     public void setPerfil(JDialog Perfil) {
         this.Perfil = Perfil;
     }
+
+    public JMenuItem getrAlquileres() {
+        return rAlquileres;
+    }
+
+    public JMenuItem getrAutos() {
+        return rAutos;
+    }
+
+    public JMenuItem getrClientes() {
+        return rClientes;
+    }
+
+    public JMenuItem getrConductores() {
+        return rConductores;
+    }
+
+    public JMenuItem getrDevoluciones() {
+        return rDevoluciones;
+    }
+
+    public JMenuItem getrEmpleados() {
+        return rEmpleados;
+    }
+
+    public JMenuItem getrExtras() {
+        return rExtras;
+    }
+
+    public JMenuItem getrMultas() {
+        return rMultas;
+    }
     
     
     @SuppressWarnings("unchecked")
@@ -278,12 +310,14 @@ public class vPrincipal extends javax.swing.JFrame {
         miDevolución = new javax.swing.JMenuItem();
         miExtras = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem17 = new javax.swing.JMenuItem();
-        jMenuItem18 = new javax.swing.JMenuItem();
+        rClientes = new javax.swing.JMenuItem();
+        rEmpleados = new javax.swing.JMenuItem();
+        rConductores = new javax.swing.JMenuItem();
+        rAutos = new javax.swing.JMenuItem();
+        rAlquileres = new javax.swing.JMenuItem();
+        rDevoluciones = new javax.swing.JMenuItem();
+        rExtras = new javax.swing.JMenuItem();
+        rMultas = new javax.swing.JMenuItem();
 
         jdTemas.setBackground(new java.awt.Color(0, 0, 0));
         jdTemas.setMinimumSize(new java.awt.Dimension(282, 319));
@@ -360,9 +394,11 @@ public class vPrincipal extends javax.swing.JFrame {
 
         Panel_fondo.setOpaque(false);
 
+        Lg_cedula.setText("0107178527");
         Lg_cedula.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         Lg_cedula.setHint("Cedula");
 
+        lg_contraseña.setText("1234567890");
         lg_contraseña.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         lg_contraseña.setHint("Contraseña");
 
@@ -708,15 +744,15 @@ public class vPrincipal extends javax.swing.JFrame {
         jMenu4.add(JmI_menu);
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/flecha-hacia-arriba.png"))); // NOI18N
-        jMenuItem3.setText("Prestamos");
+        jMenuItem3.setText("Mis prestamos");
         jMenu4.add(jMenuItem3);
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/flecha-hacia-abajo.png"))); // NOI18N
-        jMenuItem5.setText("Devoluciones");
+        jMenuItem5.setText("Mis devoluciones");
         jMenu4.add(jMenuItem5);
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/multa.png"))); // NOI18N
-        jMenuItem4.setText("Multas");
+        jMenuItem4.setText("Mis multas");
         jMenu4.add(jMenuItem4);
 
         jMenuBar1.add(jMenu4);
@@ -735,7 +771,7 @@ public class vPrincipal extends javax.swing.JFrame {
         miConductor.setText("Conductor");
         jMenu6.add(miConductor);
 
-        miAutomovil.setText("Automóvil");
+        miAutomovil.setText("Auto");
         jMenu6.add(miAutomovil);
 
         miAlquiler.setText("Alquiler");
@@ -752,23 +788,29 @@ public class vPrincipal extends javax.swing.JFrame {
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/impresora.png"))); // NOI18N
         jMenu5.setText("Reporte");
 
-        jMenuItem10.setText("Cliente");
-        jMenu5.add(jMenuItem10);
+        rClientes.setText("Clientes");
+        jMenu5.add(rClientes);
 
-        jMenuItem11.setText("Empleado");
-        jMenu5.add(jMenuItem11);
+        rEmpleados.setText("Empleados");
+        jMenu5.add(rEmpleados);
 
-        jMenuItem12.setText("Conductor");
-        jMenu5.add(jMenuItem12);
+        rConductores.setText("Conductores");
+        jMenu5.add(rConductores);
 
-        jMenuItem13.setText("Automóvil");
-        jMenu5.add(jMenuItem13);
+        rAutos.setText("Autos");
+        jMenu5.add(rAutos);
 
-        jMenuItem17.setText("Alquiler");
-        jMenu5.add(jMenuItem17);
+        rAlquileres.setText("Alquileres");
+        jMenu5.add(rAlquileres);
 
-        jMenuItem18.setText("Devolución");
-        jMenu5.add(jMenuItem18);
+        rDevoluciones.setText("Devoluciones");
+        jMenu5.add(rDevoluciones);
+
+        rExtras.setText("Extras");
+        jMenu5.add(rExtras);
+
+        rMultas.setText("Multas");
+        jMenu5.add(rMultas);
 
         jMenu3.add(jMenu5);
 
@@ -832,12 +874,6 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem17;
-    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -869,6 +905,14 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem miDevolución;
     private javax.swing.JMenuItem miEmpleado;
     private javax.swing.JMenuItem miExtras;
+    private javax.swing.JMenuItem rAlquileres;
+    private javax.swing.JMenuItem rAutos;
+    private javax.swing.JMenuItem rClientes;
+    private javax.swing.JMenuItem rConductores;
+    private javax.swing.JMenuItem rDevoluciones;
+    private javax.swing.JMenuItem rEmpleados;
+    private javax.swing.JMenuItem rExtras;
+    private javax.swing.JMenuItem rMultas;
     private javax.swing.JTextField titulo_texto;
     // End of variables declaration//GEN-END:variables
 }

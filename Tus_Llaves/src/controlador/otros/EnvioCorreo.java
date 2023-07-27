@@ -32,6 +32,7 @@ public class EnvioCorreo {
         props.setProperty("mail.smtp.starttls.enable", "true");
                 // AUTENTICACION DE CONTRASEÑA DE GOOGLE
         Authenticator auth = new Authenticator() {
+            @Override
             public PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication("edisonariel007@gmail.com", "wjdgsbseyfmcftvf");
             }
@@ -41,20 +42,19 @@ public class EnvioCorreo {
         // Define message
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(correo));
+        JOptionPane.showMessageDialog(null, correo);
         message.setSubject("YOUR KEYS-AVISO");
         message.addRecipient(Message.RecipientType.TO,new InternetAddress(correo));
         message.setText("Buenas estimado cliete de 'YOUR KEYS' por este medio se le avisa que el tiempo de devolucion del vehiculo "
-                + "ha sobrepasado lo acordado por lo cual se ha hecho acreedor a la multa correspondiete, por favor devolver el vehiculo "
-                + " y cancelar los valores pendientes los mas pronto");
-        Transport.send(message);
-        JOptionPane.showMessageDialog(null, "Enviado correctamente");
-        
-    } catch (Throwable e) {
-        System.out.println("Fallo sendEmail al enviar Correo: "+e.getMessage());
-        e.printStackTrace();
-    }
-   
+                    + "ha sobrepasado lo acordado por lo cual se ha hecho acreedor a la multa correspondiete, por favor devolver el vehiculo "
+                    + " y cancelar los valores pendientes los mas pronto");
+            Transport.send(message);
+            JOptionPane.showMessageDialog(null, "Enviado correctamente");
 
+        } catch (Throwable e) {
+            JOptionPane.showMessageDialog(null, "No se ha podido enviar");
+            e.printStackTrace();
+        }
     }
 
 }

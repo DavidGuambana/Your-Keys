@@ -32,6 +32,7 @@ import modelo.mEmpleado;
 import modelo.mExtra;
 import modelo.mImagen;
 import modelo.mPersona;
+import reportes.Reporte;
 import vista.cabecera;
 import vista.vAlquiler;
 import vista.vAuto;
@@ -59,7 +60,8 @@ public final class cPrincipal {
     mImagen mi = new mImagen();
     RoundedLabel rl = new RoundedLabel();
     String cargo = "";
-
+    Reporte rep = new Reporte();
+    
     public cPrincipal(vPrincipal vista) throws IOException, SQLException {
         this.vista = vista;
     }
@@ -140,6 +142,10 @@ public final class cPrincipal {
                 }
                 })
                 .build();
+                //controlar reportes:
+                vista.getrClientes().addActionListener(l-> rep.print_cliente());
+                vista.getrEmpleados().addActionListener(l-> rep.print_empleado());
+                vista.getrConductores().addActionListener(l-> rep.print_conductor());
     }
 
     public void setBordeButton() {
