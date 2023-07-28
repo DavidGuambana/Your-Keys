@@ -220,7 +220,7 @@ public class vDevolucion extends javax.swing.JInternalFrame {
 
         cbColumnas1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbColumnas1.setForeground(new java.awt.Color(51, 51, 51));
-        cbColumnas1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID de alquiler", "Automóvil", "Cliente", "Total", "Fecha de alquiler", "Fecha de devolución", "Días de restantes", " ", " " }));
+        cbColumnas1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID alquiler", "Matrícula", "Cédula", "Días", "Fecha inicio", "Fecha fin", "Tiempo restante" }));
 
         jLabel2.setBackground(new java.awt.Color(0, 102, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -291,7 +291,7 @@ public class vDevolucion extends javax.swing.JInternalFrame {
 
         cbColumnas2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbColumnas2.setForeground(new java.awt.Color(51, 51, 51));
-        cbColumnas2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID de devolución" }));
+        cbColumnas2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID devolución", "ID alquiler", "Matrícula", "Cédula", "Fecha alquiler", "Fecha devolución" }));
 
         jLabel4.setBackground(new java.awt.Color(0, 204, 51));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -359,7 +359,7 @@ public class vDevolucion extends javax.swing.JInternalFrame {
 
         cbColumnas3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbColumnas3.setForeground(new java.awt.Color(51, 51, 51));
-        cbColumnas3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID de multa", " ", " " }));
+        cbColumnas3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID multa", "ID devolución", "Cédula", "Causa de la multa", " " }));
 
         jLabel5.setBackground(new java.awt.Color(255, 0, 0));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

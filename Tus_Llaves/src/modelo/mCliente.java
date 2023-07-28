@@ -107,4 +107,20 @@ public class mCliente extends Cliente {
         rs = con.consulta(sql);
         return rs;
     }
+    
+    public ArrayList login() throws SQLException{
+        ArrayList <mCliente> coleccion = new ArrayList();
+        String logeo = "SELECT cedula_per FROM CLIENTE WHERE CEDULA_PER ='"+super.getCedula_per()+"' AND CONTRASEÑA = '"+super.getContraseña()+"'";
+        rs = con.consulta(logeo);
+        if(rs != null){
+            while (rs.next()){
+                    mCliente cliente = new mCliente();
+                    cliente.setCedula_per(rs.getString(1));
+                    coleccion.add(cliente);
+            }
+        }else{
+            
+        }
+        return coleccion;
+    }
 }

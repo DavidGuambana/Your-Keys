@@ -45,35 +45,35 @@ public class Reporte {
         map.put("par", "d");
         print(map, url);
     }
-    public void print_alquiler() {
+    public void print_alquiler(int id) {
         map = new HashMap<>();
-        url = "/reportes/Alquileres.jasper";
-        map.put("par", "d");
+        url = "/reportes/Alquiler.jasper";
+        map.put("id_alq", id);
         map.put("imagen2", "src/vista/img/calidad.png");
         print(map, url);
     }
 
-    public void print_alquilerescli() {
+    public void print_alquilerescli(String cedula) {
         map = new HashMap<>();
-        map.put("cedula", "0104305008");
+        map.put("cedula", cedula);
         map.put("par", "g");
         url = "/reportes/PRESTAMOS.jasper";
         print(map, url);
     }
 
-    public void print_devolucionescli() {
+    public void print_devolucionescli(String cedula) {
 
         map = new HashMap<>();
-        map.put("cedula", "0104305008");
+        map.put("cedula", cedula);
         map.put("par", "g");
         url = "/reportes/devoluciones.jasper";
         print(map, url);
 
     }
 
-    public void print_contratoscli() {
+    public void print_contratoscli(String cedula) {
         map = new HashMap<>();
-        map.put("cedula", "0104305008");
+        map.put("cedula", cedula);
         map.put("par", "g");
         url = "/reportes/CONTRATOS.jasper";
         print(map, url);

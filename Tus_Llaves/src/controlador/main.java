@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import modelo.mCliente;
+import modelo.tablas.Cliente;
+import vista.Login;
 import vista.vPrincipal;
 
 public class main {
@@ -13,8 +16,12 @@ public class main {
         try {
             UIManager.setLookAndFeel(new FlatIntelliJLaf());
             setBordeButton();
-            cPrincipal control = new cPrincipal(new vPrincipal());
-            control.PrimerInicio();
+            Login vista = new Login();
+            mCliente cliente = new mCliente();
+            clogin inicio = new clogin(vista,cliente);
+            inicio.Iniciar();
+//            cPrincipal control = new cPrincipal(new vPrincipal());
+//            control.PrimerInicio();
         } catch (UnsupportedLookAndFeelException ex) {
         }
     }

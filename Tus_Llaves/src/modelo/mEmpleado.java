@@ -113,4 +113,41 @@ public class mEmpleado extends Empleado{
         }
         return cont;
     }
+       
+    public ArrayList logeoReal(String  cedula, String contraseña) throws SQLException {
+        sql = "SELECT p.cedula, p.nombre1, p.nombre2, p.apellido1, p.apellido2, p.fecha_nac, p.telefono, p.direccion, p.correo, p.sexo, e.contraseña, c.nombre, \n"
+                + "e.salario, p.id_imagen, i.nombre, i.valor FROM empleado e JOIN persona p ON(e.cedula_per = p.cedula) JOIN Cargo c ON (e.id_cargo = c.id) JOIN imagen i ON (p.id_imagen = i.id) WHERE e.cedula_per = '"+cedula+"' AND e.contraseña = '"+contraseña+"'";
+        rs = con.consulta(sql);
+        ArrayList <mPersona> coleccion = new ArrayList();
+        if(rs != null){
+            while (rs.next()) {
+                    mPersona Mpersona = new mPersona();
+                    Mpersona.setCedula(rs.getString(1));
+                    Mpersona.setNombre1(rs.getString(2));
+                    Mpersona.setNombre2(rs.getString(3));
+                    Mpersona.setApellido1(rs.getString(4));
+                    Mpersona.setApellido2(rs.getString(5));
+                    Mpersona.setTelefono(rs.getString(7));
+                    Mpersona.setDireccion(rs.getString(8));
+                    Mpersona.setCorreo(rs.getString(9));
+                    Mpersona.setSexo(rs.getString(10));
+                    Mpersona.setFecha_nac(rs.getDate(6));
+                    coleccion.add(Mpersona);
+            }
+        }
+        //            rs.next();
+        return coleccion;
+    }
+    public String Cargo(String cedula) throws SQLException{
+        String retorno = "";
+        String sql = "SELECT c.nombre\n"
+                + "FROM EMPLEADO e INNER JOIN CARGO c on (e.id_cargo = c.id)\n"
+                + "where e.cedula_per = '" + cedula + "'";
+        rs = con.consulta(sql);
+        while(rs.next()){
+            retorno = rs.getString(1);
+        }
+        return retorno;
+    }
+
 }

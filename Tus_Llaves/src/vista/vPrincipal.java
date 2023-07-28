@@ -19,6 +19,34 @@ public class vPrincipal extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JMenuItem getrAutos() {
+        return rAutos;
+    }
+
+    public JMenuItem getrClientes() {
+        return rClientes;
+    }
+
+    public JMenuItem getrConductores() {
+        return rConductores;
+    }
+
+    public JMenuItem getrEmpleados() {
+        return rEmpleados;
+    }
+
+    public JMenuItem getRmContratos() {
+        return rmContratos;
+    }
+
+    public JMenuItem getRmDelovoluciones() {
+        return rmDelovoluciones;
+    }
+
+    public JMenuItem getRmPrestamos() {
+        return rmPrestamos;
+    }
+
     public JTextField getTitulo_texto() {
         return titulo_texto;
     }
@@ -33,10 +61,6 @@ public class vPrincipal extends javax.swing.JFrame {
 
     public JList<String> getJlTemas() {
         return jlTemas;
-    }
-
-    public JDialog getJdLogin() {
-        return jdLogin;
     }
 
     public JMenuItem getJmSalir() {
@@ -84,53 +108,12 @@ public class vPrincipal extends javax.swing.JFrame {
         this.Menu_desplegable = Menu_desplegable;
     }
 
-    public JPanel getExitBtn() {
-        return exitBtn;
-    }
-
-    public void setExitBtn(JPanel exitBtn) {
-        this.exitBtn = exitBtn;
-    }
-
-    public JLabel getExitTxt() {
-        return exitTxt;
-    }
-
-    public void setExitTxt(JLabel exitTxt) {
-        this.exitTxt = exitTxt;
-    }
-
     public JLabel getJL_foto() {
         return JL_foto;
     }
 
     public void setJL_foto(JLabel JL_foto) {
         this.JL_foto = JL_foto;
-    }
-
-    public Button getBtn_inicio_sesion() {
-        return Btn_inicio_sesion;
-    }
-
-    public void setBtn_inicio_sesion(Button Btn_inicio_sesion) {
-        this.Btn_inicio_sesion = Btn_inicio_sesion;
-    }
-
-
-    public TextField getLg_cedula() {
-        return Lg_cedula;
-    }
-
-    public void setLg_cedula(TextField Lg_cedula) {
-        this.Lg_cedula = Lg_cedula;
-    }
-
-    public PasswordField getLg_contraseña() {
-        return lg_contraseña;
-    }
-
-    public void setLg_contraseña(PasswordField lg_contraseña) {
-        this.lg_contraseña = lg_contraseña;
     }
 
     public JLabel getLb_apellidos() {
@@ -205,36 +188,13 @@ public class vPrincipal extends javax.swing.JFrame {
         this.Perfil = Perfil;
     }
 
-    public JMenuItem getrAutos() {
+    public JMenuItem getMI_automovil() {
         return rAutos;
     }
 
-    public JMenuItem getrClientes() {
-        return rClientes;
+    public void setMI_automovil(JMenuItem MI_automovil) {
+        this.rAutos = MI_automovil;
     }
-
-    public JMenuItem getrConductores() {
-        return rConductores;
-    }
-
-
-    public JMenuItem getrEmpleados() {
-        return rEmpleados;
-    }
-
-
-    public JMenuItem getJmresprestamos() {
-        return jmresprestamos;
-    }
-
-    public JMenuItem getJmdevoluciones() {
-        return jmdevoluciones;
-    }
-
-    public JMenuItem getJmcontratos() {
-        return jmcontratos;
-    }
-    
     
     
     @SuppressWarnings("unchecked")
@@ -247,17 +207,6 @@ public class vPrincipal extends javax.swing.JFrame {
         jlTemas = new javax.swing.JList<>();
         jbGuardarTema = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jdLogin = new javax.swing.JDialog();
-        background1 = new controlador.otros.Background();
-        Panel_fondo = new javax.swing.JPanel();
-        Lg_cedula = new controlador.otros.TextField();
-        lg_contraseña = new controlador.otros.PasswordField();
-        Btn_inicio_sesion = new controlador.otros.Button();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        exitBtn = new javax.swing.JPanel();
-        exitTxt = new javax.swing.JLabel();
         Perfil = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         JL_foto = new RoundedLabel("", 200, 0x333333, 0x333333, 1.0f);
@@ -287,9 +236,9 @@ public class vPrincipal extends javax.swing.JFrame {
         MI_prefil = new javax.swing.JMenuItem();
         jmSalir = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jmresprestamos = new javax.swing.JMenuItem();
-        jmdevoluciones = new javax.swing.JMenuItem();
-        jmcontratos = new javax.swing.JMenuItem();
+        rmPrestamos = new javax.swing.JMenuItem();
+        rmDelovoluciones = new javax.swing.JMenuItem();
+        rmContratos = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         miCliente = new javax.swing.JMenuItem();
@@ -372,154 +321,6 @@ public class vPrincipal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jdLogin.setBackground(new java.awt.Color(0, 0, 0));
-        jdLogin.setMinimumSize(new java.awt.Dimension(282, 319));
-        jdLogin.setUndecorated(true);
-
-        background1.setBlur(Panel_fondo);
-
-        Panel_fondo.setOpaque(false);
-
-        Lg_cedula.setText("0107178527");
-        Lg_cedula.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        Lg_cedula.setHint("Cedula");
-
-        lg_contraseña.setText("1234567890");
-        lg_contraseña.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        lg_contraseña.setHint("Contraseña");
-
-        Btn_inicio_sesion.setForeground(new java.awt.Color(255, 255, 255));
-        Btn_inicio_sesion.setText("INICIAR SESIÓN");
-        Btn_inicio_sesion.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-
-        jLabel4.setBackground(new java.awt.Color(102, 102, 102));
-        jLabel4.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Login");
-
-        javax.swing.GroupLayout Panel_fondoLayout = new javax.swing.GroupLayout(Panel_fondo);
-        Panel_fondo.setLayout(Panel_fondoLayout);
-        Panel_fondoLayout.setHorizontalGroup(
-            Panel_fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Panel_fondoLayout.createSequentialGroup()
-                .addGroup(Panel_fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Panel_fondoLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addGroup(Panel_fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Lg_cedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lg_contraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Btn_inicio_sesion, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)))
-                    .addGroup(Panel_fondoLayout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(100, Short.MAX_VALUE))
-        );
-        Panel_fondoLayout.setVerticalGroup(
-            Panel_fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Panel_fondoLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(Lg_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lg_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(Btn_inicio_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
-        );
-
-        jLabel5.setBackground(new java.awt.Color(102, 102, 102));
-        jLabel5.setFont(new java.awt.Font("Matura MT Script Capitals", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Your  Keys");
-
-        javax.swing.GroupLayout background1Layout = new javax.swing.GroupLayout(background1);
-        background1.setLayout(background1Layout);
-        background1Layout.setHorizontalGroup(
-            background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(background1Layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
-                .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background1Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background1Layout.createSequentialGroup()
-                        .addComponent(Panel_fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88))))
-        );
-        background1Layout.setVerticalGroup(
-            background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(background1Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Panel_fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-
-        exitTxt.setBackground(new java.awt.Color(51, 51, 51));
-        exitTxt.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        exitTxt.setForeground(new java.awt.Color(255, 255, 255));
-        exitTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        exitTxt.setText("X");
-        exitTxt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        exitTxt.setOpaque(true);
-
-        javax.swing.GroupLayout exitBtnLayout = new javax.swing.GroupLayout(exitBtn);
-        exitBtn.setLayout(exitBtnLayout);
-        exitBtnLayout.setHorizontalGroup(
-            exitBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exitBtnLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(exitTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        exitBtnLayout.setVerticalGroup(
-            exitBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exitBtnLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(exitTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(598, Short.MAX_VALUE)
-                .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jdLoginLayout = new javax.swing.GroupLayout(jdLogin.getContentPane());
-        jdLogin.getContentPane().setLayout(jdLoginLayout);
-        jdLoginLayout.setHorizontalGroup(
-            jdLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdLoginLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jdLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jdLoginLayout.setVerticalGroup(
-            jdLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdLoginLayout.createSequentialGroup()
-                .addGap(0, 46, Short.MAX_VALUE)
-                .addComponent(background1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jdLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jdLoginLayout.createSequentialGroup()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 492, Short.MAX_VALUE)))
-        );
-
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -528,11 +329,11 @@ public class vPrincipal extends javax.swing.JFrame {
         JL_foto.setMinimumSize(new java.awt.Dimension(160, 160));
         JL_foto.setPreferredSize(new java.awt.Dimension(160, 160));
 
+        titulo_texto.setEditable(false);
         titulo_texto.setBackground(new java.awt.Color(204, 0, 0));
         titulo_texto.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         titulo_texto.setForeground(new java.awt.Color(255, 255, 255));
         titulo_texto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        titulo_texto.setOpaque(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -725,17 +526,17 @@ public class vPrincipal extends javax.swing.JFrame {
 
         jMenu4.setText("Resumen");
 
-        jmresprestamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/flecha-hacia-arriba.png"))); // NOI18N
-        jmresprestamos.setText("Mis prestamos");
-        jMenu4.add(jmresprestamos);
+        rmPrestamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/flecha-hacia-arriba.png"))); // NOI18N
+        rmPrestamos.setText("Mis prestamos");
+        jMenu4.add(rmPrestamos);
 
-        jmdevoluciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/flecha-hacia-abajo.png"))); // NOI18N
-        jmdevoluciones.setText("Mis devoluciones");
-        jMenu4.add(jmdevoluciones);
+        rmDelovoluciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/flecha-hacia-abajo.png"))); // NOI18N
+        rmDelovoluciones.setText("Mis devoluciones");
+        jMenu4.add(rmDelovoluciones);
 
-        jmcontratos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/contrato.png"))); // NOI18N
-        jmcontratos.setText("Mis contratos");
-        jMenu4.add(jmcontratos);
+        rmContratos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/contrato.png"))); // NOI18N
+        rmContratos.setText("Mis contratos");
+        jMenu4.add(rmContratos);
 
         jMenuBar1.add(jMenu4);
 
@@ -753,7 +554,7 @@ public class vPrincipal extends javax.swing.JFrame {
         miConductor.setText("Conductor");
         jMenu6.add(miConductor);
 
-        miAutomovil.setText("Auto");
+        miAutomovil.setText("Automóvil");
         jMenu6.add(miAutomovil);
 
         miAlquiler.setText("Alquiler");
@@ -770,13 +571,13 @@ public class vPrincipal extends javax.swing.JFrame {
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/impresora.png"))); // NOI18N
         jMenu5.setText("Reporte");
 
-        rClientes.setText("Clientes");
+        rClientes.setText("Cliente");
         jMenu5.add(rClientes);
 
-        rEmpleados.setText("Empleados");
+        rEmpleados.setText("Empleado");
         jMenu5.add(rEmpleados);
 
-        rConductores.setText("Conductores");
+        rConductores.setText("Conductor");
         jMenu5.add(rConductores);
 
         rAutos.setText("Autos");
@@ -816,23 +617,15 @@ public class vPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MI_prefilActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private controlador.otros.Button Btn_inicio_sesion;
     private javax.swing.JLabel JL_foto;
-    private controlador.otros.TextField Lg_cedula;
     private javax.swing.JMenuItem MI_prefil;
     private LIB.FSButtonMD Menu_desplegable;
-    private javax.swing.JPanel Panel_fondo;
     private javax.swing.JDialog Perfil;
-    private controlador.otros.Background background1;
-    private javax.swing.JPanel exitBtn;
-    private javax.swing.JLabel exitTxt;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -844,21 +637,16 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton jbGuardarTema;
-    private javax.swing.JDialog jdLogin;
     private javax.swing.JDesktopPane jdPrincipal;
     private javax.swing.JDialog jdTemas;
     private javax.swing.JList<String> jlTemas;
     private javax.swing.JMenuItem jmSalir;
-    private javax.swing.JMenuItem jmcontratos;
-    private javax.swing.JMenuItem jmdevoluciones;
-    private javax.swing.JMenuItem jmresprestamos;
     private javax.swing.JLabel lb_apellidos;
     private javax.swing.JLabel lb_correo;
     private javax.swing.JLabel lb_direccion;
@@ -866,7 +654,6 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lb_nombres;
     private javax.swing.JLabel lb_sexo;
     private javax.swing.JLabel lb_telefono;
-    private controlador.otros.PasswordField lg_contraseña;
     private javax.swing.JMenuItem miAlquiler;
     private javax.swing.JMenuItem miAutomovil;
     private javax.swing.JMenuItem miCliente;
@@ -878,6 +665,9 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem rClientes;
     private javax.swing.JMenuItem rConductores;
     private javax.swing.JMenuItem rEmpleados;
+    private javax.swing.JMenuItem rmContratos;
+    private javax.swing.JMenuItem rmDelovoluciones;
+    private javax.swing.JMenuItem rmPrestamos;
     private javax.swing.JTextField titulo_texto;
     // End of variables declaration//GEN-END:variables
 }

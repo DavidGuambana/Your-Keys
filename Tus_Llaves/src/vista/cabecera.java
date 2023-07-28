@@ -88,7 +88,7 @@ public class cabecera extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private controlador.otros.ImageAvatar imageAvatar1;
+    private static controlador.otros.ImageAvatar imageAvatar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;

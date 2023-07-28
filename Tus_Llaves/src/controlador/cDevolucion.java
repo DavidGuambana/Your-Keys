@@ -2,10 +2,18 @@ package controlador;
 
 import controlador.otros.RenderTable2;
 import controlador.otros.EnvioCorreo;
+import controlador.otros.FiltrarTabla;
+import controlador.otros.RenderTable;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -19,10 +27,11 @@ import modelo.mAuto;
 import modelo.mCliente;
 import modelo.mDevolucion;
 import modelo.mMulta;
+import reportes.Reporte;
 import vista.vDevolucion;
 
 public final class cDevolucion implements Runnable{
-    
+    Reporte r = new Reporte();
     Thread hilo;
     private final vDevolucion vista;
     public cDevolucion(vDevolucion vista) {
@@ -41,21 +50,23 @@ public final class cDevolucion implements Runnable{
             }
         }
     }
-
-    
-    public void iniciar (){
+    public void iniciar(){
         vista.setVisible(true);
+        validar();
         btnFinalizar = new JButton();
         btnFinalizar.setText("Finalizar");
         btnEnviar = new JButton();
         btnEnviar.setText("Enviar correo");
+        btnImprimir = new JButton();
+        btnImprimir.setText("Imprimir");
         verMultas();
         verAlquileres();
         verDevoluciones();
         hilo = new Thread(this);
         hilo.start();
         vista.getJtAlquileres().setDefaultRenderer(Object.class, new RenderTable2());
-        ControlarTabla(vista.getJtAlquileres());
+        vista.getJtDevoluciones().setDefaultRenderer(Object.class, new RenderTable());
+        ControlarTabla(vista.getJtAlquileres(),vista.getJtDevoluciones());
         vista.getJbFinalizar().addActionListener(l -> {
             if (vista.getJl_Infracciones().isSelectionEmpty()) {
                 JOptionPane.showMessageDialog(null, "¡Seleccione un tipo de multa!", null, JOptionPane.ERROR_MESSAGE);
@@ -74,7 +85,7 @@ public final class cDevolucion implements Runnable{
     String matricula;
     ResultSet rs;
     DefaultTableModel dtm;
-    JButton btnFinalizar, btnEnviar;
+    JButton btnFinalizar, btnEnviar, btnImprimir;
     ArrayList <Date> fechas = null;
     private final mMulta m_mul = new mMulta();
     private final mDevolucion m_dev = new mDevolucion();
@@ -83,8 +94,8 @@ public final class cDevolucion implements Runnable{
     mCliente modcli=new mCliente();
     
     
-    String[] colAlquileres= {"ID alquiler", "Matrícula","Cédula", "Días", "Fecha inicio","Fecha fin","Tiempo restante" ,"Notificar","Finalizar"};
-    String[] colDevoluciones= {"ID devolución","ID alquiler", "Matrícula","Cédula", "Fecha alquiler","Fecha devolución"};
+    String[] colAlquileres= {"ID alquiler", "Matrícula","Cédula", "Días", "Fecha inicio","Fecha fin","Tiempo restante" ,"Notificar","Finalizar","Imprimir"};
+    String[] colDevoluciones= {"ID devolución","ID alquiler", "Matrícula","Cédula", "Fecha alquiler","Fecha devolución","Imprimir"};
     String[] colMultas= {"ID multa", "ID devolución","Cédula", "Causa de la multa"};
     
     public void verAlquileres() {
@@ -93,7 +104,7 @@ public final class cDevolucion implements Runnable{
         dtm = new DefaultTableModel(null, colAlquileres);
         rs = m_alq.join_alq();
         while (rs.next()) {
-            dtm.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),rs.getDate(6), null,btnEnviar, btnFinalizar});
+            dtm.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),rs.getDate(6), null,btnEnviar, btnFinalizar,btnImprimir});
             fechas.add(rs.getDate(6));
         }
         vista.getJtAlquileres().setModel(dtm);
@@ -103,9 +114,11 @@ public final class cDevolucion implements Runnable{
     }
 
     public void setTiempoRes() {
+
         for (int i = 0; i < fechas.size(); i++) {
             vista.getJtAlquileres().setValueAt(calcularTiempo(fechas.get(i)), i, 6);
         }
+
     }
 
     private String calcularTiempo(Date fechaFin) {
@@ -132,7 +145,7 @@ public final class cDevolucion implements Runnable{
             dtm = new DefaultTableModel(null, colDevoluciones);
             rs = m_dev.join_dev();
             while (rs.next()) {
-                dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getDate(6)});
+                dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getDate(6),btnImprimir});
             }
             vista.getJtDevoluciones().setModel(dtm);
             vista.getJtDevoluciones().setRowHeight(30);
@@ -172,7 +185,7 @@ public final class cDevolucion implements Runnable{
         JOptionPane.showMessageDialog(null, "¡Multa registrada correctamente!");
     }
     
-     public void ControlarTabla(JTable t) {
+     public void ControlarTabla(JTable t, JTable t2) {
         t.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
@@ -203,7 +216,8 @@ public final class cDevolucion implements Runnable{
                                  
                                     
                                 }
-                            } else if (((JButton) obj).getText().equals("Finalizar")) {
+                            }
+                            if (((JButton) obj).getText().equals("Finalizar")) {
 
                                 if (JOptionPane.showConfirmDialog(null, "¿Desea incluir una multa a este alquiler?",
                                         "Finalizar devolución", JOptionPane.YES_NO_OPTION,
@@ -218,6 +232,25 @@ public final class cDevolucion implements Runnable{
                                     verDevoluciones();
                                 }
                             }
+                            if (((JButton) obj).getText().equals("Imprimir")) {
+                                r.print_alquiler(id_alq);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        t2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                if (me.getClickCount() == 1) {
+                    String id_alq = t2.getValueAt(t2.getSelectedRow(), 1).toString();
+                    int xcolum = t2.getColumnModel().getColumnIndexAtX(me.getX());
+                    int xrow = me.getY() / t2.getRowHeight();
+                    if (xcolum <= t2.getColumnCount() && xcolum >= 0 && xrow <= t2.getRowCount() && xrow >= 0) {
+                        Object obj = t2.getValueAt(xrow, xcolum);
+                        if (obj instanceof JButton) {
+                            r.print_alquiler(Integer.parseInt(id_alq));
                         }
                     }
                 }
@@ -244,5 +277,25 @@ public final class cDevolucion implements Runnable{
          }
         m_auto.setMatricula(matricula);
         m_auto.updateEstado();
+    }
+     public void validar() {
+        vista.getTxtBuscar1().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                FiltrarTabla.filtrar(vista.getJtAlquileres(), vista.getTxtBuscar1(), vista.getCbColumnas1());
+            }
+        });
+        vista.getTxtBuscar2().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                FiltrarTabla.filtrar(vista.getJtDevoluciones(), vista.getTxtBuscar2(), vista.getCbColumnas2());
+            }
+        });
+        vista.getTxtBuscar3().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                FiltrarTabla.filtrar(vista.getJtMultas(), vista.getTxtBuscar3(), vista.getCbColumnas3());
+            }
+        });
     }
 }

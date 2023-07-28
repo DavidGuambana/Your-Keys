@@ -15,6 +15,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,7 +40,24 @@ import modelo.mTotal;
 import modelo.tablas.Extra;
 import vista.vAlquiler;
 
-public final class cAlquiler {
+public final class cAlquiler implements Runnable{
+    Thread hilo;
+    
+    @Override
+    public void run() {
+        Thread current = Thread.currentThread();
+        while (current == hilo) {
+            vista.getTxtFechaAlquler().setText(LocalDate.now()+ " | " + LocalTime.now().truncatedTo(ChronoUnit.SECONDS));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
+        }
+    }
+    
+    
+    
+    
     private final vAlquiler vista;
     private final mAlquiler modelo;
     
@@ -77,6 +98,8 @@ public final class cAlquiler {
     
     public void iniciar() {
         vista.setVisible(true);
+        hilo = new Thread(this);
+        hilo.start();
         calculaTotal();
         vista.getTpAlquiler().setEnabledAt(1, false);
         vista.getJbRegContrato().addActionListener(l -> {

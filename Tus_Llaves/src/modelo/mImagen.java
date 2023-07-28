@@ -76,4 +76,17 @@ public class mImagen extends Imagen {
         }
         return id;
     }
+    
+    public mImagen BuscarImagen(String cedula) throws SQLException{
+        mImagen retorno = new mImagen();
+        String sql = "SELECT i.id,i.nombre,i.valor FROM IMAGEN i INNER JOIN PERSONA p ON (i.id = p.id_imagen)\n" +
+        "WHERE p.cedula = '"+cedula+"'";
+        rs = con.consulta(sql);
+        while(rs.next()){
+            retorno.setId(rs.getInt(1));
+            retorno.setNombre(rs.getString(2));
+            retorno.setValor(rs.getBytes(3));
+        }
+        return retorno;
+    }
 }
