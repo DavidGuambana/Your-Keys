@@ -17,7 +17,6 @@ import java.sql.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,7 +46,9 @@ public final class cAlquiler implements Runnable{
     public void run() {
         Thread current = Thread.currentThread();
         while (current == hilo) {
-            vista.getTxtFechaAlquler().setText(LocalDate.now()+ " | " + LocalTime.now().truncatedTo(ChronoUnit.SECONDS));
+            vista.getTxtFechaAlquler().setText(LocalDate.now()+ "  " + LocalTime.now().truncatedTo(ChronoUnit.SECONDS));
+                        vista.getTxtFechaContratacion().setText(LocalDate.now()+ "  " + LocalTime.now().truncatedTo(ChronoUnit.SECONDS));
+
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

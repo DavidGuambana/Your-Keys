@@ -76,7 +76,7 @@ public final class cPrincipal {
         });
         vista.getMI_prefil().addActionListener(l -> Perfil());
         vista.getJmSalir().addActionListener(l -> Cerrar());
-        vista.getMiCliente().addActionListener(l -> menuPersona());
+        vista.getMiCliente().addActionListener(l -> menuCliente());
         vista.getMiConductor().addActionListener(l -> menuConductor());
         vista.getMiAutomovil().addActionListener(l -> MenuAutos());
         vista.getMiExtras().addActionListener(l -> menuExtras());
@@ -104,22 +104,22 @@ public final class cPrincipal {
                     System.out.println(i);
                     switch (i){
                         case 0:
-                            menuPersona();
+                            menuCliente();
                             break;
                         case 1:
-                            MenuAutos();
+                           menuEmpelado();
                             break;
                         case 2:
-                            menuExtras();
+                             menuConductor();
                             break;
                         case 3:
-                            
+                            MenuAutos();
                             break;
                         case 4:
-                            
+                            menuAlquiler();
                             break;
                         case 5:
-                            
+                            menuDevolucion();
                             break;
                         case 6:
                             Cerrar();
@@ -161,7 +161,7 @@ public final class cPrincipal {
 //        vista.getJdLogin().setVisible(ver);
 //    }
 
-    public void menuPersona() {
+    public void menuCliente() {
 
         mCliente modper = new mCliente();
         try {

@@ -403,6 +403,7 @@ public class vAlquiler extends javax.swing.JInternalFrame {
         txtFechaAlquler.setEditable(false);
         txtFechaAlquler.setBackground(new java.awt.Color(255, 255, 255));
         txtFechaAlquler.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        txtFechaAlquler.setForeground(new java.awt.Color(102, 102, 102));
         txtFechaAlquler.setText("yyyy-MM-dd");
         txtFechaAlquler.setBorder(null);
 
@@ -435,8 +436,8 @@ public class vAlquiler extends javax.swing.JInternalFrame {
                         .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtFechaAlquler, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addComponent(txtFechaAlquler, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -823,7 +824,7 @@ public class vAlquiler extends javax.swing.JInternalFrame {
         txtFechaContratacion.setEditable(false);
         txtFechaContratacion.setBackground(new java.awt.Color(255, 255, 255));
         txtFechaContratacion.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        txtFechaContratacion.setForeground(new java.awt.Color(204, 204, 204));
+        txtFechaContratacion.setForeground(new java.awt.Color(102, 102, 102));
         txtFechaContratacion.setText("yyyy-MM-dd");
         txtFechaContratacion.setBorder(null);
 
