@@ -189,7 +189,6 @@ public final class cDevolucion implements Runnable{
                             if (((JButton) obj).getText().equals("Enviar correo")) {
                                 if (tiempo_restante.equals("Finalizado")) {
                                     try {
-                                         
                                         rs=modcli.obtener_cliente(t.getValueAt(t.getSelectedRow(), 2).toString());
                                         rs.next();
                                         EnvioCorreo env= new EnvioCorreo(); 

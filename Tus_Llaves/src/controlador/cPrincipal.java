@@ -147,6 +147,7 @@ public final class cPrincipal {
                 vista.getrEmpleados().addActionListener(l-> rep.print_empleado());
                 vista.getrConductores().addActionListener(l-> rep.print_conductor());
                 vista.getrAutos().addActionListener(l-> rep.print_auto());
+                vista.getJmresprestamos().addActionListener(l->rep.print_alquilerescli());
     }
 
     public void setBordeButton() {

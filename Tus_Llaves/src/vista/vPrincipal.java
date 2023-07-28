@@ -244,6 +244,10 @@ public class vPrincipal extends javax.swing.JFrame {
     public JMenuItem getrMultas() {
         return rMultas;
     }
+
+    public JMenuItem getJmresprestamos() {
+        return jmresprestamos;
+    }
     
     
     @SuppressWarnings("unchecked")
@@ -297,7 +301,7 @@ public class vPrincipal extends javax.swing.JFrame {
         jmSalir = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         JmI_menu = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jmresprestamos = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -743,9 +747,9 @@ public class vPrincipal extends javax.swing.JFrame {
         JmI_menu.setText("Comunidad");
         jMenu4.add(JmI_menu);
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/flecha-hacia-arriba.png"))); // NOI18N
-        jMenuItem3.setText("Mis prestamos");
-        jMenu4.add(jMenuItem3);
+        jmresprestamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/flecha-hacia-arriba.png"))); // NOI18N
+        jmresprestamos.setText("Mis prestamos");
+        jMenu4.add(jmresprestamos);
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/flecha-hacia-abajo.png"))); // NOI18N
         jMenuItem5.setText("Mis devoluciones");
@@ -874,7 +878,6 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
@@ -890,6 +893,7 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JDialog jdTemas;
     private javax.swing.JList<String> jlTemas;
     private javax.swing.JMenuItem jmSalir;
+    private javax.swing.JMenuItem jmresprestamos;
     private javax.swing.JLabel lb_apellidos;
     private javax.swing.JLabel lb_correo;
     private javax.swing.JLabel lb_direccion;
