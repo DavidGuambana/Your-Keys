@@ -192,7 +192,6 @@ public final class cDevolucion implements Runnable{
                                         rs=modcli.obtener_cliente(t.getValueAt(t.getSelectedRow(), 2).toString());
                                         rs.next();
                                         EnvioCorreo env= new EnvioCorreo(); 
-                                        System.out.println(rs.getString(12)+"aquii");
                                         env.envcorrtext(rs.getString(12));//posicion de correo
                                         //enviar correo
                                     } catch (SQLException ex) {
