@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2023-07-27T22:12:17 -->
+<!-- 2023-07-27T22:41:18 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PRESTAMOS" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8a465670-cc4a-4270-965f-8efb86e33b71">
 	<property name="template.engine" value="tabular_template"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ORACLE"/>
@@ -56,9 +56,9 @@
 	"ALQUILER"."MATRICULA_AUTO",
 	"ALQUILER"."DIAS",
 	TO_CHAR("ALQUILER"."FECHA",'DD-MM-YYYY'),
-	"TOTAL"."SUBTOTAL",
+	trunc("TOTAL"."SUBTOTAL",2),
 	trunc("TOTAL"."IVA",2),
-	"TOTAL"."TOTAL"
+	trunc("TOTAL"."TOTAL",2)
 FROM "TOTAL"
 	INNER JOIN "ALQUILER" ON 
 	 "TOTAL"."ID_ALQUILER" = "ALQUILER"."ID" 
@@ -75,9 +75,9 @@ FROM "TOTAL"
 		<field name="MATRICULA_AUTO" class="java.lang.String"/>
 		<field name="DIAS" class="java.math.BigDecimal"/>
 		<field name="TO_CHAR(&quot;ALQUILER&quot;.&quot;FECHA&quot;,&apos;DD-MM-YYYY&apos;)" class="java.lang.String"/>
-		<field name="SUBTOTAL" class="java.lang.Double"/>
+		<field name="TRUNC(&quot;TOTAL&quot;.&quot;SUBTOTAL&quot;,2)" class="java.math.BigDecimal"/>
 		<field name="TRUNC(&quot;TOTAL&quot;.&quot;IVA&quot;,2)" class="java.math.BigDecimal"/>
-		<field name="TOTAL" class="java.lang.Double"/>
+		<field name="TRUNC(&quot;TOTAL&quot;.&quot;TOTAL&quot;,2)" class="java.math.BigDecimal"/>
 	</subDataset>
 	<parameter name="cedula" class="java.lang.String">
 		<parameterDescription><![CDATA[]]></parameterDescription>
@@ -267,11 +267,11 @@ where PERSONA.CEDULA=$P{cedula}]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="130" height="30" uuid="b7b8bafa-a876-443b-9d64-1d4511424a96"/>
+								<reportElement x="0" y="0" width="130" height="30" uuid="cab73c72-f6d5-4c08-9ef1-081a171d8961"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="13"/>
+									<font size="14"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{SUBTOTAL}]]></textFieldExpression>
+								<textFieldExpression><![CDATA["$"+$F{TRUNC("TOTAL"."SUBTOTAL",2)}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -298,7 +298,7 @@ where PERSONA.CEDULA=$P{cedula}]]>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="14"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{TRUNC("TOTAL"."IVA",2)}+"$"]]></textFieldExpression>
+								<textFieldExpression><![CDATA["$"+$F{TRUNC("TOTAL"."IVA",2)}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -321,11 +321,11 @@ where PERSONA.CEDULA=$P{cedula}]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="120" height="30" uuid="0c301401-debb-4885-9679-9da8e6e5e1a8"/>
+								<reportElement x="0" y="0" width="120" height="30" uuid="3e7a68af-dbd8-40fe-8588-f324e770c45d"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="13"/>
+									<font size="14"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{TOTAL}+"$"]]></textFieldExpression>
+								<textFieldExpression><![CDATA["$"+$F{TRUNC("TOTAL"."TOTAL",2)}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
