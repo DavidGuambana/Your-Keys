@@ -750,7 +750,7 @@
                 <Property name="text" type="java.lang.String" value="Mis prestamos"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+            <MenuItem class="javax.swing.JMenuItem" name="jmdevoluciones">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/vista/img/flecha-hacia-abajo.png"/>
@@ -758,12 +758,12 @@
                 <Property name="text" type="java.lang.String" value="Mis devoluciones"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+            <MenuItem class="javax.swing.JMenuItem" name="jmcontratos">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/vista/img/multa.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Mis multas"/>
+                <Property name="text" type="java.lang.String" value="Mis contratos"/>
               </Properties>
             </MenuItem>
           </SubComponents>

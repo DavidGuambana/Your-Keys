@@ -53,6 +53,24 @@ public class Reporte {
             print(map, url);      
       
     }
+       public void print_devolucionescli() {
+               
+            map = new HashMap<>();
+            map.put("cedula","0104305008" );
+            map.put("par","g");
+            url = "/reportes/devoluciones.jasper";
+            print(map, url);      
+      
+    }
+           public void print_contratoscli() {
+               
+            map = new HashMap<>();
+            map.put("cedula","0104305008" );
+            map.put("par","g");
+            url = "/reportes/CONTRATOS.jasper";
+            print(map, url);      
+      
+    }   
     
        
     

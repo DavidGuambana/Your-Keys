@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2023-07-27T23:08:54 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PRESTAMOS" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8a465670-cc4a-4270-965f-8efb86e33b71">
+	<property name="template.engine" value="tabular_template"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ORACLE"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#EFEFEF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="tableDataset" uuid="fbc18475-a6db-47f9-a5d8-8b1ab88883a7">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ORACLE"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="cedula" class="java.lang.String">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+			<defaultValueExpression><![CDATA[$P{cedula}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT TO_CHAR("CONTRATO"."FECHA"),
+	"CONTRATO"."HORAS",
+	trunc("CONTRATO"."TOTAL",2),
+	"CONTRATO"."CODIGO",
+	"EMPLEADO"."CEDULA_PER",
+	"CONDUCTOR"."TIPO_LICENCIA",
+	"CLIENTE"."CEDULA_PER"
+FROM "CONTRATO"
+	INNER JOIN "CONDUCTOR" ON 
+	 "CONTRATO"."ID_CONDUCTOR" = "CONDUCTOR"."ID" 
+	INNER JOIN "ALQUILER" ON 
+	 "CONTRATO"."ID_ALQUILER" = "ALQUILER"."ID" 
+	INNER JOIN "CLIENTE" ON 
+	 "ALQUILER"."ID_CLIENTE" = "CLIENTE"."ID" 
+	INNER JOIN "EMPLEADO" ON 
+	 "CONDUCTOR"."ID_EMPLEADO" = "EMPLEADO"."ID"
+	 WHERE CLIENTE.CEDULA_PER=$P{cedula}]]>
+		</queryString>
+		<field name="TO_CHAR(&quot;CONTRATO&quot;.&quot;FECHA&quot;)" class="java.lang.String"/>
+		<field name="HORAS" class="java.math.BigDecimal"/>
+		<field name="TRUNC(&quot;CONTRATO&quot;.&quot;TOTAL&quot;,2)" class="java.math.BigDecimal"/>
+		<field name="CODIGO" class="java.math.BigDecimal"/>
+		<field name="CEDULA_PER" class="java.lang.String"/>
+		<field name="TIPO_LICENCIA" class="java.lang.String"/>
+		<field name="COLUMN_7" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="cedula" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[$P{cedula}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="par" class="java.lang.String"/>
+	<parameter name="imagen" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT "PERSONA"."CEDULA",
+	"PERSONA"."NOMBRE1",
+	"PERSONA"."NOMBRE2",
+	"PERSONA"."APELLIDO1",
+	"PERSONA"."APELLIDO2",
+	"PERSONA"."TELEFONO",
+	"PERSONA"."FECHA_NAC",
+	"PERSONA"."DIRECCION",
+	"PERSONA"."CORREO",
+	"PERSONA"."SEXO"
+FROM "PERSONA"
+where PERSONA.CEDULA=$P{cedula}]]>
+	</queryString>
+	<field name="CEDULA" class="java.lang.String"/>
+	<field name="NOMBRE1" class="java.lang.String"/>
+	<field name="NOMBRE2" class="java.lang.String"/>
+	<field name="APELLIDO1" class="java.lang.String"/>
+	<field name="APELLIDO2" class="java.lang.String"/>
+	<field name="TELEFONO" class="java.lang.String"/>
+	<field name="FECHA_NAC" class="java.sql.Timestamp"/>
+	<field name="DIRECCION" class="java.lang.String"/>
+	<field name="CORREO" class="java.lang.String"/>
+	<field name="SEXO" class="java.lang.String"/>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="0" width="750" height="60" uuid="ae1d36e9-0b83-4fcf-a647-f22120fce6e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE CONTRATOS ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageFooter>
+		<band height="48" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="270" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<staticText>
+				<reportElement x="0" y="20" width="60" height="30" uuid="3b5477cb-1729-485b-ad5b-f4f94ff28628"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement mode="Transparent" x="0" y="170" width="800" height="71" forecolor="#000000" backcolor="#FFFFFF" uuid="40c803ec-390a-497c-8ecb-1fad4d68164c">
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="tableDataset" uuid="7c3bb975-9073-4101-96d7-32b64111f29d">
+						<datasetParameter name="cedula">
+							<datasetParameterExpression><![CDATA[$P{cedula}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="130" uuid="73551dea-dce9-4b19-8e51-0af483b459ad">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="130" height="30" forecolor="#FFFFFF" backcolor="#030303" uuid="007f8441-bd65-4009-9478-c4a4d0a28f56"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="14" isBold="false"/>
+								</textElement>
+								<text><![CDATA[N# Contrato]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="130" height="30" uuid="7ef34166-5130-4237-874e-373b7b812fd3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CODIGO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="130" uuid="6b5fa815-5629-48bd-9da8-5d9a9a7ae5cd">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="130" height="30" forecolor="#FFFFFF" backcolor="#030303" uuid="885d7fbd-4e1d-433c-a4ec-812a9307006d"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="14" isBold="false"/>
+								</textElement>
+								<text><![CDATA[Cédula chofer]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="130" height="30" uuid="028aa266-1716-4736-9c15-374622fa5e73"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CEDULA_PER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="b069ab7a-aa39-4252-a6a2-0d5531ac583e">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="120" height="30" forecolor="#FFFFFF" backcolor="#000000" uuid="7aa772b9-f3d0-4ece-bb9b-0ee9b2cd0208"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="14" isBold="false"/>
+								</textElement>
+								<text><![CDATA[Tipo de licencia]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="120" height="30" uuid="07bfaf62-0804-467d-b00f-81289ce428f6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14"/>
+								</textElement>
+								<textFieldExpression><![CDATA["TIPO: "+$F{TIPO_LICENCIA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="150" uuid="37670629-bac9-40b9-90c3-e8911035cb8c">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="150" height="30" forecolor="#FFFFFF" backcolor="#030303" uuid="ef65e2fb-9650-427d-9379-7e34e10c1866"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="14" isBold="false"/>
+								</textElement>
+								<text><![CDATA[Fecha de contrato]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="150" height="30" uuid="d2e561ce-c528-4baa-8ae9-b84ccd707484"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TO_CHAR("CONTRATO"."FECHA")}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="140" uuid="f11edd2b-7095-46ea-bddf-7219006866bd">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="140" height="30" forecolor="#FFFFFF" backcolor="#030303" uuid="57b85992-3d20-4fd7-9974-bd78a8e24faf"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="14" isBold="false"/>
+								</textElement>
+								<text><![CDATA[Horas de contrato]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="140" height="30" uuid="d8428471-bee5-40b1-b18d-c418f32d9a0a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{HORAS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="110" uuid="9ef7cc0b-5f51-48c2-9d7a-91bc6ed4241e">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="110" height="30" forecolor="#FFFFFF" backcolor="#030303" uuid="ab8dc85a-9e08-463a-8ef0-afb6380e304f"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="14" isBold="false"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="110" height="30" uuid="9ba1cc49-7b55-494d-a7a5-a9e5bda672ba"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TRUNC("CONTRATO"."TOTAL",2)}+"$"]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="0" y="60" width="60" height="30" uuid="40ce6b26-a08e-4a3e-b687-80d365321bb2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="100" width="60" height="30" uuid="ae8c35df-1113-4f63-abe5-3011f34bf847"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cédula:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="20" width="260" height="30" uuid="42893c18-7e14-4bff-a979-a8637082251f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE1} +"  "+  $F{NOMBRE2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="60" width="260" height="30" uuid="21ac99e1-e41e-471e-855e-c969f7ab98ad"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APELLIDO1}+" "+$F{APELLIDO2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="100" width="100" height="30" uuid="33b8ab34-3020-46ad-b3dc-a1997419b70e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CEDULA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="370" y="20" width="60" height="30" uuid="6da338be-1ffe-456c-a476-5b84f6cb4783"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="20" width="200" height="30" uuid="37a8aade-f8e4-451b-9795-811c652a232b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TELEFONO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="60" width="200" height="30" uuid="efc5c1fb-1f46-4485-a555-d3bf3ace5b4e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DIRECCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="100" width="200" height="30" uuid="3a0363d3-9488-4d56-b1fb-6d07371ec53a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CORREO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="350" y="20" width="70" height="30" uuid="d0c4dc4b-7fb7-445c-87dc-d437cc85e335"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="60" width="70" height="30" uuid="9e5a3d7d-dae0-4127-8044-260b05a6fbd0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="100" width="70" height="30" uuid="aa955aaf-6204-4555-98ef-b0cf6062a53e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Correo:]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="689" y="20" width="111" height="110" uuid="fc518538-843d-43a4-accf-6cf7e8038550"/>
+				<imageExpression><![CDATA[$P{imagen}]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>

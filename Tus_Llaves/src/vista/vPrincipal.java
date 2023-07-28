@@ -248,6 +248,15 @@ public class vPrincipal extends javax.swing.JFrame {
     public JMenuItem getJmresprestamos() {
         return jmresprestamos;
     }
+
+    public JMenuItem getJmdevoluciones() {
+        return jmdevoluciones;
+    }
+
+    public JMenuItem getJmcontratos() {
+        return jmcontratos;
+    }
+    
     
     
     @SuppressWarnings("unchecked")
@@ -302,8 +311,8 @@ public class vPrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         JmI_menu = new javax.swing.JMenuItem();
         jmresprestamos = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jmdevoluciones = new javax.swing.JMenuItem();
+        jmcontratos = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         miCliente = new javax.swing.JMenuItem();
@@ -751,13 +760,13 @@ public class vPrincipal extends javax.swing.JFrame {
         jmresprestamos.setText("Mis prestamos");
         jMenu4.add(jmresprestamos);
 
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/flecha-hacia-abajo.png"))); // NOI18N
-        jMenuItem5.setText("Mis devoluciones");
-        jMenu4.add(jMenuItem5);
+        jmdevoluciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/flecha-hacia-abajo.png"))); // NOI18N
+        jmdevoluciones.setText("Mis devoluciones");
+        jMenu4.add(jmdevoluciones);
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/multa.png"))); // NOI18N
-        jMenuItem4.setText("Mis multas");
-        jMenu4.add(jMenuItem4);
+        jmcontratos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/multa.png"))); // NOI18N
+        jmcontratos.setText("Mis contratos");
+        jMenu4.add(jmcontratos);
 
         jMenuBar1.add(jMenu4);
 
@@ -878,8 +887,6 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -893,6 +900,8 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JDialog jdTemas;
     private javax.swing.JList<String> jlTemas;
     private javax.swing.JMenuItem jmSalir;
+    private javax.swing.JMenuItem jmcontratos;
+    private javax.swing.JMenuItem jmdevoluciones;
     private javax.swing.JMenuItem jmresprestamos;
     private javax.swing.JLabel lb_apellidos;
     private javax.swing.JLabel lb_correo;
