@@ -13,67 +13,71 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class Reporte {
+
     Map<String, Object> map;
     String url;
-    
+
     public void print_cliente() {
         map = new HashMap<>();
         url = "/reportes/Clientes.jasper";
         map.put("par", "d");
         print(map, url);
     }
-    
+
     public void print_empleado() {
         map = new HashMap<>();
         url = "/reportes/Empleados.jasper";
         map.put("par", "d");
         print(map, url);
     }
-    
+
     public void print_conductor() {
         map = new HashMap<>();
         url = "/reportes/Conductores.jasper";
         map.put("par", "d");
         print(map, url);
     }
-    
+
     public void print_auto() {
-        
-        url = "/reportes/Autostabla.jasper";
-        map.put("Logo grande", "src/vista/img/logo.png");
+        map = new HashMap<>();
+        url = "/reportes/Autos.jasper";
         map.put("Logo pequeño", "src/vista/img/llave.png");
+        map.put("par", "d");
         print(map, url);
     }
+    public void print_alquiler() {
+        map = new HashMap<>();
+        url = "/reportes/Alquileres.jasper";
+        map.put("par", "d");
+        map.put("imagen2", "src/vista/img/calidad.png");
+        print(map, url);
+    }
+
     public void print_alquilerescli() {
-               
-            map = new HashMap<>();
-            map.put("cedula","0104305008" );
-            map.put("par","g");
-            url = "/reportes/PRESTAMOS.jasper";
-            print(map, url);      
-      
+        map = new HashMap<>();
+        map.put("cedula", "0104305008");
+        map.put("par", "g");
+        url = "/reportes/PRESTAMOS.jasper";
+        print(map, url);
     }
-       public void print_devolucionescli() {
-               
-            map = new HashMap<>();
-            map.put("cedula","0104305008" );
-            map.put("par","g");
-            url = "/reportes/devoluciones.jasper";
-            print(map, url);      
-      
+
+    public void print_devolucionescli() {
+
+        map = new HashMap<>();
+        map.put("cedula", "0104305008");
+        map.put("par", "g");
+        url = "/reportes/devoluciones.jasper";
+        print(map, url);
+
     }
-           public void print_contratoscli() {
-               
-            map = new HashMap<>();
-            map.put("cedula","0104305008" );
-            map.put("par","g");
-            url = "/reportes/CONTRATOS.jasper";
-            print(map, url);      
-      
-    }   
-    
-       
-    
+
+    public void print_contratoscli() {
+        map = new HashMap<>();
+        map.put("cedula", "0104305008");
+        map.put("par", "g");
+        url = "/reportes/CONTRATOS.jasper";
+        print(map, url);
+    }
 
     public void print(Map<String, Object> map, String url) {
         try {

@@ -76,14 +76,6 @@ public class vPrincipal extends javax.swing.JFrame {
         return jdPrincipal;
     }
 
-    public JMenuItem getJmI_menu() {
-        return JmI_menu;
-    }
-
-    public void setJmI_menu(JMenuItem JmI_menu) {
-        this.JmI_menu = JmI_menu;
-    }
-
     public FSButtonMD getMenu_desplegable() {
         return Menu_desplegable;
     }
@@ -213,10 +205,6 @@ public class vPrincipal extends javax.swing.JFrame {
         this.Perfil = Perfil;
     }
 
-    public JMenuItem getrAlquileres() {
-        return rAlquileres;
-    }
-
     public JMenuItem getrAutos() {
         return rAutos;
     }
@@ -229,21 +217,11 @@ public class vPrincipal extends javax.swing.JFrame {
         return rConductores;
     }
 
-    public JMenuItem getrDevoluciones() {
-        return rDevoluciones;
-    }
 
     public JMenuItem getrEmpleados() {
         return rEmpleados;
     }
 
-    public JMenuItem getrExtras() {
-        return rExtras;
-    }
-
-    public JMenuItem getrMultas() {
-        return rMultas;
-    }
 
     public JMenuItem getJmresprestamos() {
         return jmresprestamos;
@@ -309,7 +287,6 @@ public class vPrincipal extends javax.swing.JFrame {
         MI_prefil = new javax.swing.JMenuItem();
         jmSalir = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        JmI_menu = new javax.swing.JMenuItem();
         jmresprestamos = new javax.swing.JMenuItem();
         jmdevoluciones = new javax.swing.JMenuItem();
         jmcontratos = new javax.swing.JMenuItem();
@@ -327,10 +304,6 @@ public class vPrincipal extends javax.swing.JFrame {
         rEmpleados = new javax.swing.JMenuItem();
         rConductores = new javax.swing.JMenuItem();
         rAutos = new javax.swing.JMenuItem();
-        rAlquileres = new javax.swing.JMenuItem();
-        rDevoluciones = new javax.swing.JMenuItem();
-        rExtras = new javax.swing.JMenuItem();
-        rMultas = new javax.swing.JMenuItem();
 
         jdTemas.setBackground(new java.awt.Color(0, 0, 0));
         jdTemas.setMinimumSize(new java.awt.Dimension(282, 319));
@@ -752,10 +725,6 @@ public class vPrincipal extends javax.swing.JFrame {
 
         jMenu4.setText("Resumen");
 
-        JmI_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/comunidad.png"))); // NOI18N
-        JmI_menu.setText("Comunidad");
-        jMenu4.add(JmI_menu);
-
         jmresprestamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/flecha-hacia-arriba.png"))); // NOI18N
         jmresprestamos.setText("Mis prestamos");
         jMenu4.add(jmresprestamos);
@@ -764,7 +733,7 @@ public class vPrincipal extends javax.swing.JFrame {
         jmdevoluciones.setText("Mis devoluciones");
         jMenu4.add(jmdevoluciones);
 
-        jmcontratos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/multa.png"))); // NOI18N
+        jmcontratos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/contrato.png"))); // NOI18N
         jmcontratos.setText("Mis contratos");
         jMenu4.add(jmcontratos);
 
@@ -813,18 +782,6 @@ public class vPrincipal extends javax.swing.JFrame {
         rAutos.setText("Autos");
         jMenu5.add(rAutos);
 
-        rAlquileres.setText("Alquileres");
-        jMenu5.add(rAlquileres);
-
-        rDevoluciones.setText("Devoluciones");
-        jMenu5.add(rDevoluciones);
-
-        rExtras.setText("Extras");
-        jMenu5.add(rExtras);
-
-        rMultas.setText("Multas");
-        jMenu5.add(rMultas);
-
         jMenu3.add(jMenu5);
 
         jMenuBar1.add(jMenu3);
@@ -861,7 +818,6 @@ public class vPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private controlador.otros.Button Btn_inicio_sesion;
     private javax.swing.JLabel JL_foto;
-    private javax.swing.JMenuItem JmI_menu;
     private controlador.otros.TextField Lg_cedula;
     private javax.swing.JMenuItem MI_prefil;
     private LIB.FSButtonMD Menu_desplegable;
@@ -918,14 +874,10 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem miDevolución;
     private javax.swing.JMenuItem miEmpleado;
     private javax.swing.JMenuItem miExtras;
-    private javax.swing.JMenuItem rAlquileres;
     private javax.swing.JMenuItem rAutos;
     private javax.swing.JMenuItem rClientes;
     private javax.swing.JMenuItem rConductores;
-    private javax.swing.JMenuItem rDevoluciones;
     private javax.swing.JMenuItem rEmpleados;
-    private javax.swing.JMenuItem rExtras;
-    private javax.swing.JMenuItem rMultas;
     private javax.swing.JTextField titulo_texto;
     // End of variables declaration//GEN-END:variables
 }

@@ -734,14 +734,6 @@
             <Property name="text" type="java.lang.String" value="Resumen"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="JmI_menu">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/vista/img/comunidad.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Comunidad"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmresprestamos">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -761,7 +753,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmcontratos">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/vista/img/multa.png"/>
+                  <Image iconType="3" name="/vista/img/contrato.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Mis contratos"/>
               </Properties>
@@ -844,26 +836,6 @@
                 <MenuItem class="javax.swing.JMenuItem" name="rAutos">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Autos"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="rAlquileres">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Alquileres"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="rDevoluciones">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Devoluciones"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="rExtras">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Extras"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="rMultas">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Multas"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>

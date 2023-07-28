@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2023-07-27T11:59:42 -->
+<!-- 2023-07-27T23:31:05 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a4ed5700-742d-4358-ad73-28c03ad92c94">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conexion_final"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="YOUR_KEYS"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -32,28 +32,27 @@
 		</box>
 	</style>
 	<subDataset name="Reporte autos" uuid="d3c04a30-849a-4d55-8cd5-6d7d7bbb9ceb">
-		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conexion_final"/>
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="YOUR_KEYS"/>
 		<queryString>
-			<![CDATA[SELECT  b.nombre ||' '|| m.nombre as NOMBRES, a.precio_diario ,a.matricula, COUNT (*)
+			<![CDATA[SELECT * FROM (SELECT  b.nombre ||' '|| m.nombre as NOMBRES ,a.matricula, a.precio_diario, COUNT (*)
 FROM auto a INNER JOIN modelo m ON (a.id_modelo = m.id) INNER JOIN marca b ON (b.id = m.id_marca) INNER JOIN alquiler f ON (f.matricula_auto = a.matricula)
-GROUP BY b.nombre ||' '|| m.nombre, a.precio_diario ,a.matricula
-ORDER BY COUNT(*) DESC
-FETCH FIRST 5 ROWS ONLY]]>
+GROUP BY b.nombre ||' '|| m.nombre ,a.matricula, a.precio_diario
+ORDER BY COUNT(*) DESC) WHERE ROWNUM <= 5]]>
 		</queryString>
 		<field name="NOMBRES" class="java.lang.String"/>
-		<field name="PRECIO_DIARIO" class="java.lang.Double"/>
 		<field name="MATRICULA" class="java.lang.String"/>
+		<field name="PRECIO_DIARIO" class="java.lang.Double"/>
 		<field name="COUNT(*)" class="java.math.BigDecimal"/>
 	</subDataset>
-	<parameter name="Logo grande" class="java.lang.String"/>
 	<parameter name="Logo pequeño" class="java.lang.String"/>
+	<parameter name="imagen" class="java.lang.String"/>
+	<parameter name="par" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT  b.nombre ||' '|| m.nombre as NOMBRES ,a.matricula, COUNT (*)
+		<![CDATA[SELECT * FROM (SELECT  b.nombre ||' '|| m.nombre as NOMBRES ,a.matricula, COUNT (*)
 FROM auto a INNER JOIN modelo m ON (a.id_modelo = m.id) INNER JOIN marca b ON (b.id = m.id_marca) INNER JOIN alquiler f ON (f.matricula_auto = a.matricula)
 GROUP BY b.nombre ||' '|| m.nombre ,a.matricula
-ORDER BY COUNT(*) DESC
-FETCH FIRST 5 ROWS ONLY]]>
+ORDER BY COUNT(*) DESC) WHERE ROWNUM <= 5]]>
 	</queryString>
 	<field name="NOMBRES" class="java.lang.String"/>
 	<field name="MATRICULA" class="java.lang.String"/>
@@ -78,7 +77,7 @@ FETCH FIRST 5 ROWS ONLY]]>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA[$P{Logo grande}]]></imageExpression>
+				<imageExpression><![CDATA[$P{imagen}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="180" y="15" width="200" height="50" uuid="57ae1814-24b7-4a81-88d7-e0e9424c76fd"/>
