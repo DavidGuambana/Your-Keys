@@ -28,7 +28,6 @@ public class mImagen extends Imagen {
                     imagenes.add(imagens);
                 }
             }
-            con.close();
             return imagenes;
         } catch (SQLException ex) {
             return null;
@@ -55,7 +54,6 @@ public class mImagen extends Imagen {
             ps.setString(1, getNombre());
             ps.setBytes(2, getValor());
             ps.setInt(3, getId());
-            //System.out.println(((OraclePreparedStatement)ps).getOriginalSql()); //imprime la consulta original
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {

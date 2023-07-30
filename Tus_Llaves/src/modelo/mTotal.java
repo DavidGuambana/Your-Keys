@@ -29,7 +29,6 @@ public class mTotal extends Total{
                   Total.add(total);
                 }
             }
-            con.close();
             return Total;
         } catch (SQLException ex) {
             return null;
@@ -55,7 +54,6 @@ public class mTotal extends Total{
                     Total.add(total);
                 }
             }
-            con.close();
             return Total;
         } catch (SQLException ex) {
             return null;

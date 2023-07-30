@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static modelo.mExtra.con;
-import static modelo.mExtra.rs;
-import static modelo.mExtra.sql;
 import modelo.tablas.Categoria;
 
 public class mCategoria extends Categoria{
@@ -31,7 +28,6 @@ public class mCategoria extends Categoria{
                   Categoria.add(categoria);
                 }
             }
-            con.close();
             return Categoria;
         } catch (SQLException ex) {
             return null;
@@ -66,7 +62,6 @@ public class mCategoria extends Categoria{
                     Categoria.add(categoria);
                 }
             }
-            con.close();
             return Categoria;
         } catch (SQLException ex) {
             return null;

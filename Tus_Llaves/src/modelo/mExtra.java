@@ -27,7 +27,6 @@ public class mExtra extends Extra {
                     extras.add(extra);
                 }
             }
-            con.close();
             return extras;
         } catch (SQLException ex) {
             return null;
@@ -69,7 +68,6 @@ public class mExtra extends Extra {
                     extras.add(extra);
                 }
             }
-            con.close();
             return extras;
         } catch (SQLException ex) {
             return null;

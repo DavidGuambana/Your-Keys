@@ -1,16 +1,12 @@
 package vista;
 import LIB.FSButtonMD;
-import controlador.otros.Button;
-import controlador.otros.PasswordField;
 import controlador.otros.RoundedLabel;
-import controlador.otros.TextField;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class vPrincipal extends javax.swing.JFrame {

@@ -28,7 +28,6 @@ public class mAlquiler extends Alquiler {
                     Alquiler.add(alquiler);
                 }
             }
-            con.close();
             return Alquiler;
         } catch (SQLException ex) {
             return null;
@@ -57,7 +56,6 @@ public class mAlquiler extends Alquiler {
                     Alquiler.add(alquiler);
                 }
             }
-            con.close();
             return Alquiler;
         } catch (SQLException ex) {
             return null;

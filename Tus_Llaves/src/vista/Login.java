@@ -94,9 +94,11 @@ public class Login extends javax.swing.JFrame {
 
         Panel_fondo.setOpaque(false);
 
+        Lg_cedula.setText("0107178527");
         Lg_cedula.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         Lg_cedula.setHint("Cedula");
 
+        lg_contraseña.setText("1234567890");
         lg_contraseña.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         lg_contraseña.setHint("Contraseña");
 

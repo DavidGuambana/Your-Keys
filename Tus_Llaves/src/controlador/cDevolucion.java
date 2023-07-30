@@ -1,7 +1,6 @@
 package controlador;
 
 import controlador.otros.RenderTable2;
-import controlador.otros.EnvioCorreo;
 import controlador.otros.FiltrarTabla;
 import controlador.otros.RenderTable;
 import java.awt.event.KeyAdapter;
@@ -10,14 +9,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -30,15 +23,17 @@ import modelo.mMulta;
 import reportes.Reporte;
 import vista.vDevolucion;
 
-public final class cDevolucion implements Runnable{
+public final class cDevolucion implements Runnable {
+
     Reporte r = new Reporte();
     Thread hilo;
     private final vDevolucion vista;
+
     public cDevolucion(vDevolucion vista) {
         this.vista = vista;
         iniciar();
     }
-    
+
     @Override
     public void run() {
         Thread current = Thread.currentThread();
@@ -50,7 +45,8 @@ public final class cDevolucion implements Runnable{
             }
         }
     }
-    public void iniciar(){
+
+    public void iniciar() {
         vista.setVisible(true);
         validar();
         btnFinalizar = new JButton();
@@ -66,7 +62,7 @@ public final class cDevolucion implements Runnable{
         hilo.start();
         vista.getJtAlquileres().setDefaultRenderer(Object.class, new RenderTable2());
         vista.getJtDevoluciones().setDefaultRenderer(Object.class, new RenderTable());
-        ControlarTabla(vista.getJtAlquileres(),vista.getJtDevoluciones());
+        ControlarTabla(vista.getJtAlquileres(), vista.getJtDevoluciones());
         vista.getJbFinalizar().addActionListener(l -> {
             if (vista.getJl_Infracciones().isSelectionEmpty()) {
                 JOptionPane.showMessageDialog(null, "¡Seleccione un tipo de multa!", null, JOptionPane.ERROR_MESSAGE);
@@ -79,46 +75,62 @@ public final class cDevolucion implements Runnable{
                 vista.getJdMulta().setVisible(false);
             }
         });
-        vista.getJbRegresar().addActionListener(l-> vista.getJdMulta().setVisible(false));
+        vista.getJbRegresar().addActionListener(l -> vista.getJdMulta().setVisible(false));
     }
     int id_alq;
     String matricula;
     ResultSet rs;
     DefaultTableModel dtm;
     JButton btnFinalizar, btnEnviar, btnImprimir;
-    ArrayList <Date> fechas = null;
+    ArrayList<Date> fechas = null;
     private final mMulta m_mul = new mMulta();
     private final mDevolucion m_dev = new mDevolucion();
-    private final mAlquiler m_alq= new mAlquiler();
+    private final mAlquiler m_alq = new mAlquiler();
     private final mAuto m_auto = new mAuto();
-    mCliente modcli=new mCliente();
-    
-    
-    String[] colAlquileres= {"ID alquiler", "Matrícula","Cédula", "Días", "Fecha inicio","Fecha fin","Tiempo restante" ,"Notificar","Finalizar","Imprimir"};
-    String[] colDevoluciones= {"ID devolución","ID alquiler", "Matrícula","Cédula", "Fecha alquiler","Fecha devolución","Imprimir"};
-    String[] colMultas= {"ID multa", "ID devolución","Cédula", "Causa de la multa"};
-    
+    mCliente modcli = new mCliente();
+
+    String[] colAlquileres = {"ID alquiler", "Matrícula", "Cédula", "Días", "Fecha inicio", "Fecha fin", "Tiempo restante", "Notificar", "Finalizar", "Imprimir"};
+    String[] colDevoluciones = {"ID devolución", "ID alquiler", "Matrícula", "Cédula", "Fecha alquiler", "Fecha devolución", "Imprimir"};
+    String[] colMultas = {"ID multa", "ID devolución", "Cédula", "Causa de la multa"};
+
     public void verAlquileres() {
-    try {
-        fechas = new ArrayList<>();
-        dtm = new DefaultTableModel(null, colAlquileres);
-        rs = m_alq.join_alq();
-        while (rs.next()) {
-            dtm.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),rs.getDate(6), null,btnEnviar, btnFinalizar,btnImprimir});
-            fechas.add(rs.getDate(6));
+        try {
+            fechas = new ArrayList<>();
+            dtm = new DefaultTableModel(null, colAlquileres);
+            rs = m_alq.join_alq();
+            while (rs.next()) {
+                dtm.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5), rs.getDate(6), null, btnEnviar, btnFinalizar, btnImprimir});
+                fechas.add(rs.getDate(6));
+            }
+            vista.getJtAlquileres().setModel(dtm);
+            vista.getJtAlquileres().setRowHeight(30);
+        } catch (SQLException ex) {
         }
-        vista.getJtAlquileres().setModel(dtm);
-        vista.getJtAlquileres().setRowHeight(30);
-    } catch (SQLException ex) {
-    }
     }
 
     public void setTiempoRes() {
-
-        for (int i = 0; i < fechas.size(); i++) {
-            vista.getJtAlquileres().setValueAt(calcularTiempo(fechas.get(i)), i, 6);
+        try {
+            for (int i = 0; i < fechas.size(); i++) {
+                vista.getJtAlquileres().setValueAt(calcularTiempo(fechas.get(i)), i, 6);
+            }
+        } catch (Exception e) {
+            try {
+                fechas = new ArrayList<>();
+                for (int i = 0; i < vista.getJtAlquileres().getRowCount(); i++) {
+                    Date date = (Date) vista.getJtAlquileres().getValueAt(i, 5);
+                    fechas.add(date);
+                }
+                for (int i = 0; i < fechas.size(); i++) {
+                    vista.getJtAlquileres().setValueAt(calcularTiempo(fechas.get(i)), i, 6);
+                }
+                fechas = new ArrayList<>();
+                rs = m_alq.join_alq();
+                while (rs.next()) {
+                    fechas.add(rs.getDate(6));
+                }
+            } catch (SQLException ex) {
+            }
         }
-
     }
 
     private String calcularTiempo(Date fechaFin) {
@@ -138,34 +150,32 @@ public final class cDevolucion implements Runnable{
         return tiempo_restante;
     }
 
-
-    
-    public void verDevoluciones(){
+    public void verDevoluciones() {
         try {
             dtm = new DefaultTableModel(null, colDevoluciones);
             rs = m_dev.join_dev();
             while (rs.next()) {
-                dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getDate(6),btnImprimir});
+                dtm.addRow(new Object[]{rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getDate(6), btnImprimir});
             }
             vista.getJtDevoluciones().setModel(dtm);
             vista.getJtDevoluciones().setRowHeight(30);
         } catch (SQLException ex) {
         }
     }
-    
-    public void verMultas(){
+
+    public void verMultas() {
         try {
             dtm = new DefaultTableModel(null, colMultas);
             rs = m_mul.join_mul();
             while (rs.next()) {
-                dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4)});
+                dtm.addRow(new Object[]{rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4)});
             }
             vista.getJtMultas().setModel(dtm);
             vista.getJtMultas().setRowHeight(30);
         } catch (SQLException ex) {
         }
     }
-    
+
     public void crearDevolucion(int id_alq) {
         Date hoy = new Date();
         Long d = hoy.getTime();
@@ -175,8 +185,8 @@ public final class cDevolucion implements Runnable{
         m_dev.crear();
         JOptionPane.showMessageDialog(null, "¡Devolución finalizada correctamente!");
     }
-    
-    public void crearMulta(int id_dev){
+
+    public void crearMulta(int id_dev) {
         String id_inf = (String) vista.getJl_Infracciones().getSelectedValue().replaceAll("[^0-9]", "");
         m_mul.setId_devolucion(id_dev);
         m_mul.setId_infraccion(Integer.parseInt(id_inf));
@@ -184,8 +194,8 @@ public final class cDevolucion implements Runnable{
         actualizarEstado(matricula, Integer.parseInt(id_inf));
         JOptionPane.showMessageDialog(null, "¡Multa registrada correctamente!");
     }
-    
-     public void ControlarTabla(JTable t, JTable t2) {
+
+    public void ControlarTabla(JTable t, JTable t2) {
         t.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
@@ -202,23 +212,17 @@ public final class cDevolucion implements Runnable{
                             if (((JButton) obj).getText().equals("Enviar correo")) {
                                 if (tiempo_restante.equals("Finalizado")) {
                                     try {
-                                        rs=modcli.obtener_cliente(t.getValueAt(t.getSelectedRow(), 2).toString());
+                                        String cedula = t.getValueAt(t.getSelectedRow(), 2).toString();
+                                        rs = modcli.obtener_cliente(cedula);
                                         rs.next();
-                                        EnvioCorreo env= new EnvioCorreo(); 
-                                        env.envcorrtext(rs.getString(12));//posicion de correo
-                                        //enviar correo
+                                        cEnviarMail enviarMail = new cEnviarMail(vista, rs.getString(12), rs.getString(5));
                                     } catch (SQLException ex) {
-                                        Logger.getLogger(cDevolucion.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                 } else {
-                                   
-                                        JOptionPane.showMessageDialog(null, "¡El plazo de este alquiler aún no vence!", null, JOptionPane.WARNING_MESSAGE);
-                                 
-                                    
+                                    JOptionPane.showMessageDialog(null, "¡El plazo de este alquiler aún no vence!", null, JOptionPane.WARNING_MESSAGE);
                                 }
                             }
                             if (((JButton) obj).getText().equals("Finalizar")) {
-
                                 if (JOptionPane.showConfirmDialog(null, "¿Desea incluir una multa a este alquiler?",
                                         "Finalizar devolución", JOptionPane.YES_NO_OPTION,
                                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
@@ -257,28 +261,31 @@ public final class cDevolucion implements Runnable{
             }
         });
     }
-     
-     
+
     public void abrirDialogo() {
         vista.getJdMulta().setTitle("Registrar multa");
         vista.getJdMulta().setLocationRelativeTo(vista);
         vista.getJdMulta().setSize(380, 320);
         vista.getJdMulta().setVisible(true);
     }
-    
-     public void actualizarEstado(String matricula,int id_infraccion) {
-         switch (id_infraccion) {
-             case 0: m_auto.setId_estado(1);//estado "Disponible"
-                 break;
-                 case 2: m_auto.setId_estado(3);//estado "En reparación"
-                 break;
-                 case 3: m_auto.setId_estado(4);//estado "Desaparecido"
-                 break;
-         }
+
+    public void actualizarEstado(String matricula, int id_infraccion) {
+        switch (id_infraccion) {
+            case 0:
+                m_auto.setId_estado(1);//estado "Disponible"
+                break;
+            case 2:
+                m_auto.setId_estado(3);//estado "En reparación"
+                break;
+            case 3:
+                m_auto.setId_estado(4);//estado "Desaparecido"
+                break;
+        }
         m_auto.setMatricula(matricula);
         m_auto.updateEstado();
     }
-     public void validar() {
+
+    public void validar() {
         vista.getTxtBuscar1().addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {

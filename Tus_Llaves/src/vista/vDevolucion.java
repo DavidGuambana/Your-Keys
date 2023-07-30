@@ -3,9 +3,10 @@ package vista;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
@@ -67,7 +68,47 @@ public class vDevolucion extends javax.swing.JInternalFrame {
         return jl_Infracciones;
     }
 
+    public JButton getBtnExaminar() {
+        return btnExaminar;
+    }
+
+    public JButton getJbEnviar() {
+        return jbEnviar;
+    }
+
+    public JButton getJbRegresar2() {
+        return jbRegresar2;
+    }
+
+    public JDialog getJdEnviarMail() {
+        return jdEnviarMail;
+    }
+
+    public JList<String> getJl_Archivos() {
+        return jl_Archivos;
+    }
+
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }
     
+    
+    public JLabel getLblCountFiles() {
+        return lblCountFiles;
+    }
+
+    public JTextField getTxtAsunto() {
+        return txtAsunto;
+    }
+
+    public JTextField getTxtDestinatario() {
+        return txtDestinatario;
+    }
+
+    public JTextArea getTxtMensaje() {
+        return txtMensaje;
+    }
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -79,6 +120,25 @@ public class vDevolucion extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jbFinalizar = new javax.swing.JButton();
         jbRegresar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jdEnviarMail = new javax.swing.JDialog();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        lblCountFiles = new javax.swing.JLabel();
+        jbEnviar = new javax.swing.JButton();
+        jbRegresar2 = new javax.swing.JButton();
+        txtDestinatario = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        txtMensaje = new javax.swing.JTextArea();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jl_Archivos = new javax.swing.JList<>();
+        jLabel20 = new javax.swing.JLabel();
+        txtAsunto = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        btnExaminar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         tpDevoluciones = new javax.swing.JTabbedPane();
@@ -125,33 +185,45 @@ public class vDevolucion extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Seleccione una multa...");
 
-        jbFinalizar.setBackground(new java.awt.Color(232, 232, 232));
+        jbFinalizar.setBackground(new java.awt.Color(0, 153, 204));
         jbFinalizar.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 16)); // NOI18N
+        jbFinalizar.setForeground(new java.awt.Color(255, 255, 255));
         jbFinalizar.setText("Finalizar");
         jbFinalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jbRegresar.setBackground(new java.awt.Color(153, 153, 153));
+        jbRegresar.setBackground(new java.awt.Color(51, 51, 51));
         jbRegresar.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 16)); // NOI18N
         jbRegresar.setForeground(new java.awt.Color(255, 255, 255));
         jbRegresar.setText("Regresar");
         jbRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel10.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel10.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Registrar multa");
+        jLabel10.setOpaque(true);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane5)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jbRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane5)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jbRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jLabel6))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,12 +231,11 @@ public class vDevolucion extends javax.swing.JInternalFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel1)
-                        .addGap(15, 15, 15)))
+                        .addComponent(jLabel6))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addGap(6, 6, 6)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -177,13 +248,198 @@ public class vDevolucion extends javax.swing.JInternalFrame {
         jdMulta.getContentPane().setLayout(jdMultaLayout);
         jdMultaLayout.setHorizontalGroup(
             jdMultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+            .addGroup(jdMultaLayout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         jdMultaLayout.setVerticalGroup(
             jdMultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdMultaLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+
+        jdEnviarMail.setBackground(new java.awt.Color(0, 0, 0));
+        jdEnviarMail.setMinimumSize(new java.awt.Dimension(282, 319));
+        jdEnviarMail.setResizable(false);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setPreferredSize(new java.awt.Dimension(282, 320));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblCountFiles.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        lblCountFiles.setForeground(new java.awt.Color(51, 51, 51));
+        lblCountFiles.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCountFiles.setText("Archivos adjuntos: 3");
+        lblCountFiles.setFocusable(false);
+
+        jbEnviar.setBackground(new java.awt.Color(0, 153, 204));
+        jbEnviar.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 16)); // NOI18N
+        jbEnviar.setForeground(new java.awt.Color(255, 255, 255));
+        jbEnviar.setText("Enviar");
+        jbEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jbRegresar2.setBackground(new java.awt.Color(51, 51, 51));
+        jbRegresar2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 16)); // NOI18N
+        jbRegresar2.setForeground(new java.awt.Color(255, 255, 255));
+        jbRegresar2.setText("Regresar");
+        jbRegresar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtDestinatario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDestinatario.setForeground(new java.awt.Color(0, 153, 204));
+        txtDestinatario.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        txtDestinatario.setOpaque(true);
+        txtDestinatario.setPreferredSize(new java.awt.Dimension(64, 17));
+        txtDestinatario.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        txtDestinatario.setSelectionColor(new java.awt.Color(204, 204, 204));
+
+        jLabel17.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel17.setText("Destinatario:");
+
+        jScrollPane9.setBorder(null);
+
+        txtMensaje.setColumns(20);
+        txtMensaje.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
+        txtMensaje.setLineWrap(true);
+        txtMensaje.setRows(5);
+        txtMensaje.setText("Estimad@ [Nombre],\n\nPor este medio, me permito informarle que el tiempo de devolución del vehículo que usted adquirio ha sobrepasado el tiempo acordado, por lo cual se ha hecho acreedor a la multa correspondiente. Le agradecería mucho si pudiera devolver el vehículo lo más pronto posible.\n\nAgradezco su atención y quedo a sus órdenes.\n\nAtentamente, YOUR-KEYS");
+        txtMensaje.setWrapStyleWord(true);
+        txtMensaje.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 0, 14))); // NOI18N
+        txtMensaje.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMensajeKeyPressed(evt);
+            }
+        });
+        jScrollPane9.setViewportView(txtMensaje);
+
+        jl_Archivos.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        jl_Archivos.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Archivo 1", "Archivo 2", "Archivo 3" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jl_Archivos.setFixedCellHeight(25);
+        jl_Archivos.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        jl_Archivos.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane10.setViewportView(jl_Archivos);
+
+        jLabel20.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel20.setText("Asunto:");
+
+        txtAsunto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAsunto.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        txtAsunto.setOpaque(true);
+        txtAsunto.setPreferredSize(new java.awt.Dimension(64, 17));
+        txtAsunto.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        txtAsunto.setSelectionColor(new java.awt.Color(204, 204, 204));
+
+        jLabel9.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel9.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Enviar E-mail");
+        jLabel9.setOpaque(true);
+
+        jLabel21.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel21.setText("Mensaje:");
+
+        btnExaminar.setText("Examinar");
+
+        btnEliminar.setBackground(new java.awt.Color(51, 51, 51));
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar archivo/s seleccionado");
+        btnEliminar.setBorder(null);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtAsunto, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                                .addComponent(txtDestinatario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel6Layout.createSequentialGroup()
+                                            .addComponent(jbRegresar2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jbEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addComponent(btnExaminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblCountFiles, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(10, 10, 10))
+                                .addComponent(jScrollPane10)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(25, 25, 25)))))
+            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel7)
+                .addGap(25, 25, 25)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCountFiles)
+                    .addComponent(btnExaminar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbRegresar2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
+        );
+
+        javax.swing.GroupLayout jdEnviarMailLayout = new javax.swing.GroupLayout(jdEnviarMail.getContentPane());
+        jdEnviarMail.getContentPane().setLayout(jdEnviarMailLayout);
+        jdEnviarMailLayout.setHorizontalGroup(
+            jdEnviarMailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdEnviarMailLayout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+        jdEnviarMailLayout.setVerticalGroup(
+            jdEnviarMailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdEnviarMailLayout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -359,7 +615,7 @@ public class vDevolucion extends javax.swing.JInternalFrame {
 
         cbColumnas3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbColumnas3.setForeground(new java.awt.Color(51, 51, 51));
-        cbColumnas3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID multa", "ID devolución", "Cédula", "Causa de la multa", " " }));
+        cbColumnas3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID multa", "ID devolución", "Cédula", "Causa de la multa" }));
 
         jLabel5.setBackground(new java.awt.Color(255, 0, 0));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -448,25 +704,44 @@ public class vDevolucion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtMensajeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMensajeKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMensajeKeyPressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnExaminar;
     private javax.swing.JComboBox<String> cbColumnas1;
     private javax.swing.JComboBox<String> cbColumnas2;
     private javax.swing.JComboBox<String> cbColumnas3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JButton jbEnviar;
     private javax.swing.JButton jbFinalizar;
     private javax.swing.JButton jbRegresar;
+    private javax.swing.JButton jbRegresar2;
+    private javax.swing.JDialog jdEnviarMail;
     private javax.swing.JDialog jdMulta;
+    private javax.swing.JList<String> jl_Archivos;
     private javax.swing.JList<String> jl_Infracciones;
     private javax.swing.JPanel jpDevolucionesFinalizadas;
     private javax.swing.JPanel jpDevolucionesPendientes;
@@ -474,9 +749,13 @@ public class vDevolucion extends javax.swing.JInternalFrame {
     private javax.swing.JTable jtAlquileres;
     private javax.swing.JTable jtDevoluciones;
     private javax.swing.JTable jtMultas;
+    private javax.swing.JLabel lblCountFiles;
     private javax.swing.JTabbedPane tpDevoluciones;
+    private javax.swing.JTextField txtAsunto;
     private javax.swing.JTextField txtBuscar1;
     private javax.swing.JTextField txtBuscar2;
     private javax.swing.JTextField txtBuscar3;
+    private javax.swing.JTextField txtDestinatario;
+    public static javax.swing.JTextArea txtMensaje;
     // End of variables declaration//GEN-END:variables
 }

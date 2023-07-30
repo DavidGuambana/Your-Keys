@@ -29,7 +29,6 @@ public class mEmpleado extends Empleado{
                     empleados.add(empleado);
                 }
             }
-            con.close();
             return empleados;
         } catch (SQLException ex) {
             return null;
@@ -63,7 +62,6 @@ public class mEmpleado extends Empleado{
                     empleados.add(empleado);
                 }
             }
-            con.close();
             return empleados;
         } catch (SQLException ex) {
             return null;

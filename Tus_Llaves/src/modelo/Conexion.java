@@ -14,6 +14,7 @@ public class Conexion {
 
     public boolean conectar() {
         try {
+            con = null;
             OracleDataSource ods = new OracleDataSource();
             ods.setURL("jdbc:oracle:thin:@" + IP + ":1521:XE");
             ods.setUser(user);
@@ -27,51 +28,36 @@ public class Conexion {
     }
 
     public ResultSet consulta(String sql) {
-        conectar();
         try {
-            System.out.println(sql);
+            if (con == null) {
+                conectar();
+            }
             st = con.createStatement();
-            st.executeQuery(sql);
-            return st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);
+            return rs;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }
-    
+
     public boolean accion(String sql) {
-        conectar();
-        if (con != null) {
-            try {
-                System.out.println(sql);
-                st = con.createStatement();
-                if (st.executeUpdate(sql) == 1) {
-                    st.close();
-                    return true;
-                } else {
-                    return false;
-                }
-
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
-                return false;
+        try {
+            if (con==null) {
+                conectar();
             }
-
-        } else {
+            st = con.createStatement();
+            st.executeUpdate(sql);
+            return true;
+        } catch (SQLException ex) {
             return false;
         }
-
     }
 
-    public void close() {
-        try {
-            con.close();
-        } catch (SQLException ex) {
-        }
-    }
-    
     public Connection connection(){
-        conectar();
+        if (con==null) {
+            conectar();
+        }
         return con;
     }
+
 }

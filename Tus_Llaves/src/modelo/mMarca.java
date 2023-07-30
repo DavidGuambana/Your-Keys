@@ -28,7 +28,6 @@ public class mMarca extends Marca {
                     marcas.add(marca);
                 }
             }
-            con.close();
             return marcas;
         } catch (SQLException ex) {
             return null;
@@ -64,7 +63,6 @@ public class mMarca extends Marca {
                     marcas.add(marca);
                 }
             }
-            con.close();
             return marcas;
         } catch (SQLException ex) {
             return null;

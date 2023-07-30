@@ -27,7 +27,6 @@ public class mInfraccion extends Infraccion{
                     Infracciones.add(infraccion);
                 }
             }
-            con.close();
             return Infracciones;
         } catch (SQLException ex) {
             return null;
@@ -45,7 +44,6 @@ public class mInfraccion extends Infraccion{
                     Categoria.add(categoria);
                 }
             }
-            con.close();
             return Categoria;
         } catch (SQLException ex) {
             return null;

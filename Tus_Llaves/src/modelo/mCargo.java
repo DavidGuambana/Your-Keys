@@ -32,7 +32,6 @@ public class mCargo extends Cargo {
             id = rs.getInt(1);
         } catch (SQLException ex) {
         }
-        con.close();
         return id;
     }
 }

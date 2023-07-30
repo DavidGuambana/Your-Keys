@@ -27,7 +27,6 @@ public class mContrato extends Contrato {
                     contratos.add(contrato);
                 }
             }
-            con.close();
             return contratos;
         } catch (SQLException ex) {
             return null;
@@ -56,7 +55,6 @@ public class mContrato extends Contrato {
                     contratos.add(contrato);
                 }
             }
-            con.close();
             return contratos;
         } catch (SQLException ex) {
             return null;

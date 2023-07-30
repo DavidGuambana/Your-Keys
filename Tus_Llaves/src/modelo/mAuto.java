@@ -27,7 +27,6 @@ public class mAuto extends Auto {
                     autos.add(auto);
                 }
             }
-            con.close();
             return autos;
         } catch (SQLException ex) {
             return null;
@@ -82,7 +81,6 @@ public class mAuto extends Auto {
                     autos.add(auto);
                 }
             }
-            con.close();
             return autos;
         } catch (SQLException ex) {
             return null;

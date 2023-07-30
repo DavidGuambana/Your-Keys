@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static modelo.mCliente.con;
-import static modelo.mCliente.rs;
-import static modelo.mCliente.sql;
 
 public class mPersona extends Persona {
     public static Conexion con = new Conexion();
@@ -52,7 +49,6 @@ public class mPersona extends Persona {
                     personas.add(persona);
                 }
             }
-            con.close();
             return personas;
         } catch (SQLException ex) {
             return null;

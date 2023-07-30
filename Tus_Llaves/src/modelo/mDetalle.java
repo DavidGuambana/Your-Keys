@@ -29,7 +29,6 @@ public class mDetalle extends Detalle{
                     Detalle.add(detalle);
                 }
             }
-            con.close();
             return Detalle;
         } catch (SQLException ex) {
             return null;
@@ -66,7 +65,6 @@ public class mDetalle extends Detalle{
                     Detalle.add(detalle);
                 }
             }
-            con.close();
             return Detalle;
         } catch (SQLException ex) {
             return null;

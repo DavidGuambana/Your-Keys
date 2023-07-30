@@ -12,8 +12,6 @@ public class mEstado extends Estado{
     public static ResultSet rs = null;
     public static String sql;
     
-    
-    
         public List<Estado> listar(int codigo) {
         List<Estado> estados = new ArrayList<>();
         try {
@@ -29,7 +27,6 @@ public class mEstado extends Estado{
                     estados.add(estado);
                 }
             }
-            con.close();
             return estados;
         } catch (SQLException ex) {
             return null;
@@ -59,7 +56,6 @@ public class mEstado extends Estado{
             id = rs.getInt(1);
         } catch (SQLException ex) {
         }
-        con.close();
         return id;
     }
     

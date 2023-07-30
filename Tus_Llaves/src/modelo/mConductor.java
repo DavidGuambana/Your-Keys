@@ -29,7 +29,6 @@ public class mConductor extends Conductor {
                     conductores.add(conductor);
                 }
             }
-            con.close();
             return conductores;
         } catch (SQLException ex) {
             return null;
@@ -63,7 +62,6 @@ public class mConductor extends Conductor {
                     conductores.add(conductor);
                 }
             }
-            con.close();
             return conductores;
         } catch (SQLException ex) {
             return null;

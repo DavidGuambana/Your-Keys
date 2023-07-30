@@ -29,7 +29,6 @@ public class mModelo extends Modelo {
                     modelos.add(modelo);
                 }
             }
-            con.close();
             return modelos;
         } catch (SQLException ex) {
             return null;
@@ -66,7 +65,6 @@ public class mModelo extends Modelo {
                     modelos.add(modelo);
                 }
             }
-            con.close();
             return modelos;
         } catch (SQLException ex) {
             return null;

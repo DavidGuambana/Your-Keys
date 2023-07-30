@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.tablas.Cliente;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,7 +33,6 @@ public class mCliente extends Cliente {
                     clientes.add(cliente);
                 }
             }
-            con.close();
             return clientes;
         } catch (SQLException ex) {
             return null;
@@ -68,7 +66,6 @@ public class mCliente extends Cliente {
                     clientes.add(cliente);
                 }
             }
-            con.close();
             return clientes;
         } catch (SQLException ex) {
             return null;
