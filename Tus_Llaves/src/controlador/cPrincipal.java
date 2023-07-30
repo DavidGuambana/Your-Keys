@@ -68,6 +68,7 @@ public final class cPrincipal {
         vista.setVisible(true);
         vista.getMI_prefil();
         llenar(a);
+        funciones();
         cabecera foto = new cabecera(iconoPerfil(clogin.cedulaCliente),nombre);
         foto.getImageAvatar1().addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -350,5 +351,38 @@ public final class cPrincipal {
         BufferedImage bufferedImage = ImageIO.read(inputStream);
         ImageIcon icon = new ImageIcon(bufferedImage);
         return icon;
+    }
+      public void funciones( ){
+
+        if (vista.getTitulo_texto().getText().equals("CLIENTE")) {
+            vista.getMiCliente().setEnabled(false);
+            vista.getMiEmpleado().setEnabled(false);
+            vista.getMiConductor().setEnabled(false);
+            vista.getMiAutomovil().setEnabled(false);
+            vista.getMiAlquiler().setEnabled(false);
+            vista.getMiDevolución().setEnabled(false);
+            vista.getMiExtras().setEnabled(false);
+        }
+        if (vista.getTitulo_texto().getText().equals("COMERCIANTE")) {
+            vista.getMiCliente().setEnabled(true);
+            vista.getMiEmpleado().setEnabled(true);
+            vista.getMiConductor().setEnabled(true);
+            vista.getMiAutomovil().setEnabled(true);
+            vista.getMiAlquiler().setEnabled(true);
+            vista.getMiDevolución().setEnabled(true);
+            vista.getMiExtras().setEnabled(true);
+
+        }
+        if (vista.getTitulo_texto().getText().equals("ADMINISTRADOR")) {
+            vista.getMiCliente().setEnabled(true);
+            vista.getMiEmpleado().setEnabled(true);
+            vista.getMiConductor().setEnabled(true);
+            vista.getMiAutomovil().setEnabled(true);
+            vista.getMiAlquiler().setEnabled(true);
+            vista.getMiDevolución().setEnabled(true);
+            vista.getMiExtras().setEnabled(true);
+
+        }
+
     }
 }

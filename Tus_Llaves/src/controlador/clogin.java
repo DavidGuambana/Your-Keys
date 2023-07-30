@@ -119,4 +119,4 @@ public class clogin {
     public void CerrarLogin(){
         vista.dispose();
     }
-}
+    }
