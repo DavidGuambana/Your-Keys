@@ -6,6 +6,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 
@@ -190,6 +191,10 @@ public class vPrincipal extends javax.swing.JFrame {
 
     public void setMI_automovil(JMenuItem MI_automovil) {
         this.rAutos = MI_automovil;
+    }
+
+    public JMenu getjMenu3() {
+        return jMenu3;
     }
     
     
@@ -486,6 +491,11 @@ public class vPrincipal extends javax.swing.JFrame {
         Menu_desplegable.setColorTextPressed(new java.awt.Color(204, 204, 204));
         Menu_desplegable.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         Menu_desplegable.setOpaque(false);
+        Menu_desplegable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Menu_desplegableActionPerformed(evt);
+            }
+        });
 
         jdPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         jdPrincipal.setMinimumSize(new java.awt.Dimension(840, 480));
@@ -611,6 +621,10 @@ public class vPrincipal extends javax.swing.JFrame {
     private void MI_prefilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_prefilActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MI_prefilActionPerformed
+
+    private void Menu_desplegableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_desplegableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Menu_desplegableActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JL_foto;

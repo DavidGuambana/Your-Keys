@@ -355,32 +355,17 @@ public final class cPrincipal {
       public void funciones( ){
 
         if (vista.getTitulo_texto().getText().equals("CLIENTE")) {
-            vista.getMiCliente().setEnabled(false);
-            vista.getMiEmpleado().setEnabled(false);
-            vista.getMiConductor().setEnabled(false);
-            vista.getMiAutomovil().setEnabled(false);
-            vista.getMiAlquiler().setEnabled(false);
-            vista.getMiDevolución().setEnabled(false);
-            vista.getMiExtras().setEnabled(false);
+            vista.getjMenu3().setVisible(false);
+            
+            
+            
         }
         if (vista.getTitulo_texto().getText().equals("COMERCIANTE")) {
-            vista.getMiCliente().setEnabled(true);
-            vista.getMiEmpleado().setEnabled(true);
-            vista.getMiConductor().setEnabled(true);
-            vista.getMiAutomovil().setEnabled(true);
-            vista.getMiAlquiler().setEnabled(true);
-            vista.getMiDevolución().setEnabled(true);
-            vista.getMiExtras().setEnabled(true);
+          vista.getjMenu3().setVisible(true);
 
         }
         if (vista.getTitulo_texto().getText().equals("ADMINISTRADOR")) {
-            vista.getMiCliente().setEnabled(true);
-            vista.getMiEmpleado().setEnabled(true);
-            vista.getMiConductor().setEnabled(true);
-            vista.getMiAutomovil().setEnabled(true);
-            vista.getMiAlquiler().setEnabled(true);
-            vista.getMiDevolución().setEnabled(true);
-            vista.getMiExtras().setEnabled(true);
+          vista.getjMenu3().setVisible(true);
 
         }
 
