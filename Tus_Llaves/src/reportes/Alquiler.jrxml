@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2023-07-27T20:20:05 -->
+<!-- 2023-07-30T21:03:18 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Alquiler" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0750b2cc-b380-4d82-8ac2-d3c7a02ddc45">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="YOUR_KEYS"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
@@ -133,7 +133,7 @@ FROM DETALLE where id_alquiler =  $P{id_alq}]]>
 		<parameter name="id_alq" class="java.lang.Integer"/>
 		<queryString>
 			<![CDATA[SELECT codigo, TO_CHAR(fecha, 'DD-MM-YYYY'), id_conductor, total/horas, horas, total 
-FROM CONTRATO where id_alquiler =  $P{id_alq} ]]>
+FROM CONTRATO where id_alquiler =  $P{id_alq}]]>
 		</queryString>
 		<field name="CODIGO" class="java.math.BigDecimal"/>
 		<field name="TO_CHAR(FECHA,&apos;DD-MM-YYYY&apos;)" class="java.lang.String"/>
@@ -148,7 +148,7 @@ FROM CONTRATO where id_alquiler =  $P{id_alq} ]]>
 		<parameter name="id_alq" class="java.lang.Integer"/>
 		<queryString>
 			<![CDATA[SELECT id, total_alquiler, TRUNC(total_detalle, 2), TRUNC(total_contrato, 2), TRUNC(subtotal, 2), TRUNC(iva, 2), TRUNC(total, 2) 
-FROM TOTAL WHERE id_alquiler =  $P{id_alq} ]]>
+FROM TOTAL WHERE id_alquiler =  $P{id_alq}]]>
 		</queryString>
 		<field name="ID" class="java.math.BigDecimal"/>
 		<field name="TOTAL_ALQUILER" class="java.lang.Double"/>
@@ -813,20 +813,27 @@ FROM Alquiler a JOIN Cliente c ON (a.id_cliente = c.id) JOIN Persona p ON (c.ced
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="69">
+		<band height="77">
 			<staticText>
-				<reportElement positionType="Float" x="0" y="14" width="490" height="32" uuid="7b956143-c1aa-4946-a398-6a0c44fed9bf">
+				<reportElement positionType="Float" x="0" y="14" width="500" height="32" uuid="7b956143-c1aa-4946-a398-6a0c44fed9bf">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom">
 					<font size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Empresa: Your Keys - RUC: 0107178527001- email: your_keys@hotmail.ec - teléfono: 0988545526 Reporte de alquiler original impreso.]]></text>
+				<text><![CDATA[Empresa: Your Keys - RUC: 0107178527001- email: yourkeys777@gmail.com - teléfono: 0963709752 Reporte de alquiler original impreso para:]]></text>
 			</staticText>
 			<image onErrorType="Blank">
 				<reportElement x="506" y="14" width="50" height="50" uuid="cb577137-5f14-4f94-abf3-9c48de01192e"/>
 				<imageExpression><![CDATA[$P{imagen2}]]></imageExpression>
 			</image>
+			<textField>
+				<reportElement x="209" y="30" width="290" height="20" uuid="8b705092-d4ef-4559-8ef3-6e1b5f6e8eef"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE1}+" "+$F{NOMBRE2}+" "+$F{APELLIDO1}+" "+$F{APELLIDO2}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageFooter>
 </jasperReport>
