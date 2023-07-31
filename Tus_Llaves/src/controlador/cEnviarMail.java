@@ -103,7 +103,7 @@ public final class cEnviarMail {
                             mElementosCorreo.addBodyPart(mAdjuntos);
                         }
                     }
-                } catch (Exception e) {
+                } catch (MessagingException e) {
                     mAdjuntos = null;
                 }
                 Correo = new MimeMessage(Session);
@@ -136,7 +136,7 @@ public final class cEnviarMail {
     }
     
     public void abrirDialogo() {
-        vista.getJdEnviarMail().setTitle("Registrar multa");
+        vista.getJdEnviarMail().setTitle("Enviar e-mail");
         vista.getJdEnviarMail().setLocation(vista.getLocation());
         vista.getJdEnviarMail().setSize(385, 610);
         vista.getJdEnviarMail().setLocationRelativeTo(null);

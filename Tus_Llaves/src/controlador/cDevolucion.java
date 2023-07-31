@@ -265,7 +265,7 @@ public final class cDevolucion implements Runnable {
     public void abrirDialogo() {
         vista.getJdMulta().setTitle("Registrar multa");
         vista.getJdMulta().setLocationRelativeTo(vista);
-        vista.getJdMulta().setSize(380, 320);
+        vista.getJdMulta().setSize(380, 340);
         vista.getJdMulta().setVisible(true);
     }
 
