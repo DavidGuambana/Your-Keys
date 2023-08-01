@@ -120,4 +120,12 @@ public class mCliente extends Cliente {
         }
         return coleccion;
     }
+
+    public ResultSet top() {
+        sql = "SELECT * FROM(SELECT PERSONA.NOMBRE1||' '||PERSONA.APELLIDO1 AS NOMBRES,CLIENTE.CEDULA_PER,COUNT(cliente.cedula_per)\n"
+                + "FROM ALQUILER JOIN CLIENTE ON ALQUILER.ID_CLIENTE=CLIENTE.ID JOIN PERSONA ON \n"
+                + "CLIENTE.CEDULA_PER =PERSONA.CEDULA GROUP BY(PERSONA.NOMBRE1||' '||PERSONA.APELLIDO1,CLIENTE.CEDULA_PER)\n"
+                + "ORDER BY COUNT(cliente.cedula_per) DESC) WHERE ROWNUM <=5";
+        return con.consulta(sql);
+    }
 }

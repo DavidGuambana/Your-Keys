@@ -34,6 +34,7 @@ public class Conexion {
             }
             st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
+            System.out.println(sql);
             return rs;
         } catch (SQLException ex) {
             return null;

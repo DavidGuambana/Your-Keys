@@ -130,4 +130,12 @@ public class mAuto extends Auto {
         rs = con.consulta(sql);
         return rs;
     }
+
+    public ResultSet top() {
+        sql = "SELECT * FROM (SELECT  b.nombre ||' '|| m.nombre as NOMBRES ,a.matricula, COUNT (*)\n"
+                + "FROM auto a INNER JOIN modelo m ON (a.id_modelo = m.id) INNER JOIN marca b ON (b.id = m.id_marca) INNER JOIN alquiler f ON (f.matricula_auto = a.matricula)\n"
+                + "GROUP BY b.nombre ||' '|| m.nombre ,a.matricula, a.precio_diario\n"
+                + "ORDER BY COUNT(*) DESC) WHERE ROWNUM <= 5";
+        return con.consulta(sql);
+    }
 }

@@ -41,7 +41,6 @@ public class Reporte {
     public void print_auto() {
         map = new HashMap<>();
         url = "/reportes/Autos.jasper";
-        map.put("Logo pequeño", "src/vista/img/llave.png");
         map.put("par", "d");
         print(map, url);
     }

@@ -89,4 +89,12 @@ public class mConductor extends Conductor {
         rs = con.consulta(sql);
         return rs;
     }
+
+    public ResultSet top() {
+        sql = "SELECT * FROM (SELECT p.nombre1 ||' '|| p.apellido1, p.cedula, COUNT (*)\n"
+                + "From Conductor c join Contrato con on (c.id = con.id_conductor) JOIN Persona p on( c.licencia = p.cedula)\n"
+                + "Group by p.nombre1 ||' '|| p.apellido1, p.cedula \n"
+                + "ORDER BY COUNT(*) DESC) WHERE ROWNUM <= 5";
+        return con.consulta(sql);
+    }
 }
