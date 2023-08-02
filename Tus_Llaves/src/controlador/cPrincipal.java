@@ -312,9 +312,9 @@ public final class cPrincipal {
             vista.getRmPrestamos().addActionListener(l -> r.print_alquilerescli(cedula));
 
             vista.getjMenu3().setVisible(false);
-            vista.getRmPrestamos().setText("Mis alquileres");
-            vista.getRmPrestamos().setText("Mis devoluciones");
-            vista.getRmPrestamos().setText("Mis multas");
+            vista.getRmPrestamos().setText("Mis prestamos");
+            vista.getRmDelovoluciones().setText("Mis devoluciones");
+            vista.getRmContratos().setText("Mis contratos");
             vista.getMenu_desplegable().addActionListener(l -> Desplegar());
             dave = Drawer.newDrawer(this.vista).header(foto)
                     .space(5)
