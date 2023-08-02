@@ -94,11 +94,17 @@ public class clogin {
                        controlador.iniciar(1);
                        CerrarLogin();
                     }else{
+                        if(modeloE.Cargo(cedulaCliente).equals("Conductor")){
+                            JOptionPane.showMessageDialog(null,"LOS CONDUCTORES NO TIENEN ACCESO AL SISTEMA");
+                        }else{
+                            modeloE.Cargo(cedulaCliente);
                         vPrincipal vista = new vPrincipal();
                         cPrincipal controlador = new cPrincipal(vista);
                         cedulaCliente = clientesArray.get(0).getCedula_per();
                         controlador.iniciar(0);
                         CerrarLogin();
+                        }
+                        
                    }
                 }
                 

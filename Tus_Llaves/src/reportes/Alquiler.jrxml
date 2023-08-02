@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2023-07-30T21:03:18 -->
+<!-- 2023-08-01T20:15:10 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Alquiler" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0750b2cc-b380-4d82-8ac2-d3c7a02ddc45">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="YOUR_KEYS"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
@@ -273,7 +273,7 @@ FROM Alquiler a JOIN Cliente c ON (a.id_cliente = c.id) JOIN Persona p ON (c.ced
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Fecha de impreción:]]></text>
+				<text><![CDATA[Fecha de impresión:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement positionType="Float" x="20" y="50" width="98" height="20" uuid="a3ba141e-063b-41db-aed0-e0d3da2ad3bd"/>

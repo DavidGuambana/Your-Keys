@@ -43,7 +43,6 @@ import vista.vExtras;
 import vista.vPrincipal;
 
 public final class cPrincipal {
-
     DefaultListModel<String> modList;
     private String nombre = "";
     private String cedula = "";
@@ -63,86 +62,27 @@ public final class cPrincipal {
     String cargo = "";
     List<Persona> personas = new ArrayList<>();
     Reporte r = new Reporte();
-
+    cabecera foto;
     public cPrincipal(vPrincipal vista) throws IOException, SQLException {
         this.vista = vista;
     }
-
+    
     public void iniciar(int a) throws IOException, SQLException {
         vista.setVisible(true);
         vista.getMI_prefil();
         llenar(a);
-        funciones();
-        cabecera foto = new cabecera(iconoPerfil(clogin.cedulaCliente), nombre);
+        
+        foto = new cabecera(iconoPerfil(clogin.cedulaCliente),nombre);
         foto.getImageAvatar1().addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Perfil();
             }
         });
-        vista.getMI_prefil().addActionListener(l -> Perfil());
-        vista.getJmSalir().addActionListener(l -> Cerrar());
-        vista.getMiCliente().addActionListener(l -> menuCliente());
-        vista.getMiConductor().addActionListener(l -> menuConductor());
-        vista.getMiAutomovil().addActionListener(l -> MenuAutos());
-        vista.getMiExtras().addActionListener(l -> menuExtras());
-        vista.getMiAlquiler().addActionListener(l -> menuAlquiler());
-        vista.getMiEmpleado().addActionListener(l -> menuEmpelado());
-        vista.getMiDevolución().addActionListener(l -> menuDevolucion());
-        vista.getMenu_desplegable().addActionListener(l -> Desplegar());
         vista.getJtpPrincipal().addChangeListener(l-> menuResumen());
         vista.getBtnActividadFiltro().addActionListener(l-> setActividadFiltrada());
-        dave = Drawer.newDrawer(this.vista).header(foto)
-                .space(5)
-                .separator(2, new Color(173, 173, 173))
-                .background(new Color(135, 206, 250))
-                .backgroundTransparent(0.3f)
-                .duration(300)
-                .enableScroll(true)
-                .addChild(new DrawerItem("Cliente").icon(new ImageIcon(getClass().getResource("/vista/img/menu/user.png"))).build())
-                .addChild(new DrawerItem("Empleado").icon(new ImageIcon(getClass().getResource("/vista/img/menu/data.png"))).build())
-                .addChild(new DrawerItem("Conductor").icon(new ImageIcon(getClass().getResource("/vista/img/menu/income.png"))).build())
-                .addChild(new DrawerItem("Automóvil").icon(new ImageIcon(getClass().getResource("/vista/img/menu/expense.png"))).build())
-                .addChild(new DrawerItem("Alquiler").icon(new ImageIcon(getClass().getResource("/vista/img/menu/report.png"))).build())
-                .addChild(new DrawerItem("Devolución").icon(new ImageIcon(getClass().getResource("/vista/img/menu/data.png"))).build())
-                .addFooter(new DrawerItem("SALIR ").icon(new ImageIcon(getClass().getResource("/vista/img/menu/exit.png"))).build())
-                .event(new EventDrawer() {
-                    @Override
-                    public void selected(int i, DrawerItem di) {
-                        System.out.println(i);
-                        switch (i) {
-                            case 0:
-                                menuCliente();
-                                break;
-                            case 1:
-                                menuEmpelado();
-                                break;
-                            case 2:
-                                menuConductor();
-                                break;
-                            case 3:
-                                MenuAutos();
-                                break;
-                            case 4:
-                                menuAlquiler();
-                                break;
-                            case 5:
-                                menuDevolucion();
-                                break;
-                            case 6:
-                                Cerrar();
-                                break;
-                        }
-                    }
-                })
-                .build();
-        //controlar reportes:
-        vista.getrClientes().addActionListener(l -> r.print_cliente());
-        vista.getrEmpleados().addActionListener(l -> r.print_empleado());
-        vista.getrConductores().addActionListener(l -> r.print_conductor());
-        vista.getrAutos().addActionListener(l -> r.print_auto());
-        vista.getRmPrestamos().addActionListener(l -> r.print_alquilerescli(cedula));
-        vista.getRmDelovoluciones().addActionListener(l -> r.print_devolucionescli(cedula));
-        vista.getRmContratos().addActionListener(l -> r.print_contratoscli(cedula));
+        vista.getMI_prefil().addActionListener(l -> Perfil());
+        vista.getJmSalir().addActionListener(l -> Cerrar());
+        funciones();
     }
 
     public void setBordeButton() {
@@ -151,6 +91,7 @@ public final class cPrincipal {
         UIManager.put("ProgressBar.arc", 100);
         UIManager.put("TextComponent.arc", 100);
     }
+   
 
     public void verJdTemas(boolean ver) {
         vista.getJdTemas().setTitle("Listado de temas");
@@ -158,7 +99,7 @@ public final class cPrincipal {
         vista.getJdTemas().setLocationRelativeTo(vista);
         vista.getJdTemas().setVisible(ver);
     }
-
+    
     public void menuCliente() {
 
         mCliente modper = new mCliente();
@@ -220,8 +161,8 @@ public final class cPrincipal {
         }
         cExtra controlador = new cExtra(modextra, vextras);
     }
-
-    public void menuAlquiler() {
+    
+     public void menuAlquiler() {
 
         mAlquiler moalquiler = new mAlquiler();
         try {
@@ -230,10 +171,10 @@ public final class cPrincipal {
             valquiler = new vAlquiler();
             vista.getJdPrincipal().add(valquiler);
         }
-        cAlquiler controlador = new cAlquiler(valquiler, moalquiler);
+        cAlquiler controlador = new cAlquiler(valquiler,moalquiler);
     }
-
-    public void menuDevolucion() {
+     
+     public void menuDevolucion() {
         try {
             vista.getJdPrincipal().add(vdevolucion);
         } catch (Exception e) {
@@ -243,19 +184,19 @@ public final class cPrincipal {
         cDevolucion controlador = new cDevolucion(vdevolucion);
     }
 
-    public void Desplegar() {
-        if (dave.isShow()) {
+    public void Desplegar(){
+        if(dave.isShow()){
             dave.hide();
-        } else {
+        }else{
             dave.show();
         }
     }
 
     public void Cerrar() {
-        vista.dispose();
+        vista.dispose(); 
         Login vista = new Login();
         mCliente cliente = new mCliente();
-        clogin inicio = new clogin(vista, cliente);
+        clogin inicio = new clogin(vista,cliente);
         inicio.Iniciar();
     }
 
@@ -265,7 +206,7 @@ public final class cPrincipal {
         vista.getPerfil().setLocationRelativeTo(null);
     }
 
-    public void getIcon() throws SQLException {
+    public void getIcon() throws SQLException{
         mi = mi.BuscarImagen(clogin.cedulaCliente);
         if (mi.getValor() == null) {
             vista.getJL_foto().setIcon(null);
@@ -283,7 +224,7 @@ public final class cPrincipal {
     }
 
     public void llenar(int a) throws SQLException {
-        if (a == 0) {
+        if(a == 0){           
             personas = Mpersona.buscar(clogin.cedulaCliente, "CEDULA");
             Persona cliente = new Persona();
             cliente = personas.get(0);
@@ -298,7 +239,7 @@ public final class cPrincipal {
             getIcon();
             nombre = cliente.getNombre1();
             vista.getTitulo_texto().setText("CLIENTE");
-        } else {
+        }else{
             vista.getLb_nombres().setText(clogin.empleado.getNombre1() + " " + clogin.empleado.getNombre2());
             vista.getLb_apellidos().setText(clogin.empleado.getApellido1() + " " + clogin.empleado.getApellido2());
             vista.getLb_correo().setText(clogin.empleado.getCorreo());
@@ -312,20 +253,25 @@ public final class cPrincipal {
         }
     }
 
-    public void Cargos(String cargo) {
-        switch (cargo) {
+    public void Cargos(String cargo){
+        switch(cargo){
             case "Administrador":
                 ImageIcon icon = new ImageIcon("vista.img/administrador_salir.png");
                 vista.getTitulo_texto().setText("ADMINISTRADOR");
                 break;
             case "Comerciante":
                 vista.getTitulo_texto().setText("COMERCIANTE");
+                vista.getMiCliente().setVisible(false);
+                vista.getMiEmpleado().setVisible(false);
+                vista.getMiConductor().setVisible(false);
+                
                 break;
             case "Conductor":
                 vista.getTitulo_texto().setText("CONDUCTOR");
                 break;
             case "Cliente":
                 vista.getTitulo_texto().setText("CLIENTE");
+                
                 break;
         }
     }
@@ -340,8 +286,8 @@ public final class cPrincipal {
         años = años / 365;
         return años;
     }
-
-    public ImageIcon iconoPerfil(String cedula) throws IOException, SQLException {
+    
+    public ImageIcon iconoPerfil(String cedula) throws IOException, SQLException{
         mi = mi.BuscarImagen(cedula);
         byte[] valor = mi.getValor();
         InputStream inputStream = new ByteArrayInputStream(valor);
@@ -349,18 +295,194 @@ public final class cPrincipal {
         ImageIcon icon = new ImageIcon(bufferedImage);
         return icon;
     }
+     public void funciones() {
+        if (vista.getTitulo_texto().getText().equals("CLIENTE") || vista.getTitulo_texto().getText().equals("Cliente")) {
+            vista.getX1().setVisible(false);
+            vista.getX2().setVisible(false);
+            vista.getXjlActividad().setVisible(false);
+            vista.getXjlActividadFiltrada().setVisible(false);
+            vista.getBtnActividadFiltro().setVisible(false);
+            vista.getJdcFechaFin().setVisible(false);
+            vista.getJdcFechaIni().setVisible(false);
+            vista.getXjScrollPane2().setVisible(false);
+            vista.getXjScrollPane1().setVisible(false);
+            //mis reportes
+            vista.getRmContratos().addActionListener(l -> r.print_contratoscli(cedula));
+            vista.getRmDelovoluciones().addActionListener(l -> r.print_devolucionescli(cedula));
+            vista.getRmPrestamos().addActionListener(l -> r.print_alquilerescli(cedula));
 
-    public void funciones() {
-
-        if (vista.getTitulo_texto().getText().equals("CLIENTE")) {
             vista.getjMenu3().setVisible(false);
+            vista.getRmPrestamos().setText("Mis alquileres");
+            vista.getRmPrestamos().setText("Mis devoluciones");
+            vista.getRmPrestamos().setText("Mis multas");
+            vista.getMenu_desplegable().addActionListener(l -> Desplegar());
+            dave = Drawer.newDrawer(this.vista).header(foto)
+                    .space(5)
+                    .separator(2, new Color(173, 173, 173))
+                    .background(new Color(135, 206, 250))
+                    .backgroundTransparent(0.3f)
+                    .duration(300)
+                    .enableScroll(true)
+                    .addChild(new DrawerItem("Mis préstamos").icon(new ImageIcon(getClass().getResource("/vista/img/menu/user.png"))).build())
+                    .addChild(new DrawerItem("Mis devoluciones").icon(new ImageIcon(getClass().getResource("/vista/img/menu/data.png"))).build())
+                    .addChild(new DrawerItem("Mis contratos").icon(new ImageIcon(getClass().getResource("/vista/img/menu/income.png"))).build())
+                    .addFooter(new DrawerItem("SALIR ").icon(new ImageIcon(getClass().getResource("/vista/img/menu/exit.png"))).build())
+                    .event(new EventDrawer() {
+                        @Override
+                        public void selected(int i, DrawerItem di) {
+                            System.out.println(i);
+                            switch (i) {
+                                 case 0:
+                                    r.print_alquilerescli(cedula);
+                                    break;
+                                case 1:
+                                    r.print_devolucionescli(cedula);
+                                    break;
+                                case 2:
+                                    r.print_contratoscli(cedula);
+                                    break;
+                                case 3:
+                                    Cerrar();
+                                    break;
+                            }
+                        }
+                    })
+                    .build();
         }
-        if (vista.getTitulo_texto().getText().equals("COMERCIANTE")) {
+        if (vista.getTitulo_texto().getText().equals("COMERCIANTE") || vista.getTitulo_texto().getText().equals("Comerciante")) {
+            vista.getX1().setVisible(false);
+            vista.getX2().setVisible(false);
+            vista.getXjlActividad().setVisible(false);
+            vista.getXjlActividadFiltrada().setVisible(false);
+            vista.getBtnActividadFiltro().setVisible(false);
+            vista.getJdcFechaFin().setVisible(false);
+            vista.getJdcFechaIni().setVisible(false);
+            vista.getXjScrollPane2().setVisible(false);
+            vista.getXjScrollPane1().setVisible(false);
             vista.getjMenu3().setVisible(true);
+            //mis acciones
+            vista.getjMenu4().setVisible(false);
+            vista.getMiExtras().setVisible(false);
+            vista.getMiAutomovil().setVisible(false);
+            vista.getMiCliente().setVisible(true);
+            vista.getMiCliente().addActionListener(l -> menuCliente());
+            vista.getMiAlquiler().addActionListener(l -> menuAlquiler());
+            vista.getMiDevolución().addActionListener(l -> menuDevolucion());
+            
+            
+            
+            vista.getRmPrestamos().setText("Mis alquileres");
+            vista.getRmPrestamos().setText("Mis devoluciones");
+            vista.getRmPrestamos().setText("Mis multas");
+            vista.getMenu_desplegable().addActionListener(l -> Desplegar());
+            dave = Drawer.newDrawer(this.vista).header(foto)
+                    .space(5)
+                    .separator(2, new Color(173, 173, 173))
+                    .background(new Color(135, 206, 250))
+                    .backgroundTransparent(0.3f)
+                    .duration(300)
+                    .enableScroll(true)
+                    .addChild(new DrawerItem("Clientes").icon(new ImageIcon(getClass().getResource("/vista/img/menu/user.png"))).build())
+                    .addChild(new DrawerItem("Alquileres").icon(new ImageIcon(getClass().getResource("/vista/img/menu/data.png"))).build())
+                    .addChild(new DrawerItem("Devoluciones").icon(new ImageIcon(getClass().getResource("/vista/img/menu/income.png"))).build())
+                    .addFooter(new DrawerItem("SALIR ").icon(new ImageIcon(getClass().getResource("/vista/img/menu/exit.png"))).build())
+                    .event(new EventDrawer() {
+                        @Override
+                        public void selected(int i, DrawerItem di) {
+                            System.out.println(i);
+                            switch (i) {
+                                 case 0:
+                                    menuCliente();
+                                    break;
+                                case 1:
+                                    menuAlquiler();
+                                    break;
+                                case 2:
+                                    menuDevolucion();
+                                    break;
+                                case 3:
+                                    Cerrar();
+                                    break;
+                            }
+                        }
+                    })
+                    .build();
         }
-        if (vista.getTitulo_texto().getText().equals("ADMINISTRADOR")) {
+        if (vista.getTitulo_texto().getText().equals("ADMINISTRADOR") || vista.getTitulo_texto().getText().equals("Administrador")) {
+            vista.getX1().setVisible(true);
+            vista.getX2().setVisible(true);
+            vista.getXjlActividad().setVisible(true);
+            vista.getXjlActividadFiltrada().setVisible(true);
+            vista.getBtnActividadFiltro().setVisible(true);
+            vista.getJdcFechaFin().setVisible(true);
+            vista.getJdcFechaIni().setVisible(true);
+            vista.getXjScrollPane2().setVisible(true);
+            vista.getXjScrollPane1().setVisible(true);
             vista.getjMenu3().setVisible(true);
+            vista.getMI_prefil().addActionListener(l -> Perfil());
+            vista.getJmSalir().addActionListener(l -> Cerrar());
+            vista.getMiCliente().addActionListener(l -> menuCliente());
+            vista.getMiConductor().addActionListener(l -> menuConductor());
+            vista.getMiAutomovil().addActionListener(l -> MenuAutos());
+            vista.getMiExtras().addActionListener(l -> menuExtras());
+            vista.getMiAlquiler().addActionListener(l -> menuAlquiler());
+            vista.getMiEmpleado().addActionListener(l -> menuEmpelado());
+            vista.getMiDevolución().addActionListener(l -> menuDevolucion());
+            vista.getMenu_desplegable().addActionListener(l -> Desplegar());
+            dave = Drawer.newDrawer(this.vista).header(foto)
+                    .space(5)
+                    .separator(2, new Color(173, 173, 173))
+                    .background(new Color(135, 206, 250))
+                    .backgroundTransparent(0.3f)
+                    .duration(300)
+                    .enableScroll(true)
+                    .addChild(new DrawerItem("Cliente").icon(new ImageIcon(getClass().getResource("/vista/img/menu/user.png"))).build())
+                    .addChild(new DrawerItem("Empleado").icon(new ImageIcon(getClass().getResource("/vista/img/menu/data.png"))).build())
+                    .addChild(new DrawerItem("Conductor").icon(new ImageIcon(getClass().getResource("/vista/img/menu/income.png"))).build())
+                    .addChild(new DrawerItem("Automóvil").icon(new ImageIcon(getClass().getResource("/vista/img/menu/expense.png"))).build())
+                    .addChild(new DrawerItem("Alquiler").icon(new ImageIcon(getClass().getResource("/vista/img/menu/report.png"))).build())
+                    .addChild(new DrawerItem("Devolución").icon(new ImageIcon(getClass().getResource("/vista/img/menu/data.png"))).build())
+                    .addFooter(new DrawerItem("SALIR ").icon(new ImageIcon(getClass().getResource("/vista/img/menu/exit.png"))).build())
+                    .event(new EventDrawer() {
+                        @Override
+                        public void selected(int i, DrawerItem di) {
+                            System.out.println(i);
+                            switch (i) {
+                                case 0:
+                                    menuCliente();
+                                    break;
+                                case 1:
+                                    menuEmpelado();
+                                    break;
+                                case 2:
+                                    menuConductor();
+                                    break;
+                                case 3:
+                                    MenuAutos();
+                                    break;
+                                case 4:
+                                    menuAlquiler();
+                                    break;
+                                case 5:
+                                    menuDevolucion();
+                                    break;
+                                case 6:
+                                    Cerrar();
+                                    break;
+                            }
+                        }
+                    })
+                    .build();
+            //controlar reportes:
+            vista.getrClientes().addActionListener(l -> r.print_cliente());
+            vista.getrEmpleados().addActionListener(l -> r.print_empleado());
+            vista.getrConductores().addActionListener(l -> r.print_conductor());
+            vista.getrAutos().addActionListener(l -> r.print_auto());
+            vista.getRmPrestamos().addActionListener(l -> r.print_alquilerescli(cedula));
+            vista.getRmDelovoluciones().addActionListener(l -> r.print_devolucionescli(cedula));
+            vista.getRmContratos().addActionListener(l -> r.print_contratoscli(cedula));
         }
+
     }
 
     public void menuResumen() {
@@ -376,6 +498,4 @@ public final class cPrincipal {
         cResumen resumen = new cResumen(vista);
         resumen.setActividadFiltrada();
     }
-
-    
 }
